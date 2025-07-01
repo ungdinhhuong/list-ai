@@ -16,7 +16,7 @@ import {
   FileText
 } from 'lucide-react';
 
-export default function AIToolsNewsletter() {
+export default function Newsletter() {
   const [email, setEmail] = useState('');
   const [isSubscribed, setIsSubscribed] = useState(false);
 

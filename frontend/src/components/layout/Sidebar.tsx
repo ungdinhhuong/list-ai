@@ -42,11 +42,11 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
         bg-gray-900 border-r border-gray-800
         transform transition-transform duration-300 ease-in-out
         ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
-        2xl:translate-x-0
+        xl:translate-x-0
         overflow-hidden
       `}>
         {/* Mobile Close Button */}
-        <div className="2xl:hidden flex justify-end p-4">
+        <div className="xl:hidden flex justify-end p-4">
           <button
             onClick={() => setSidebarOpen(false)}
             className="text-gray-400 hover:text-white"

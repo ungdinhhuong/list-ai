@@ -1,7 +1,7 @@
 import React from 'react';
 import {ExternalLink, Github, Linkedin, Mail, Twitter} from 'lucide-react';
 
-const Footer = () => {
+const FooterSimple = () => {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
@@ -70,4 +70,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default FooterSimple;

@@ -6,11 +6,11 @@ interface HeaderProps {
 export default function Header({ sidebarOpen, setSidebarOpen }: HeaderProps) {
   return (
     <header className="bg-gray-900 border-b border-gray-800">
-      <div className="flex items-center justify-between px-4 lg:px-6 py-3 xl:pl-64">
-        <div className="flex items-center space-x-4 pl-4">
+      <div className="flex items-center justify-between px-4 py-3">
+        <div className="flex items-center space-x-4">
           {/* Mobile Menu Button */}
           <button
-            className="2xl:hidden text-white p-1"
+            className="xl:hidden text-white p-1"
             onClick={() => setSidebarOpen(!sidebarOpen)}
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
