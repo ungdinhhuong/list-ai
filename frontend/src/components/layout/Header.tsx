@@ -6,7 +6,7 @@ interface HeaderProps {
 export default function Header({ sidebarOpen, setSidebarOpen }: HeaderProps) {
   return (
     <header className="bg-gray-900 border-b border-gray-800">
-      <div className="flex items-center justify-between px-4 py-3">
+      <div className="flex items-center justify-between px-4 py-3 fixed bg-black w-full z-10 top-0 left-0 xl:static">
         <div className="flex items-center space-x-4">
           {/* Mobile Menu Button */}
           <button

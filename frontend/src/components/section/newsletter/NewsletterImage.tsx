@@ -3,7 +3,7 @@ import {Button} from '@/components/ui/button';
 import {Input} from '@/components/ui/input';
 import Image from "next/image";
 
-export default function NewsletterSimple() {
+export default function NewsletterImage() {
   const [email, setEmail] = useState('');
   const [isSubscribed, setIsSubscribed] = useState(false);
 
@@ -66,7 +66,7 @@ export default function NewsletterSimple() {
               </div>
             </div>
 
-            <div className="flex items-center space-x-2 text-sm">
+            <div className="flex items-center flex-wrap space-x-2 text-sm">
               <span className="text-gray-300">Already over</span>
               <span className="text-white font-bold text-lg">50,000 Subscribers</span>
               <span className="text-yellow-400">🔥</span>

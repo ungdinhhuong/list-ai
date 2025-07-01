@@ -121,5 +121,77 @@ export const allTools: AITool[] = [
     badge: "Popular",
     category: "Writing",
     color: "bg-orange-600"
+  },
+  {
+    id: "14",
+    name: "BLACKBOX.AI",
+    description: "AI agent transforming work and learning with code completion and...",
+    image: "/api/placeholder/80/80",
+    badge: "Popular",
+    category: "Development",
+    color: "bg-gray-900"
+  },
+  {
+    id: "15",
+    name: "Writesonic",
+    description: "Writesonic is a free AI writer for creating SEO-friendly content...",
+    image: "/api/placeholder/80/80",
+    badge: "Popular",
+    category: "Writing",
+    color: "bg-blue-600"
+  },
+  {
+    id: "16",
+    name: "PlayHT",
+    description: "Transform text to lifelike speech with diverse languages, emotions...",
+    image: "/api/placeholder/80/80",
+    badge: "Popular",
+    category: "Voice",
+    color: "bg-white"
+  },
+  {
+    id: "17",
+    name: "VideoGen",
+    description: "Create AI-generated videos in seconds.",
+    image: "/api/placeholder/80/80",
+    badge: "Popular",
+    category: "Video",
+    color: "bg-red-500"
+  },
+  {
+    id: "18",
+    name: "LogoAI",
+    description: "LogoAI is an AI-powered platform that assists businesses in...",
+    image: "/api/placeholder/80/80",
+    badge: "New",
+    category: "Design",
+    color: "bg-orange-500"
+  },
+  {
+    id: "19",
+    name: "Elai.io",
+    description: "Create personalized videos easily from text with AI presenters.",
+    image: "/api/placeholder/80/80",
+    badge: "New",
+    category: "Video",
+    color: "bg-gray-800"
+  },
+  {
+    id: "20",
+    name: "Pictory",
+    description: "Transform text into polished videos automatically with ease.",
+    image: "/api/placeholder/80/80",
+    badge: "Popular",
+    category: "Video",
+    color: "bg-purple-600"
+  },
+  {
+    id: "21",
+    name: "Rytr",
+    description: "AI assistant crafts quality content quickly across languages and tones.",
+    image: "/api/placeholder/80/80",
+    badge: "Popular",
+    category: "Writing",
+    color: "bg-orange-600"
   }
 ]
