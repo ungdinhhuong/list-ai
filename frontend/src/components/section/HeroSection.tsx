@@ -48,6 +48,8 @@ export default function HeroSection() {
               <Image
                 src={ads[0].image}
                 alt={ads[0].title}
+                width={600}
+                height={400}
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
             </div>

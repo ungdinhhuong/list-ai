@@ -1,13 +1,17 @@
+'use client'
 import ModeToggle from "@/components/shared/mode-toggle";
 import Link from "next/link";
 import {ROUTES} from "@/constants/routes";
+import {useSidebar} from "@/contexts/SidebarProvider";
 
 interface HeaderProps {
   sidebarOpen: boolean
   setSidebarOpen: (open: boolean) => void
 }
 
-export default function Header({ sidebarOpen, setSidebarOpen }: HeaderProps) {
+export default function Header() {
+  const { sidebarOpen, setSidebarOpen } = useSidebar();
+
   return (
     <header className="bg-gray-900 border-b border-gray-800">
       <div className="flex items-center justify-between px-4 py-3 fixed bg-black w-full z-10 top-0 left-0 xl:static">

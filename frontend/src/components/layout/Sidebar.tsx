@@ -1,24 +1,19 @@
+'use client'
 import {useEffect} from "react";
 import {usePathname, useRouter} from "next/navigation";
-import {sidebarCategories} from "@/data/constants";
 import {ROUTES} from "@/constants/routes";
+import {useSidebar} from "@/contexts/SidebarProvider";
+import {CategoryRes} from "@/types/category.type";
 
 interface SidebarProps {
-  sidebarOpen: boolean;
-  setSidebarOpen: (open: boolean) => void;
+  categories: CategoryRes[];
 }
 
-export interface Category {
-  name: string;
-  slug: string;
-  icon: string;
-}
-
-export default function Sidebar({sidebarOpen, setSidebarOpen}: SidebarProps) {
+export default function Sidebar({categories}: SidebarProps) {
+  const {sidebarOpen, setSidebarOpen} = useSidebar();
   const pathname = usePathname();
   const router = useRouter();
 
-  // Disable body scroll khi sidebar mở
   useEffect(() => {
     if (sidebarOpen) {
       document.body.classList.add("overflow-hidden");
@@ -28,8 +23,7 @@ export default function Sidebar({sidebarOpen, setSidebarOpen}: SidebarProps) {
     return () => document.body.classList.remove("overflow-hidden");
   }, [sidebarOpen]);
 
-  // Click menu: đóng sidebar, enable scroll, chuyển route
-  const handleClick = (category: Category) => {
+  const handleClick = (category: CategoryRes) => {
     setSidebarOpen(false);
     router.push(ROUTES.CATEGORY_DETAIL(category.slug));
   };
@@ -67,7 +61,7 @@ export default function Sidebar({sidebarOpen, setSidebarOpen}: SidebarProps) {
         </div>
 
         <div className="p-4 space-y-1">
-          {sidebarCategories.map((category, index) => {
+          {categories.map((category, index) => {
             const isActive = pathname === ROUTES.CATEGORY_DETAIL(category.slug);
 
             return (
