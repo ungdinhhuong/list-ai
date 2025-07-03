@@ -2,6 +2,7 @@ import {Button} from "@/components/ui/button"
 import {Card, CardContent} from "@/components/ui/card"
 import {Settings} from "lucide-react"
 import React from "react";
+import Image from "next/image";
 
 export default function HeroSection() {
   const ads = [
@@ -15,7 +16,7 @@ export default function HeroSection() {
   ];
 
   return (
-    <div className="flex py-8 lg:py-16 px-4 flex-col lg:flex-row gap-4 items-center">
+    <div className="flex flex-col lg:flex-row gap-4 items-center py-8 lg:py-16 pt-[61px]">
       {/* Left Button */}
       <div className="w-full lg:w-full text-center">
         <div className="flex justify-center mb-4 lg:mb-6">
@@ -44,7 +45,7 @@ export default function HeroSection() {
         >
           <CardContent className="p-0 relative">
             <div className="h-64 overflow-hidden">
-              <img
+              <Image
                 src={ads[0].image}
                 alt={ads[0].title}
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"

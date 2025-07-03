@@ -5,14 +5,14 @@ import SearchBar from "@/components/SearchBar"
 import FeaturedToolsSection from "@/components/section/FeaturedToolsSection"
 import AllToolsSection from "@/components/section/AllToolsSection"
 import {allTools, featuredTools} from "@/data/constants"
-import FooterSimple from "@/components/layout/FooterSimple";
 import NewsletterImage from "@/components/section/newsletter/NewsletterImage";
+import NewsletterSimple from "@/components/section/newsletter/NewsletterSimple";
 
 export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState("")
 
   return (
-    <div className="container mx-auto px-4 lg:max-w-6xl">
+    <div className="container mx-auto lg:max-w-7xl space-y-8">
       <HeroSection/>
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
       <FeaturedToolsSection tools={featuredTools}/>
@@ -24,8 +24,7 @@ export default function HomePage() {
 
       {/* Danh sách tool AI */}
       <AllToolsSection tools={allTools}/>
-
-      <FooterSimple/>
+      <NewsletterSimple/>
     </div>
   )
 }

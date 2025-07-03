@@ -1,13 +1,7 @@
 import React from 'react';
 import {Github, Linkedin, Mail, Twitter} from 'lucide-react';
-import NewsletterSimple from "@/components/section/newsletter/NewsletterSimple";
-import NewsletterImage from "@/components/section/newsletter/NewsletterImage";
 
-interface FooterSimpleProps {
-  newsletterType?: 'simple' | 'image',
-}
-
-const FooterSimple = ({newsletterType = 'simple'}: FooterSimpleProps) => {
+const FooterSimple = () => {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
@@ -19,10 +13,6 @@ const FooterSimple = ({newsletterType = 'simple'}: FooterSimpleProps) => {
 
   return (
     <footer className="bg-black text-white">
-      <div className="py-8">
-        {newsletterType === 'simple' ? (<NewsletterSimple/>) : (<NewsletterImage/>)}
-      </div>
-
       {/* Bottom Bar */}
       <div className="border-t border-gray-800">
         <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">

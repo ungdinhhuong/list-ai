@@ -17,7 +17,7 @@ export default function NewsletterImage() {
 
   return (
     <div className="w-full mx-auto bg-gray-900 rounded-2xl overflow-hidden shadow-2xl">
-      <div className="relative flex flex-col lg:flex-row items-center justify-between p-4 lg:p-8 gap-2">
+      <div className="relative flex flex-col lg:flex-row items-center justify-between p-4 lg:p-8 gap-4 lg:gap-8">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-4 left-4 w-32 h-32 bg-purple-500 rounded-full blur-3xl"></div>
@@ -26,7 +26,7 @@ export default function NewsletterImage() {
         </div>
 
         {/* Left Side - AI Tools Grid */}
-        <div className="relative flex-1 mb-8 xl:mb-0">
+        <div className="relative flex-1">
           <Image
             src="/images/ads.png"
             alt="Tôi vượt mình - Hành trình phát triển bản thân"
@@ -37,7 +37,7 @@ export default function NewsletterImage() {
         </div>
 
         {/* Right Side - Newsletter Signup */}
-        <div className="flex-1 max-w-md ml-8">
+        <div className="flex-1">
           <div className="space-y-6">
             <div>
               <p className="text-white text-lg font-medium mb-2">

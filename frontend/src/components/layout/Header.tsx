@@ -1,3 +1,7 @@
+import ModeToggle from "@/components/shared/mode-toggle";
+import Link from "next/link";
+import {ROUTES} from "@/constants/routes";
+
 interface HeaderProps {
   sidebarOpen: boolean
   setSidebarOpen: (open: boolean) => void
@@ -18,18 +22,17 @@ export default function Header({ sidebarOpen, setSidebarOpen }: HeaderProps) {
             </svg>
           </button>
 
-          <div className="flex items-center space-x-2">
+          <Link href={ROUTES.HOME} className="flex items-center space-x-2">
             <div className="w-6 h-6 bg-white rounded"></div>
-            <span className="text-lg lg:text-xl font-bold">BenListAI</span>
-          </div>
+            <span className="text-lg lg:text-xl font-bold">AI Hub</span>
+          </Link>
         </div>
 
         <div className="hidden md:flex items-center space-x-4 lg:space-x-6 text-sm">
-          <span className="text-gray-300 hover:text-white cursor-pointer">Categories</span>
-          <span className="text-gray-300 hover:text-white cursor-pointer">Blog</span>
-          <span className="text-gray-300 hover:text-white cursor-pointer">About</span>
-          <span className="text-gray-300 hover:text-white cursor-pointer">Advertise</span>
-          <span className="text-gray-300 hover:text-white cursor-pointer">Submit</span>
+          <Link href={ROUTES.CATEGORY} className="text-gray-300 hover:text-white cursor-pointer">Categories</Link>
+          <Link href={ROUTES.ABOUT} className="text-gray-300 hover:text-white cursor-pointer">About</Link>
+          {/*<span className="text-gray-300 hover:text-white cursor-pointer">Submit</span>*/}
+          <ModeToggle/>
         </div>
 
         {/* Mobile Menu Dropdown */}

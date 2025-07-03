@@ -31,3 +31,12 @@ export const getBadgeOutlineColor = (badge: string) => {
       return "border-gray-500 text-gray-400 hover:bg-gray-500/10"
   }
 }
+
+export function toSlug(name: string) {
+  return name
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")   // thay mọi ký tự không phải a-z, 0-9 thành dấu -
+    .replace(/^-+|-+$/g, "")       // bỏ dấu - ở đầu và cuối
+    .replace(/-{2,}/g, "-");       // gộp nhiều dấu - liền nhau thành 1
+}

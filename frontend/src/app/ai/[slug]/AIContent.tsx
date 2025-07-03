@@ -30,7 +30,7 @@ export default function AIContent() {
 
       {/* Core Features Section */}
       <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-6">Nim's Core Features</h2>
+        <h2 className="text-xl font-semibold mb-6">{'Nim\'s Core Features'}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
             'Text-to-image generation',
@@ -69,7 +69,7 @@ export default function AIContent() {
       </section>
 
       {/* Navigation Footer */}
-      <div className="flex justify-between items-center pt-8 border-t border-gray-800">
+      <div className="flex justify-between items-center pt-4 xl:pt-8 border-t border-gray-800">
         <Button variant="ghost" className="text-blue-400 hover:text-blue-300 hover:bg-gray-800">
           <ChevronLeft className="w-4 h-4 mr-2"/>
           Monica
@@ -79,7 +79,6 @@ export default function AIContent() {
           <ChevronRight className="w-4 h-4 ml-2"/>
         </Button>
       </div>
-
     </>
   );
 }
