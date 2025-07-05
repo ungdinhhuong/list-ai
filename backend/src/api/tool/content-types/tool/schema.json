@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "categories",
+  "collectionName": "tools",
   "info": {
-    "singularName": "category",
-    "pluralName": "categories",
-    "displayName": "Category"
+    "singularName": "tool",
+    "pluralName": "tools",
+    "displayName": "Tool"
   },
   "options": {
     "draftAndPublish": true
@@ -24,14 +24,6 @@
       },
       "required": true
     },
-    "icon": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
     "slug": {
       "type": "string",
       "pluginOptions": {
@@ -39,7 +31,7 @@
           "localized": true
         }
       },
-      "required": false,
+      "required": true,
       "unique": true
     },
     "description": {
@@ -50,28 +42,60 @@
         }
       }
     },
-    "gradient": {
+    "avatar": {
+      "type": "media",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "link": {
       "type": "string",
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
         }
-      }
+      },
+      "required": true
     },
-    "order": {
-      "type": "integer",
+    "badge": {
+      "type": "enumeration",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "default": 0
+      "enum": [
+        "Featured",
+        "Popular",
+        "New"
+      ]
     },
-    "tools": {
+    "categories": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::tool.tool",
-      "mappedBy": "categories"
+      "target": "api::category.category",
+      "inversedBy": "tools"
+    },
+    "type": {
+      "type": "enumeration",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "enum": [
+        "Free",
+        "Paid"
+      ]
     }
   }
 }

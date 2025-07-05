@@ -1,24 +1,23 @@
 import ToolCard from "@/components/ToolCard";
-
-interface AITool {
-  id: string
-  name: string
-  description: string
-  image: string
-  badge?: "Featured" | "Popular" | "New"
-  category: string
-  color?: string
-}
+import {ToolType} from "@/types/tool.type";
 
 interface AllToolsSectionProps {
-  tools: AITool[],
+  name?: string,
+  tools: ToolType[],
   lengthItems?: number
 }
 
-export default function AllToolsSection({tools, lengthItems = 4}: AllToolsSectionProps) {
+export default function AllToolsSection({name, tools, lengthItems = 4}: AllToolsSectionProps) {
   return (
     <section>
-      <h2 className="text-xl lg:text-2xl font-bold mb-4 lg:mb-6">All Tools:</h2>
+      <h2 className="text-xl lg:text-2xl font-bold mb-4 lg:mb-6">All {name || ''} Tools:</h2>
+      {
+        tools.length === 0 && (
+          <div className="text-gray-400 text-lg">
+            No tools found in this category.
+          </div>
+        )
+      }
       {
         lengthItems === 4
           ? (
@@ -36,7 +35,6 @@ export default function AllToolsSection({tools, lengthItems = 4}: AllToolsSectio
             </div>
           )
       }
-
     </section>
   )
 }

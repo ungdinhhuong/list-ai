@@ -2,7 +2,7 @@ import {Badge} from "@/components/ui/badge";
 import {getBadgeColor, getBadgeOutlineColor} from "@/lib/utils";
 
 export interface BadgeCustomProps {
-  badge?: string;
+  badge?: string | null;
   title?: string;
   type?: 'default' | 'outline';
 }

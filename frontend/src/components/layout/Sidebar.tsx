@@ -3,10 +3,10 @@ import {useEffect} from "react";
 import {usePathname, useRouter} from "next/navigation";
 import {ROUTES} from "@/constants/routes";
 import {useSidebar} from "@/contexts/SidebarProvider";
-import {CategoryRes} from "@/types/category.type";
+import {CategoryType} from "@/types/category.type";
 
 interface SidebarProps {
-  categories: CategoryRes[];
+  categories: CategoryType[];
 }
 
 export default function Sidebar({categories}: SidebarProps) {
@@ -23,7 +23,7 @@ export default function Sidebar({categories}: SidebarProps) {
     return () => document.body.classList.remove("overflow-hidden");
   }, [sidebarOpen]);
 
-  const handleClick = (category: CategoryRes) => {
+  const handleClick = (category: CategoryType) => {
     setSidebarOpen(false);
     router.push(ROUTES.CATEGORY_DETAIL(category.slug));
   };

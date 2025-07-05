@@ -1,4 +1,6 @@
-export interface CategoryRes {
+import {ToolType} from "@/types/tool.type";
+
+export interface CategoryType {
   id: number;
   documentId: string;
   name: string;
@@ -10,4 +12,6 @@ export interface CategoryRes {
   updatedAt: string;   // ISO date string
   publishedAt: string; // ISO date string
   locale: string;
+  order: number;
+  tools: ToolType[];
 }

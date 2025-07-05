@@ -4,7 +4,7 @@ import {Card, CardContent} from '@/components/ui/card';
 import NewsletterImage from "@/components/section/newsletter/NewsletterImage";
 import {sidebarCategories} from "@/data/constants";
 
-const AIToolsDashboard = () => {
+const CategoryDetailPage = () => {
   return (
     <div className="container mx-auto lg:max-w-7xl space-y-8 relative">
       <div className="space-y-4 mb-8">
@@ -67,4 +67,4 @@ const AIToolsDashboard = () => {
   );
 };
 
-export default AIToolsDashboard;
+export default CategoryDetailPage;

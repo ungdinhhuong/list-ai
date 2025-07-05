@@ -5,14 +5,18 @@ interface AvatarLogoProps {
   text: string;
   img?: string;
 }
+
+
 export default function AvatarLogo({ text, img }: AvatarLogoProps) {
+  const strapiBaseUrl = process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'
   const firstChar = text.charAt(0).toUpperCase();
+  const fullUrl = strapiBaseUrl + img
 
   if (img) {
     return (
-      <div className="w-14 h-14 rounded-lg flex items-center justify-center overflow-hidden flex-shrink-0 bg-gray-100">
+      <div className="w-14 h-14 rounded-lg flex items-center justify-center overflow-hidden flex-shrink-0">
         <Image
-          src={img}
+          src={fullUrl}
           alt={text}
           width={40}
           height={40}

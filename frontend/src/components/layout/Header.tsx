@@ -3,11 +3,7 @@ import ModeToggle from "@/components/shared/mode-toggle";
 import Link from "next/link";
 import {ROUTES} from "@/constants/routes";
 import {useSidebar} from "@/contexts/SidebarProvider";
-
-interface HeaderProps {
-  sidebarOpen: boolean
-  setSidebarOpen: (open: boolean) => void
-}
+import Image from "next/image";
 
 export default function Header() {
   const { sidebarOpen, setSidebarOpen } = useSidebar();
@@ -27,8 +23,15 @@ export default function Header() {
           </button>
 
           <Link href={ROUTES.HOME} className="flex items-center space-x-2">
-            <div className="w-6 h-6 bg-white rounded"></div>
-            <span className="text-lg lg:text-xl font-bold">AI Hub</span>
+            <div className="w-34 h-8 relative">
+              <Image
+                src={'/logo.png'}
+                alt="OnToolAZ"
+                fill
+                className="w-full h-full object-cover"
+              />
+            </div>
+            {/*<span className="text-lg lg:text-xl font-bold">OnToolAZ</span>*/}
           </Link>
         </div>
 

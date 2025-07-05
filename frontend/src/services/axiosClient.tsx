@@ -1,15 +1,12 @@
 import axios from 'axios'
 
-const API_URL = process.env.API_URL || "http://localhost:1337/api";
-const API_TOKEN = process.env.STRAPI_API_TOKEN;
-
 const instance = axios.create({
-  baseURL: API_URL,
+  baseURL: process.env.API_URL || "http://localhost:1337/api"
 })
 
 instance.interceptors.request.use(function (config: any) {
-  if (typeof window === "undefined" && API_TOKEN) {
-    config.headers.Authorization = `Bearer ${API_TOKEN}`;
+  if (typeof window === 'undefined' && process.env.STRAPI_API_TOKEN) {
+    config.headers.Authorization = `Bearer ${process.env.STRAPI_API_TOKEN}`;
   }
 
   return config;

@@ -3,20 +3,11 @@ import BadgeCustom from "@/components/common/BadgeCustom";
 import AvatarLogo from "@/components/common/AvatarLogo";
 import Link from "next/link";
 import {toSlug} from "@/lib/utils";
+import {ToolType} from "@/types/tool.type";
 
-interface AITool {
-  id: string
-  name: string
-  description: string
-  image: string
-  badge?: "Featured" | "Popular" | "New"
-  category: string
-  color?: string
-  slug: string
-}
 
 interface ToolCardProps {
-  tool: AITool
+  tool: ToolType
 }
 
 export default function ToolCard({tool}: ToolCardProps) {
@@ -25,7 +16,7 @@ export default function ToolCard({tool}: ToolCardProps) {
       <Card className="bg-gray-900 border-gray-700 hover:border-gray-600 transition-colors p-2">
         <CardContent className="p-0">
           <div className="flex items-start space-x-3">
-            <AvatarLogo text={tool.name} img={''}/>
+            <AvatarLogo text={tool.name} img={tool?.avatar?.url || ''}/>
             <div className="flex-1 min-w-0">
               <div className="flex items-start justify-between mb-1">
                 <h3 className="font-bold text-white text-sm truncate pr-2 line-clamp-1">{tool.name}</h3>
