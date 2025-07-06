@@ -33,7 +33,6 @@ export default function RootLayout({
       <link rel="manifest" href="/site.webmanifest"/>
       <link rel="shortcut icon" href="/favicon.ico"/>
       <meta name="theme-color" content="#000000"/>
-      <title></title>
     </head>
     <body
       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
