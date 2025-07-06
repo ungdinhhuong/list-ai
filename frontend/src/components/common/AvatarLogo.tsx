@@ -1,4 +1,4 @@
-import { char2BgColor } from "@/data/constants";
+import { char2BgColor } from "@/constants/constants";
 import Image from "next/image";
 
 interface AvatarLogoProps {

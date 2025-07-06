@@ -1,52 +1,14 @@
 import {AITool} from "@/types"
 
-export const featuredTools: AITool[] = [
-  {
-    id: "1",
-    name: "Affitor",
-    description: "All-in-one tool to win Affiliate with AI. Powerful tools designed by industry experts to give you the competitive edge you deserve.",
-    image: "/api/placeholder/80/80",
-    badge: "Featured",
-    category: "Marketing",
-    color: "bg-blue-500"
-  },
-  {
-    id: "2",
-    name: "Monica",
-    description: "AI assistant revolutionizing the way of writing, coding, and more.",
-    image: "/api/placeholder/80/80",
-    badge: "Featured",
-    category: "AI Assistant",
-    color: "bg-purple-500"
-  },
-  {
-    id: "3",
-    name: "Nim Video",
-    description: "All-in-one live AI video production and generation.",
-    image: "/api/placeholder/80/80",
-    badge: "Featured",
-    category: "Video",
-    color: "bg-pink-500"
-  },
-  {
-    id: "4",
-    name: "MagicLight",
-    description: "AI head-to-video platform for creating professional videos easily.",
-    image: "/api/placeholder/80/80",
-    badge: "Featured",
-    category: "Video",
-    color: "bg-gray-800"
-  },
-  {
-    id: "5",
-    name: "ElevenLabs",
-    description: "Generate high-quality AI voices in minutes.",
-    image: "/api/placeholder/80/80",
-    badge: "Featured",
-    category: "Voice",
-    color: "bg-orange-500"
-  }
-]
+export const BADGE = {
+  FEATURED: "Featured",
+  POPULAR: "Popular",
+  NEW: "New",
+  TRENDING: "Trending",
+  BEST: "Best",
+  TOP: "Top",
+  PRO: "Pro"
+}
 
 export const allTools: AITool[] = [
   {
@@ -417,7 +379,7 @@ export const sidebarCategories = [
   }
 ];
 
-
+export const PAGE_SIZE = 10;
 
 
 

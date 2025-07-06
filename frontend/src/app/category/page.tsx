@@ -2,7 +2,7 @@
 import React from 'react';
 import {Card, CardContent} from '@/components/ui/card';
 import NewsletterImage from "@/components/section/newsletter/NewsletterImage";
-import {sidebarCategories} from "@/data/constants";
+import {sidebarCategories} from "@/constants/constants";
 
 const CategoryDetailPage = () => {
   return (

@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import AllToolsSection from "@/components/section/AllToolsSection"
-import {allTools} from "@/data/constants"
+import {allTools} from "@/constants/constants"
 import {Button} from '@/components/ui/button';
 import {ExternalLink} from 'lucide-react';
 import AIInfoCard from "@/app/ai/[slug]/AIInfoCard";
