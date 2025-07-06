@@ -38,13 +38,13 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-black text-white">
+    <footer className="bg-background text-foreground">
       {/* Newsletter Section */}
-      <div className="border-b border-gray-800">
+      <div className="border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="text-center">
             <h3 className="text-2xl font-bold mb-4">Stay Updated with Latest AI Tools</h3>
-            <p className="text-gray-400 mb-6 max-w-2xl mx-auto">
+            <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
               Join over 50,000 subscribers and get exclusive access to new AI tools,
               curated lists, and productivity tips delivered to your inbox.
             </p>
@@ -52,7 +52,7 @@ const Footer = () => {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-lg bg-gray-900 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="flex-1 px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
               <button className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors duration-200 flex items-center justify-center gap-2">
                 Subscribe
@@ -63,7 +63,7 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Main FooterSimple Content */}
+      {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Brand Section */}
@@ -74,7 +74,7 @@ const Footer = () => {
               </div>
               <h3 className="text-xl font-bold">BenListAI</h3>
             </div>
-            <p className="text-gray-400 mb-6 max-w-md">
+            <p className="text-muted-foreground mb-6 max-w-md">
               The Best AI Websites & AI Tools Directory. Discover, explore, and find the perfect AI tools
               to boost your productivity and creativity.
             </p>
@@ -85,7 +85,7 @@ const Footer = () => {
                   <a
                     key={social.name}
                     href={social.href}
-                    className="w-10 h-10 bg-gray-900 hover:bg-gray-700 rounded-lg flex items-center justify-center transition-colors duration-200"
+                    className="w-10 h-10 bg-muted hover:bg-accent text-muted-foreground hover:text-foreground rounded-lg flex items-center justify-center transition-colors duration-200"
                     aria-label={social.name}
                   >
                     <Icon size={20} />
@@ -95,82 +95,36 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Product Links */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Product</h4>
-            <ul className="space-y-3">
-              {footerLinks.product.map((link) => (
-                <li key={link.name}>
-                  <a
-                    href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors duration-200"
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Categories Links */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Categories</h4>
-            <ul className="space-y-3">
-              {footerLinks.categories.map((link) => (
-                <li key={link.name}>
-                  <a
-                    href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors duration-200"
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Company & Legal Links */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Company</h4>
-            <ul className="space-y-3">
-              {footerLinks.company.map((link) => (
-                <li key={link.name}>
-                  <a
-                    href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors duration-200"
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-
-            <h4 className="text-lg font-semibold mb-4 mt-8">Legal</h4>
-            <ul className="space-y-3">
-              {footerLinks.legal.map((link) => (
-                <li key={link.name}>
-                  <a
-                    href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors duration-200"
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Footer Columns */}
+          {['product', 'categories', 'company', 'legal'].map((section) => (
+            <div key={section}>
+              <h4 className="text-lg font-semibold mb-4 capitalize">{section}</h4>
+              <ul className="space-y-3">
+                {footerLinks[section as keyof typeof footerLinks].map((link) => (
+                  <li key={link.name}>
+                    <a
+                      href={link.href}
+                      className="text-muted-foreground hover:text-foreground transition-colors duration-200"
+                    >
+                      {link.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-gray-800">
+      <div className="border-t border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col sm:flex-row justify-between items-center">
-            <p className="text-gray-400 text-sm">
+            <p className="text-muted-foreground text-sm">
               © {currentYear} BenListAI. All rights reserved.
             </p>
             <div className="flex items-center space-x-6 mt-4 sm:mt-0">
-              <span className="text-gray-400 text-sm">Follow Us:</span>
+              <span className="text-muted-foreground text-sm">Follow Us:</span>
               <div className="flex space-x-3">
                 {socialLinks.slice(0, 3).map((social) => {
                   const Icon = social.icon;
@@ -178,7 +132,7 @@ const Footer = () => {
                     <a
                       key={social.name}
                       href={social.href}
-                      className="text-gray-400 hover:text-white transition-colors duration-200"
+                      className="text-muted-foreground hover:text-foreground transition-colors duration-200"
                       aria-label={social.name}
                     >
                       <Icon size={18} />

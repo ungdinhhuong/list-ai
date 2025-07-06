@@ -96,6 +96,12 @@
         "Free",
         "Paid"
       ]
+    },
+    "tool_content": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::tool-content.tool-content",
+      "mappedBy": "tool"
     }
   }
 }

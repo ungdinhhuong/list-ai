@@ -6,11 +6,10 @@ interface AvatarLogoProps {
   img?: string;
 }
 
-
 export default function AvatarLogo({ text, img }: AvatarLogoProps) {
-  const strapiBaseUrl = process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'
+  const strapiBaseUrl = process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337';
   const firstChar = text.charAt(0).toUpperCase();
-  const fullUrl = strapiBaseUrl + img
+  const fullUrl = strapiBaseUrl + img;
 
   if (img) {
     return (
@@ -27,7 +26,14 @@ export default function AvatarLogo({ text, img }: AvatarLogoProps) {
   }
 
   return (
-    <div className={`w-14 h-14 ${char2BgColor[firstChar] || "bg-gray-300"} rounded-lg flex items-center justify-center text-white font-bold text-sm flex-shrink-0`}>
+    <div
+      className={`
+        w-14 h-14 
+        ${char2BgColor[firstChar] || "bg-muted"} 
+        rounded-lg flex items-center justify-center 
+        text-foreground font-bold text-sm flex-shrink-0
+      `}
+    >
       {firstChar}
     </div>
   );

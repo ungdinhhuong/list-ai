@@ -1,4 +1,4 @@
-import HomePageClient from "@/components/section/HomePageClient";
+import HomePageClient from "@/components/home/HomePageClient";
 import {toolService} from "@/services/tool.service";
 import {BADGE, PAGE_SIZE} from "@/constants/constants";
 
