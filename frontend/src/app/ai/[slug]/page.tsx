@@ -7,7 +7,8 @@ import { Metadata } from "next";
 import {APP_URL, STRAPI_URL} from "@/constants/env";
 
 export async function generateMetadata({ params }: AIDetailPageProps): Promise<Metadata> {
-  const tool = await toolService.findBySlug(params.slug);
+  const { slug } = await params;
+  const tool = await toolService.findBySlug(slug);
 
   if (!tool) {
     return {
@@ -28,7 +29,7 @@ export async function generateMetadata({ params }: AIDetailPageProps): Promise<M
     openGraph: {
       title: `${tool.name} - Ontoolaz`,
       description: tool.tool_content?.metaDescription || tool.description || "Chi tiết về công cụ AI.",
-      url: `${APP_URL}/ai/${params.slug}`,
+      url: `${APP_URL}/ai/${slug}`,
       images: [
         {
           url: tool.avatar?.url
@@ -60,7 +61,6 @@ export default async function AIDetailPage({params}: AIDetailPageProps) {
     const resToolsByCategory = await toolService.getToolsByCategory(categoryIds);
     relatedTools = resToolsByCategory.data || [];
   }
-  console.log(tool)
 
   return <AIDetailClient tool={tool} relatedTools={relatedTools}/>
 }

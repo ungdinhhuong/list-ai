@@ -4,6 +4,7 @@ import AvatarLogo from "@/components/common/AvatarLogo";
 import Link from "next/link";
 import { toSlug } from "@/lib/utils";
 import { ToolType } from "@/types/tool.type";
+import {ROUTES} from "@/constants/routes";
 
 interface ToolCardProps {
   tool: ToolType;
@@ -11,7 +12,7 @@ interface ToolCardProps {
 
 export default function ToolCard({ tool }: ToolCardProps) {
   return (
-    <Link href={`/ai/${toSlug(tool.name)}`} className="block">
+    <Link href={ROUTES.AI_DETAIL(toSlug(tool.name))} className="block">
       <Card className="bg-background border-border hover:border-accent transition-colors p-2">
         <CardContent className="p-0">
           <div className="flex items-start space-x-3">

@@ -39,7 +39,7 @@ export default function NewsletterImage() {
         {/* Form Section */}
         <div className="flex-1">
           <div className="space-y-6">
-            <p className="text-foreground text-lg font-medium mb-2">
+            <p className="text-foreground text-lg font-medium">
               Be part of our Newsletter to get Exclusive content and Get{' '}
               <span className="text-blue-500 font-bold">100+ free AI tools</span>{' '}
               to help increase your productivity today!
