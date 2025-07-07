@@ -1,3 +1,5 @@
+import { FaYoutube, FaFacebook, FaInstagram, FaTiktok, FaTwitter } from 'react-icons/fa'
+
 export const BADGE = {
   FEATURED: "Featured",
   POPULAR: "Popular",
@@ -40,8 +42,33 @@ export const char2BgColor: Record<string, string> = {
 export const PAGE_SIZE = 10;
 
 
-
-
+export const SOCIALS = {
+  FACEBOOK: {
+    name: "Facebook",
+    url: "https://facebook.com/ontoolaz",
+    icon: FaFacebook
+  },
+  X: {
+    name: "X",
+    url: "https://x.com/ontoolaz",
+    icon: FaTwitter
+  },
+  YOUTUBE: {
+    name: "YouTube",
+    url: "https://youtube.com/@ontoolaz",
+    icon: FaYoutube
+  },
+  TIKTOK: {
+    name: "TikTok",
+    url: "https://tiktok.com/@ontoolaz",
+    icon: FaTiktok
+  },
+  INSTAGRAM: {
+    name: "Instagram",
+    url: "https://instagram.com/ontoolaz",
+    icon: FaInstagram
+  },
+}
 
 
 

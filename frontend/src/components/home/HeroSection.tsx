@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Settings, Upload, Users } from 'lucide-react';
+import Image from "next/image";
 
 export default function HeroSection() {
   const ads = [
@@ -52,7 +53,7 @@ export default function HeroSection() {
           onClick={() => window.open(ads[0].link, '_blank')}
         >
           <div className="aspect-video overflow-hidden">
-            <img
+            <Image
               src={ads[0].image}
               alt={ads[0].title}
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"

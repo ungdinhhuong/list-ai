@@ -43,6 +43,9 @@ export default function Header() {
           <Link href={ROUTES.ABOUT} className="text-muted-foreground hover:text-foreground transition-colors">
             About
           </Link>
+          <Link href={ROUTES.POLICY} className="text-muted-foreground hover:text-foreground transition-colors">
+            Policy
+          </Link>
           <ModeToggle />
         </div>
 

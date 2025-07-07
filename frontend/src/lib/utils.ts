@@ -6,7 +6,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 
-export const getBadgeColor = (badge: string) => {
+export const getBadgeColor = (badge?: string | null) => {
   switch (badge) {
     case "Featured":
       return "bg-orange-500 text-white hover:bg-orange-600"
@@ -19,7 +19,7 @@ export const getBadgeColor = (badge: string) => {
   }
 }
 
-export const getBadgeOutlineColor = (badge: string) => {
+export const getBadgeOutlineColor = (badge?: string | null) => {
   switch (badge) {
     case "Featured":
       return "border-orange-500 text-orange-400 hover:bg-orange-500/10"
