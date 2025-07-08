@@ -66,6 +66,7 @@ export default function HomePageClient({ featuredTools, initialTools }: HomePage
             onClick={loadMore}
             disabled={loading}
             className="px-8 py-2"
+            variant="secondary"
           >
             {loading ? (
               <>

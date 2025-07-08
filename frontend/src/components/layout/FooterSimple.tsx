@@ -1,16 +1,21 @@
 import React from 'react';
 import {APP_NAME} from "@/constants/env";
 import {SOCIALS} from "@/constants/constants";
+import ReCaptchaPolicy from "@/components/section/newsletter/ReCaptchaPolicy";
 
 const FooterSimple = () => {
 
   return (
     <footer className="bg-background text-foreground border-t border-border">
-      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div className="w-full mx-auto px-4 py-4">
         <div className="flex flex-col sm:flex-row justify-between items-center">
-          <p className="text-muted-foreground text-sm">
-            © 2025 {APP_NAME}. All rights reserved.
-          </p>
+          <div>
+            <p className="text-muted-foreground text-sm mb-1">
+              © 2025 {APP_NAME}. All rights reserved.
+            </p>
+            <ReCaptchaPolicy/>
+          </div>
+
 
           <div className="flex items-center space-x-6 mt-4 sm:mt-0">
             <span className="text-muted-foreground text-sm">Follow Us:</span>

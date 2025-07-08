@@ -40,3 +40,8 @@ export function toSlug(name: string) {
     .replace(/^-+|-+$/g, "")       // bỏ dấu - ở đầu và cuối
     .replace(/-{2,}/g, "-");       // gộp nhiều dấu - liền nhau thành 1
 }
+
+export function isValidEmail(email: string) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  return emailRegex.test(email)
+}

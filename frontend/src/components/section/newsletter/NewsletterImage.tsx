@@ -1,19 +1,52 @@
-import React, { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import Image from "next/image";
+'use client'
+
+import React, {useRef, useState} from 'react'
+import {Button} from '@/components/ui/button'
+import {Input} from '@/components/ui/input'
+import Image from 'next/image'
+import ReCAPTCHA from 'react-google-recaptcha'
+import {subscriberService} from '@/services/subscriber.service'
+import {isValidEmail} from "@/lib/utils";
 
 export default function NewsletterImage() {
-  const [email, setEmail] = useState('');
-  const [isSubscribed, setIsSubscribed] = useState(false);
+  const [emailImage, setEmailImage] = useState('')
+  const [isSubscribed, setIsSubscribed] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
+  const recaptchaRef = useRef<ReCAPTCHA>(null)
 
-  const handleSubmit = () => {
-    if (email) {
-      setIsSubscribed(true);
-      setTimeout(() => setIsSubscribed(false), 3000);
-      setEmail('');
+  const handleSubmit = async () => {
+    if (!emailImage) {
+      setErrorMessage('Vui lòng nhập email')
+      return
     }
-  };
+
+    if (!isValidEmail(emailImage)) {
+      setErrorMessage('Email không hợp lệ')
+      return
+    }
+
+    const token = await recaptchaRef.current?.executeAsync()
+    recaptchaRef.current?.reset()
+
+    if (!token) {
+      setErrorMessage('Lỗi xác thực reCAPTCHA')
+      return
+    }
+
+    setLoading(true)
+    setErrorMessage('')
+
+    try {
+      await subscriberService.subscribe(emailImage, token)
+      setIsSubscribed(true)
+      setEmailImage('')
+    } catch (err: any) {
+      setErrorMessage(err.message)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   return (
     <div className="w-full mx-auto bg-background rounded-2xl overflow-hidden shadow-2xl border border-border">
@@ -46,22 +79,36 @@ export default function NewsletterImage() {
             </p>
 
             <div className="space-y-4">
-              <div className="flex gap-3">
-                <Input
-                  type="email"
-                  placeholder="name@email.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="flex-1 bg-muted border-border text-foreground placeholder-muted-foreground"
-                />
-                <Button
-                  onClick={handleSubmit}
-                  className="px-8 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold transition-all duration-300 hover:scale-105"
-                  disabled={isSubscribed}
-                >
-                  {isSubscribed ? 'Subscribed!' : 'Subscribe'}
-                </Button>
-              </div>
+              {isSubscribed ? (
+                <div className="text-green-600 font-semibold text-lg">You're subscribed! 🎉</div>
+              ) : (
+                <div className="flex flex-col gap-2">
+                  <div className="flex gap-3">
+                    <Input
+                      type="email"
+                      name="email_image"
+                      id="email_image"
+                      placeholder="name@email.com"
+                      value={emailImage}
+                      onChange={(e) => setEmailImage(e.target.value)}
+                      className="flex-1 bg-muted border-border text-foreground placeholder-muted-foreground"
+                    />
+                    <Button
+                      onClick={handleSubmit}
+                      className="px-8 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold transition-all duration-300 hover:scale-105"
+                      disabled={loading}
+                    >
+                      {loading ? 'Sending...' : 'Subscribe'}
+                    </Button>
+                    <ReCAPTCHA
+                      sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+                      size="invisible"
+                      ref={recaptchaRef}
+                    />
+                  </div>
+                  {errorMessage && <p className="text-red-500 text-sm">{errorMessage}</p>}
+                </div>
+              )}
             </div>
 
             <div className="flex items-center flex-wrap space-x-2 text-sm">
@@ -75,10 +122,12 @@ export default function NewsletterImage() {
         </div>
 
         {/* Floating dots */}
-        <div className="absolute top-6 right-20 w-3 h-3 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0.5s' }} />
-        <div className="absolute bottom-8 left-1/4 w-2 h-2 bg-purple-400 rounded-full animate-bounce" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-1/3 right-8 w-4 h-4 bg-pink-400 rounded-full animate-pulse" />
+        <div className="absolute top-6 right-20 w-3 h-3 bg-blue-400 rounded-full animate-bounce"
+             style={{animationDelay: '0.5s'}}/>
+        <div className="absolute bottom-8 left-1/4 w-2 h-2 bg-purple-400 rounded-full animate-bounce"
+             style={{animationDelay: '1s'}}/>
+        <div className="absolute top-1/3 right-8 w-4 h-4 bg-pink-400 rounded-full animate-pulse"/>
       </div>
     </div>
-  );
+  )
 }
