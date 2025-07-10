@@ -22,7 +22,6 @@ export default function HomePageClient({ featuredTools, initialTools }: HomePage
   const [tools, setTools] = useState(initialTools.data);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(pagination.page < pagination.pageCount);
-  const [searchQuery, setSearchQuery] = useState("");
 
   const loadMore = async () => {
     setLoading(true);
@@ -49,7 +48,7 @@ export default function HomePageClient({ featuredTools, initialTools }: HomePage
   return (
     <div className="container mx-auto lg:max-w-7xl space-y-8 text-foreground">
       <HeroSection />
-      <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      <SearchBar/>
       <FeaturedToolsSection tools={featuredTools.data} />
 
       {/* Newsletter hình ảnh */}

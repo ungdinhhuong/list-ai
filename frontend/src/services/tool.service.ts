@@ -35,15 +35,19 @@ class ToolService {
     });
   }
 
-  async getAllTools({ page, pageSize}: any): Promise<PaginatedResponse<ToolType>> {
-    return await axiosClient.get(`/tools`, {
-      params: {
-        'sort': 'updatedAt:desc',
-        'populate': 'avatar',
-        'pagination[page]': page || 1,
-        'pagination[pageSize]': pageSize || 10,
-      }
-    });
+  async getAllTools({page, pageSize, q}: { page?: number; pageSize?: number; q?: string; }): Promise<PaginatedResponse<ToolType>> {
+    const params: any = {
+      sort: "updatedAt:desc",
+      populate: "avatar",
+      "pagination[page]": page || 1,
+      "pagination[pageSize]": pageSize || 10,
+    };
+
+    if (q) {
+      params["filters[name][$contains]"] = q;
+    }
+
+    return await axiosClient.get(`/tools`, { params });
   }
 }
 

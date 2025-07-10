@@ -63,4 +63,7 @@ Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/
 Install node_modules:
 ```bash
 $ docker-compose run --rm strapi npm install
+
+
+docker exec -u node -it strapi-app npm install
 ```
