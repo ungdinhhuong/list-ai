@@ -2,6 +2,8 @@ import React from 'react';
 import {APP_NAME} from "@/constants/env";
 import {SOCIALS} from "@/constants/constants";
 import ReCaptchaPolicy from "@/components/section/newsletter/ReCaptchaPolicy";
+import Link from "next/link";
+import {ROUTES} from "@/constants/routes";
 
 const FooterSimple = () => {
 
@@ -17,8 +19,11 @@ const FooterSimple = () => {
           </div>
 
 
-          <div className="flex items-center space-x-6 mt-4 sm:mt-0">
-            <span className="text-muted-foreground text-sm">Follow Us:</span>
+          <div className="flex items-center space-x-6 mt-4 sm:mt-0  text-sm">
+            <Link href={ROUTES.POLICY} className="text-muted-foreground hover:text-foreground transition-colors">
+              Policy
+            </Link>
+            <span className="text-muted-foreground">Follow Us:</span>
             <div className="flex space-x-3">
               {Object.values(SOCIALS).map((social) => {
                 const Icon = social.icon;

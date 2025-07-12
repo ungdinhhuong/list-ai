@@ -3,8 +3,11 @@
 import React from 'react';
 import { Settings, Upload, Users } from 'lucide-react';
 import Image from "next/image";
+import {useTranslations} from 'next-intl';
 
 export default function HeroSection() {
+  const t = useTranslations('HomePage');
+
   const ads = [
     {
       id: 1,
@@ -26,7 +29,7 @@ export default function HeroSection() {
         </div>
 
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent leading-tight">
-          Discover The Best AI Websites & Tools
+          {t('title')}
         </h1>
 
         <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto lg:mx-0">

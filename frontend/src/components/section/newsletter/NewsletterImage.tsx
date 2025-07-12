@@ -4,6 +4,7 @@ import React, {useRef, useState} from 'react'
 import {Button} from '@/components/ui/button'
 import {Input} from '@/components/ui/input'
 import Image from 'next/image'
+// @ts-ignore
 import ReCAPTCHA from 'react-google-recaptcha'
 import {subscriberService} from '@/services/subscriber.service'
 import {isValidEmail} from "@/lib/utils";
@@ -17,12 +18,12 @@ export default function NewsletterImage() {
 
   const handleSubmit = async () => {
     if (!emailImage) {
-      setErrorMessage('Vui lòng nhập email')
+      setErrorMessage('Please enter your email')
       return
     }
 
     if (!isValidEmail(emailImage)) {
-      setErrorMessage('Email không hợp lệ')
+      setErrorMessage('Invalid email format')
       return
     }
 
@@ -30,7 +31,7 @@ export default function NewsletterImage() {
     recaptchaRef.current?.reset()
 
     if (!token) {
-      setErrorMessage('Lỗi xác thực reCAPTCHA')
+      setErrorMessage('Please complete the reCAPTCHA')
       return
     }
 

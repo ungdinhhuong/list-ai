@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ROUTES } from "@/constants/routes";
 import { useSidebar } from "@/contexts/SidebarProvider";
 import Image from "next/image";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 export default function Header() {
   const { sidebarOpen, setSidebarOpen } = useSidebar();
@@ -43,9 +44,7 @@ export default function Header() {
           <Link href={ROUTES.ABOUT} className="text-muted-foreground hover:text-foreground transition-colors">
             About
           </Link>
-          <Link href={ROUTES.POLICY} className="text-muted-foreground hover:text-foreground transition-colors">
-            Policy
-          </Link>
+          <LanguageSwitcher/>
           <ModeToggle />
         </div>
 

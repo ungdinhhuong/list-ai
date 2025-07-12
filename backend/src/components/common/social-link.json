@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_common_social_links",
+  "info": {
+    "displayName": "socialLink",
+    "icon": "globe"
+  },
+  "options": {},
+  "attributes": {
+    "platform": {
+      "type": "enumeration",
+      "enum": [
+        "Facebook",
+        "Twitter",
+        "YouTube",
+        "LinkedIn"
+      ]
+    },
+    "url": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

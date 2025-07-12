@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_common_scripts",
+  "info": {
+    "displayName": "scripts",
+    "icon": "attachment"
+  },
+  "options": {},
+  "attributes": {
+    "headScripts": {
+      "type": "richtext"
+    },
+    "bodyScripts": {
+      "type": "richtext"
+    }
+  },
+  "config": {}
+}

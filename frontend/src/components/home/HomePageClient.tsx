@@ -11,13 +11,15 @@ import { ToolType } from "@/types/tool.type";
 import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PaginatedResponse } from "@/types/api.type";
+import {getTranslations} from "next-intl/server";
 
 interface HomePageClientProps {
   featuredTools: PaginatedResponse<ToolType>;
   initialTools: PaginatedResponse<ToolType>;
+  t: ReturnType<typeof getTranslations>;
 }
 
-export default function HomePageClient({ featuredTools, initialTools }: HomePageClientProps) {
+export default function HomePageClient({ featuredTools, initialTools, t }: HomePageClientProps) {
   const [pagination, setPagination] = useState(initialTools.meta.pagination);
   const [tools, setTools] = useState(initialTools.data);
   const [loading, setLoading] = useState(false);

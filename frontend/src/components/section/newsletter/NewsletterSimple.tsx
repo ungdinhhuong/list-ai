@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef } from 'react'
+// @ts-ignore
 import ReCAPTCHA from 'react-google-recaptcha'
 import { subscriberService } from '@/services/subscriber.service'
 import { ExternalLink } from 'lucide-react'
@@ -15,12 +16,12 @@ export default function NewsletterSimple() {
 
   const handleSubmit = async () => {
     if (!emailSimple) {
-      setErrorMessage('Vui lòng nhập email')
+      setErrorMessage('Please enter your email')
       return
     }
 
     if (!isValidEmail(emailSimple)) {
-      setErrorMessage('Email không hợp lệ')
+      setErrorMessage('Invalid email format')
       return
     }
 
@@ -28,7 +29,7 @@ export default function NewsletterSimple() {
     recaptchaRef.current?.reset()
 
     if (!token) {
-      setErrorMessage('Lỗi xác thực reCAPTCHA')
+      setErrorMessage('Please complete the reCAPTCHA')
       return
     }
 

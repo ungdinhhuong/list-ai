@@ -41,6 +41,10 @@ export async function generateMetadata({ params }: AIDetailPageProps): Promise<M
         },
       ],
     },
+    robots: {
+      index: tool.allow_index ?? false,
+      follow: tool.allow_index ?? false,
+    },
   };
 }
 

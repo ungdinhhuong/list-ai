@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_common_links",
+  "info": {
+    "displayName": "link",
+    "icon": "attachment"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}
