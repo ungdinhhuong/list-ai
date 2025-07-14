@@ -1,25 +1,23 @@
 'use client';
 
-import { useState } from 'react';
+import {useState} from 'react';
 import HeroSection from "@/components/home/HeroSection";
 import SearchBar from "@/components/SearchBar";
 import FeaturedToolsSection from "@/components/section/FeaturedToolsSection";
 import AllToolsSection from "@/components/section/AllToolsSection";
 import NewsletterImage from "@/components/section/newsletter/NewsletterImage";
 import NewsletterSimple from "@/components/section/newsletter/NewsletterSimple";
-import { ToolType } from "@/types/tool.type";
-import { Loader2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { PaginatedResponse } from "@/types/api.type";
-import {getTranslations} from "next-intl/server";
+import {ToolType} from "@/types/tool.type";
+import {Loader2} from "lucide-react";
+import {Button} from "@/components/ui/button";
+import {PaginatedResponse} from "@/types/api.type";
 
 interface HomePageClientProps {
   featuredTools: PaginatedResponse<ToolType>;
   initialTools: PaginatedResponse<ToolType>;
-  t: ReturnType<typeof getTranslations>;
 }
 
-export default function HomePageClient({ featuredTools, initialTools, t }: HomePageClientProps) {
+export default function HomePageClient({featuredTools, initialTools}: HomePageClientProps) {
   const [pagination, setPagination] = useState(initialTools.meta.pagination);
   const [tools, setTools] = useState(initialTools.data);
   const [loading, setLoading] = useState(false);
@@ -49,17 +47,17 @@ export default function HomePageClient({ featuredTools, initialTools, t }: HomeP
 
   return (
     <div className="container mx-auto lg:max-w-7xl space-y-8 text-foreground">
-      <HeroSection />
+      <HeroSection/>
       <SearchBar/>
-      <FeaturedToolsSection tools={featuredTools.data} />
+      <FeaturedToolsSection tools={featuredTools.data}/>
 
       {/* Newsletter hình ảnh */}
       <section className="mb-8 lg:mb-12">
-        <NewsletterImage />
+        <NewsletterImage/>
       </section>
 
       {/* Danh sách tool AI */}
-      <AllToolsSection tools={tools} />
+      <AllToolsSection tools={tools}/>
 
       {hasMore && (
         <div className="text-center xl:mb-16">
@@ -71,7 +69,7 @@ export default function HomePageClient({ featuredTools, initialTools, t }: HomeP
           >
             {loading ? (
               <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                <Loader2 className="mr-2 h-4 w-4 animate-spin"/>
                 Loading...
               </>
             ) : (
@@ -81,7 +79,7 @@ export default function HomePageClient({ featuredTools, initialTools, t }: HomeP
         </div>
       )}
 
-      <NewsletterSimple />
+      <NewsletterSimple/>
     </div>
   );
 }

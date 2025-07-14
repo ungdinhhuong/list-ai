@@ -46,7 +46,7 @@
         }
       },
       "component": "shared.seo",
-      "repeatable": true
+      "repeatable": false
     },
     "socialLinks": {
       "type": "component",

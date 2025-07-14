@@ -37,7 +37,7 @@ export default function LanguageSwitcher() {
         <Button
           variant="outline"
           className="w-auto justify-between"
-          aria-label={t("changeLanguage") || "Change language"}
+          aria-label={t("chooseLanguage") || "Change language"}
         >
           <Globe2 size={18} className="mr-1" />
           <span>{current?.label}</span>
