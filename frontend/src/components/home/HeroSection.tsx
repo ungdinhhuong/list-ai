@@ -4,9 +4,14 @@ import React from 'react';
 import { Settings, Upload, Users } from 'lucide-react';
 import Image from "next/image";
 import {useTranslations} from 'next-intl';
+import {HomePageType} from "@/types/home-page.type";
 
-export default function HeroSection() {
-  const t = useTranslations('HomePage');
+interface HeroSectionProps {
+  homePage: HomePageType;
+}
+
+export default function HeroSection({homePage}: HeroSectionProps) {
+  const t = useTranslations();
 
   const ads = [
     {
@@ -29,11 +34,11 @@ export default function HeroSection() {
         </div>
 
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent leading-tight">
-          {t('title')}
+          {homePage.title || 'Discover the Best AI Tools'}
         </h1>
 
         <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto lg:mx-0">
-          Explore cutting-edge AI tools and platforms that are transforming industries and empowering innovation worldwide.
+          {homePage.description || 'Explore the latest and most innovative AI tools to enhance your productivity and creativity. Join our community of AI enthusiasts and discover tools that can transform your workflow.'}
         </p>
 
         <div className="flex justify-center lg:justify-start items-center flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">

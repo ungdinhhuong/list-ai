@@ -5,5 +5,16 @@
   },
   "LanguageSwitcher": {
     "chooseLanguage": "Ngôn ngữ"
+  },
+  "Common": {
+    "search": "Tìm kiếm",
+    "searchPlaceholder": "Tìm kiếm trang web, công cụ hoặc danh mục...",
+    "noResults": "Không tìm thấy kết quả",
+    "loading": "Đang tải...",
+    "error": "Đã xảy ra lỗi. Vui lòng thử lại sau.",
+    "viewAll": "Xem tất cả",
+    "seeMore": "Xem thêm",
+    "backToTop": "Trở về đầu trang",
+    "loadMore": "Tải thêm"
   }
 }

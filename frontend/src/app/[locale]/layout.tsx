@@ -6,24 +6,55 @@ import MainLayout from "@/components/layout/MainLayout";
 import {hasLocale, NextIntlClientProvider} from "next-intl";
 import "./globals.css";
 import {routing} from "@/i18n/routing";
+import {GlobalDataProvider} from "@/contexts/GlobalProvider";
+import {singleTypeService} from "@/services/single-type.service";
+import {getValidOgType} from "@/lib/seoMeta";
 
 const geistSans = Geist({variable: "--font-geist-sans", subsets: ["latin"]});
 const geistMono = Geist_Mono({variable: "--font-geist-mono", subsets: ["latin"]});
 
-export const generateMetadata = async ({params,}: { params: { locale: string }; }): Promise<Metadata> => {
+export const generateMetadata = async ({params}: { params: { locale: string }; }): Promise<Metadata> => {
   const {locale} = await params;
-  const baseUrl = "https://ontoolaz.com";
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
+
+  const resSiteSetting = await singleTypeService.getSiteSetting(locale);
+  const siteSetting = resSiteSetting?.data || [];
+
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "";
+  const defaultSeo = siteSetting?.defaultSeo || {};
 
   return {
-    title: "Ontoolaz",
-    description: "Ontoolaz - Discover the best AI tools",
+    title: defaultSeo.metaTitle,
+    description: defaultSeo.metaDescription,
+    keywords: defaultSeo.keywords,
+    robots: defaultSeo.metaRobots,
     alternates: {
+      canonical: defaultSeo.canonicalURL,
       languages: {
         en: `${baseUrl}/`,
         vi: `${baseUrl}/vi/`,
         "x-default": `${baseUrl}/`,
       },
     },
+    openGraph: {
+      title: defaultSeo.openGraph?.ogTitle,
+      description: defaultSeo.openGraph?.ogDescription,
+      url: defaultSeo.openGraph?.ogUrl,
+      type: getValidOgType(defaultSeo.openGraph?.ogType),
+      images: defaultSeo.openGraph?.ogImage
+        ? [
+          {
+            url: `${baseUrl}${defaultSeo.openGraph.ogImage.url}`,
+            width: defaultSeo.openGraph.ogImage.width,
+            height: defaultSeo.openGraph.ogImage.height,
+            alt: defaultSeo.openGraph.ogImage.alternativeText || defaultSeo.openGraph.ogTitle,
+          },
+        ]
+        : [],
+    },
+    // Có thể thêm structuredData nếu Next.js support (hoặc render riêng trong <script type="application/ld+json">)
   };
 };
 
@@ -39,6 +70,9 @@ export default async function LocaleLayout({
     notFound();
   }
 
+  const resSiteSetting = await singleTypeService.getSiteSetting(locale);
+  const siteSetting = resSiteSetting?.data || [];
+
   return (
     <html lang={locale} suppressHydrationWarning>
     <head>
@@ -52,7 +86,9 @@ export default async function LocaleLayout({
     <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
     <NextIntlClientProvider>
       <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-        <MainLayout>{children}</MainLayout>
+        <GlobalDataProvider value={{siteSetting}}>
+          <MainLayout>{children}</MainLayout>
+        </GlobalDataProvider>
       </ThemeProvider>
     </NextIntlClientProvider>
     </body>

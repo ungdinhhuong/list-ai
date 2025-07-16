@@ -5,5 +5,16 @@
   },
   "LanguageSwitcher": {
     "chooseLanguage": "Language"
+  },
+  "Common": {
+    "search": "Search",
+    "searchPlaceholder": "Search for websites, tools, or categories...",
+    "noResults": "No results found",
+    "loading": "Loading...",
+    "error": "An error occurred. Please try again later.",
+    "viewAll": "View All",
+    "seeMore": "See More",
+    "backToTop": "Back to Top",
+    "loadMore": "Load More"
   }
 }

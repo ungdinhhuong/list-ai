@@ -11,29 +11,31 @@ import {ToolType} from "@/types/tool.type";
 import {Loader2} from "lucide-react";
 import {Button} from "@/components/ui/button";
 import {PaginatedResponse} from "@/types/api.type";
+import {HomePageType} from "@/types/home-page.type";
+import {useTranslations} from "next-intl";
+import {useFetchApiData} from "@/lib/fetchApiData";
 
 interface HomePageClientProps {
   featuredTools: PaginatedResponse<ToolType>;
   initialTools: PaginatedResponse<ToolType>;
+  homePage: HomePageType;
 }
 
-export default function HomePageClient({featuredTools, initialTools}: HomePageClientProps) {
+export default function HomePageClient({featuredTools, initialTools, homePage}: HomePageClientProps) {
   const [pagination, setPagination] = useState(initialTools.meta.pagination);
   const [tools, setTools] = useState(initialTools.data);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(pagination.page < pagination.pageCount);
+  const t = useTranslations();
 
   const loadMore = async () => {
     setLoading(true);
     const nextPage = pagination.page + 1;
 
     try {
-      const res = await fetch(`/api/tools?page=${nextPage}&pageSize=${pagination.pageSize}`);
-      const json = await res.json();
-
-      if (!json?.data || !json?.meta?.pagination) {
-        throw new Error("Invalid response format");
-      }
+      const fetchApiData = useFetchApiData();
+      const url = `/api/tools?page=${nextPage}&pageSize=${pagination.pageSize}`;
+      const json = await fetchApiData<PaginatedResponse<ToolType>>(url);
 
       setTools(prev => [...prev, ...json.data]);
       setPagination(json.meta.pagination);
@@ -47,7 +49,7 @@ export default function HomePageClient({featuredTools, initialTools}: HomePageCl
 
   return (
     <div className="container mx-auto lg:max-w-7xl space-y-8 text-foreground">
-      <HeroSection/>
+      <HeroSection homePage={homePage}/>
       <SearchBar/>
       <FeaturedToolsSection tools={featuredTools.data}/>
 
@@ -70,10 +72,10 @@ export default function HomePageClient({featuredTools, initialTools}: HomePageCl
             {loading ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin"/>
-                Loading...
+                {t('Common.loading')}
               </>
             ) : (
-              'Load more'
+              `${t('Common.loadMore')}`
             )}
           </Button>
         </div>
