@@ -15,6 +15,12 @@
     "viewAll": "View All",
     "seeMore": "See More",
     "backToTop": "Back to Top",
-    "loadMore": "Load More"
+    "loadMore": "Load More",
+    "noTranslationTitle": "No Translation",
+    "noTranslationDesc": "This page is not available in your selected language!"
+  },
+  "CategoryPage": {
+    "title": "Categories",
+    "description": "Explore tools and websites in the category."
   }
 }

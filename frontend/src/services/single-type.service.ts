@@ -1,10 +1,11 @@
-import axiosClient from "@/services/axiosClient";
 import {HomePageResponse} from "@/types/home-page.type";
+import {apiGet} from "@/lib/apiRequest";
 import {SiteSettingResponse} from "@/types/site-setting.type";
+import {StaticPageType} from "@/types/static-page.type";
 
 class SingleTypeService {
   async getHomePage(): Promise<HomePageResponse> {
-    return await axiosClient.get('/home-page', {
+    return await apiGet('/home-page', {
       params: {
         populate: {
           seo: {
@@ -20,10 +21,60 @@ class SingleTypeService {
     });
   }
 
-  async getSiteSetting(locale: string = 'en'): Promise<SiteSettingResponse> {
-    return await axiosClient.get('/site-setting', {
+  async getCategoryPage(): Promise<HomePageResponse> {
+    return await apiGet('/category-page', {
       params: {
-        locale,
+        populate: {
+          seo: {
+            populate: {
+              openGraph: {
+                populate: ['ogImage'],
+              },
+              metaImage: true,
+            },
+          },
+        }
+      }
+    });
+  }
+
+  async getPolicyPage(): Promise<StaticPageType> {
+    return await apiGet('/policy-page', {
+      params: {
+        populate: {
+          seo: {
+            populate: {
+              openGraph: {
+                populate: ['ogImage'],
+              },
+              metaImage: true,
+            },
+          },
+        }
+      }
+    }).then(res => res.data);
+  }
+
+  async getAboutPage(): Promise<StaticPageType> {
+    return await apiGet('/about-page', {
+      params: {
+        populate: {
+          seo: {
+            populate: {
+              openGraph: {
+                populate: ['ogImage'],
+              },
+              metaImage: true,
+            },
+          },
+        }
+      }
+    }).then(res => res.data);
+  }
+
+  async getSiteSetting(): Promise<SiteSettingResponse> {
+    return await apiGet('/site-setting', {
+      params: {
         populate: {
           logo: true,
           defaultSeo: {

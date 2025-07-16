@@ -5,10 +5,11 @@ import {singleTypeService} from "@/services/single-type.service";
 import {StructuredData} from "@/components/common/StructuredData";
 import {Metadata} from "next";
 import {seoMeta} from "@/lib/seoMeta";
+import NoTranslationMessage from "@/components/common/NoTranslationMessage";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const homePage = await singleTypeService.getHomePage();
-  const seo = homePage?.data?.seo || null;
+  const page = await singleTypeService.getHomePage();
+  const seo = page?.data?.seo || null;
   return seoMeta({seo});
 }
 
@@ -22,6 +23,9 @@ export default async function HomePage() {
   const featuredTools = resToolsByBadge || [];
   const initialTools = resAllTools || [];
   const homePage = resHomePage.data || null;
+  if (!homePage) {
+    return <NoTranslationMessage/>;
+  }
 
   let structuredData: string | null = null;
   if (homePage?.seo?.structuredData) {

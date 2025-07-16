@@ -24,7 +24,7 @@ export function seoMeta({
   const defaultDesc = "Explore the latest and best AI tools for your business and creativity at Ontoolaz.";
   const defaultImage = `${_siteUrl}/og-image.png`;
   const defaultKeywords = ["AI", "AI tools", "Ontoolaz"];
-  const defaultRobots = { index: true, follow: true };
+  const defaultRobots = { index: false, follow: false };
   const url = _siteUrl + path;
 
   // Keywords: Strapi trả về string, cần array

@@ -1,7 +1,7 @@
 import {useLocale} from "next-intl";
 
 import {getLocale} from "next-intl/server";
-import axiosClient from "@/services/axiosClient";
+import axiosClient from "@/lib/axiosClient";
 
 type FetchApiDataParams = {
   path: string;

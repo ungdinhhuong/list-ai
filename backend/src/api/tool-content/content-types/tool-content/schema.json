@@ -19,7 +19,7 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::tool.tool",
-      "inversedBy": "tool_content"
+      "mappedBy": "toolContent"
     },
     "content": {
       "type": "customField",

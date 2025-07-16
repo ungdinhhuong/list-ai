@@ -1,10 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "about_pages",
+  "collectionName": "category_pages",
   "info": {
-    "singularName": "about-page",
-    "pluralName": "about-pages",
-    "displayName": "about-page"
+    "singularName": "category-page",
+    "pluralName": "category-pages",
+    "displayName": "category-page"
   },
   "options": {
     "draftAndPublish": false
@@ -40,18 +40,6 @@
       },
       "component": "shared.seo",
       "repeatable": false
-    },
-    "content": {
-      "type": "customField",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "customField": "plugin::ckeditor5.CKEditor",
-      "options": {
-        "preset": "defaultHtml"
-      }
     }
   }
 }

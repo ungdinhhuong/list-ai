@@ -1,17 +1,26 @@
-'use client'
 import NewsletterImage from "@/components/section/newsletter/NewsletterImage";
 import React from "react";
+import {Metadata} from "next";
+import {singleTypeService} from "@/services/single-type.service";
+import {seoMeta} from "@/lib/seoMeta";
+import {notFound} from "next/navigation";
 
-export default function PolicyPage () {
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await singleTypeService.getPolicyPage();
+  const seo = page?.seo || null;
+  return seoMeta({seo});
+}
+
+export default async function PolicyPage() {
+  const page = await singleTypeService.getPolicyPage();
+  if (!page) {
+    notFound();
+  }
+
   return (
     <div className="container mx-auto lg:max-w-4xl space-y-8">
-      <h1 className="text-3xl md:text-4xl font-bold mb-6">Policy</h1>
-      <p >
-        Welcome to AI Hub, your go-to source for the latest in AI tools and technology. Our mission is to provide a comprehensive platform where users can discover, compare, and utilize the best AI tools available.
-      </p>
-      <p >
-        We are dedicated to helping you navigate the rapidly evolving world of artificial intelligence, offering insights, reviews, and resources to empower your AI journey.
-      </p>
+      <h1 className="text-3xl md:text-4xl font-bold mb-6">{page.title}</h1>
+      <div dangerouslySetInnerHTML={{__html: page.content}}/>
       <NewsletterImage/>
     </div>
   );

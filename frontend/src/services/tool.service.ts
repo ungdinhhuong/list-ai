@@ -1,6 +1,6 @@
 import {ToolType} from "@/types/tool.type";
 import {PaginatedResponse} from "@/types/api.type";
-import axiosClient from "@/services/axiosClient";
+import axiosClient from "@/lib/axiosClient";
 
 class ToolService {
   async getToolsByBadge(badge: string): Promise<PaginatedResponse<ToolType>> {
@@ -17,7 +17,7 @@ class ToolService {
     const res = await axiosClient.get(`/tools`, {
       params: {
         'filters[slug][$eq]': slug,
-        'populate': ['avatar', 'categories', 'tool_content'],
+        'populate': ['avatar', 'categories', 'toolContent', 'seo'],
       }
     });
     return res.data?.[0];

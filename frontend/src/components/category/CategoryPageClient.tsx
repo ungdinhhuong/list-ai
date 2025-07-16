@@ -2,23 +2,24 @@
 import React from 'react';
 import {Card, CardContent} from '@/components/ui/card';
 import NewsletterImage from '@/components/section/newsletter/NewsletterImage';
-import {CategoryType} from "@/types/category.type";
+import {CategoryPageType, CategoryType} from "@/types/category.type";
 import {ROUTES} from "@/constants/routes";
 import Link from "next/link";
+import {useTranslations} from "next-intl";
 
 interface CategoryPageClientProps {
   categories: CategoryType[];
+  page?: CategoryPageType;
 }
 
-export default function CategoryPageClient({categories}: CategoryPageClientProps) {
+export default function CategoryPageClient({categories, page}: CategoryPageClientProps) {
+  const t = useTranslations();
   return (
     <div className="container mx-auto lg:max-w-7xl space-y-8 relative">
       {/* Title + Description */}
       <div className="space-y-4 mb-8">
-        <h1 className="text-3xl md:text-4xl font-bold text-foreground">Categories</h1>
-        <p className="text-muted-foreground text-lg max-w-2xl">
-          All-in-one app for AI video production and generation.
-        </p>
+        <h1 className="text-3xl md:text-4xl font-bold text-foreground">{page?.title || t('CategoryPage.title')}</h1>
+        <p className="text-muted-foreground text-lg max-w-2xl">{page?.title || t('CategoryPage.description')}</p>
       </div>
 
       {/* Grid Cards */}

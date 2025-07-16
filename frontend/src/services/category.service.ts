@@ -1,10 +1,10 @@
-import {PaginatedResponse} from "@/types/api.type";
-import {CategoryType} from "@/types/category.type";
-import axiosClient from "@/services/axiosClient";
+import { apiGet } from "@/lib/apiRequest";
+import { PaginatedResponse } from "@/types/api.type";
+import { CategoryType } from "@/types/category.type";
 
 class CategoryService {
   async getCategories(): Promise<PaginatedResponse<CategoryType>> {
-    return await axiosClient.get('/categories', {
+    return await apiGet('/categories', {
       params: {
         sort: 'order:asc'
       }
@@ -12,7 +12,7 @@ class CategoryService {
   }
 
   async findBySlug(slug: string): Promise<CategoryType | null> {
-    const res = await axiosClient.get(`/categories`, {
+    const res = await apiGet(`/categories`, {
       params: {
         'filters[slug][$eq]': slug,
         'populate': 'tools.avatar',

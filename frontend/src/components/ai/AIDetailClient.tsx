@@ -56,7 +56,7 @@ export default function AIDetailClient({tool, relatedTools}: AIDetailClientProps
 
       {/* Nội dung */}
       <div>
-        {tool.tool_content?.content || ''}
+        {tool.toolContent?.content || ''}
       </div>
 
       {/* Danh sách tool AI */}

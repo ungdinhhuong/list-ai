@@ -14,12 +14,7 @@ const geistSans = Geist({variable: "--font-geist-sans", subsets: ["latin"]});
 const geistMono = Geist_Mono({variable: "--font-geist-mono", subsets: ["latin"]});
 
 export const generateMetadata = async ({params}: { params: { locale: string }; }): Promise<Metadata> => {
-  const {locale} = await params;
-  if (!hasLocale(routing.locales, locale)) {
-    notFound();
-  }
-
-  const resSiteSetting = await singleTypeService.getSiteSetting(locale);
+  const resSiteSetting = await singleTypeService.getSiteSetting();
   const siteSetting = resSiteSetting?.data || [];
 
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "";
@@ -70,7 +65,7 @@ export default async function LocaleLayout({
     notFound();
   }
 
-  const resSiteSetting = await singleTypeService.getSiteSetting(locale);
+  const resSiteSetting = await singleTypeService.getSiteSetting();
   const siteSetting = resSiteSetting?.data || [];
 
   return (

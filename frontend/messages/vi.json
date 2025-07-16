@@ -15,6 +15,12 @@
     "viewAll": "Xem tất cả",
     "seeMore": "Xem thêm",
     "backToTop": "Trở về đầu trang",
-    "loadMore": "Tải thêm"
+    "loadMore": "Tải thêm",
+    "noTranslationTitle": "Không có bản dịch",
+    "noTranslationDesc": "Trang này chưa có bản dịch cho ngôn ngữ hiện tại!"
+  },
+  "CategoryPage": {
+    "title": "Danh mục",
+    "description": "Khám phá các công cụ và trang web trong danh mục."
   }
 }

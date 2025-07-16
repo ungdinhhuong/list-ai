@@ -1,5 +1,6 @@
 import {MediaType} from "@/types/media.type";
 import {CategoryType} from "@/types/category.type";
+import type {StrapiSEO} from "@/types/seo.type";
 
 export interface ToolType {
   id: number;
@@ -16,7 +17,8 @@ export interface ToolType {
   locale: string;
   avatar?: MediaType | null;
   categories?: CategoryType[];
-  tool_content?: ToolContent | null;
+  toolContent?: ToolContent | null;
+  seo?: StrapiSEO | null;
 }
 
 export interface ToolContent {

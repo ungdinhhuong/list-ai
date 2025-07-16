@@ -12,7 +12,7 @@ interface ToolCardProps {
 
 export default function ToolCard({ tool }: ToolCardProps) {
   return (
-    <Link href={ROUTES.AI_DETAIL(toSlug(tool.name))} className="block">
+    <Link href={ROUTES.AI_DETAIL(tool.slug)} className="block">
       <Card className="bg-background border-border hover:border-accent transition-colors p-2">
         <CardContent className="p-0">
           <div className="flex items-start space-x-3">
@@ -22,7 +22,7 @@ export default function ToolCard({ tool }: ToolCardProps) {
                 <h3 className="font-bold text-sm text-foreground truncate pr-2 line-clamp-1">
                   {tool.name}
                 </h3>
-                <BadgeCustom badge={tool.badge} />
+                <BadgeCustom badge={tool.badge ?? ""} />
               </div>
               <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">
                 {tool.description}
