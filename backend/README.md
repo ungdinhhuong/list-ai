@@ -66,4 +66,14 @@ $ docker-compose run --rm strapi npm install
 
 
 docker exec -u node -it strapi-app npm install
+
+docker-compose -f docker-compose.dev.yml  run --rm strapi npm run build
+
+docker-compose -f docker-compose.dev.yml run --rm strapi npm run dev 
+
+#Kiem tra env
+ docker exec -it strapi-prod env | grep DATABASE
+
+#Kierm tra kết nối db
+docker exec -it strapi-db-prod mysql -u admin -padmin -e "SHOW DATABASES;"
 ```

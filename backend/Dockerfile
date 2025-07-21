@@ -30,21 +30,20 @@ RUN npm run build
 FROM base AS production
 WORKDIR /app
 
-# Create non-root user
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 strapi
-
-# Copy built application
-COPY --from=builder --chown=strapi:nodejs /app/dist ./dist
-COPY --from=builder --chown=strapi:nodejs /app/public ./public
-COPY --from=deps --chown=strapi:nodejs /app/node_modules ./node_modules
-COPY --chown=strapi:nodejs package.json ./
+# Copy built application (sử dụng user node có sẵn)
+COPY --from=builder --chown=node:node /app/dist ./dist
+COPY --from=builder --chown=node:node /app/public ./public
+COPY --from=builder --chown=node:node /app/config ./config
+COPY --from=builder --chown=node:node /app/database ./database
+COPY --from=builder --chown=node:node /app/tsconfig.json ./
+COPY --from=deps --chown=node:node /app/node_modules ./node_modules
+COPY --chown=node:node package.json ./
 
 # Set environment
 ENV NODE_ENV=production
 ENV PORT=1337
 
-USER strapi
+USER node
 EXPOSE 1337
 
 # Health check
