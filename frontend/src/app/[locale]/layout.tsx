@@ -67,6 +67,7 @@ export default async function LocaleLayout({
 
   const resSiteSetting = await singleTypeService.getSiteSetting();
   const siteSetting = resSiteSetting?.data || [];
+  const isProd = process.env.NODE_ENV === 'production';
 
   return (
     <html lang={locale} suppressHydrationWarning>
@@ -77,6 +78,7 @@ export default async function LocaleLayout({
       <link rel="manifest" href="/site.webmanifest"/>
       <link rel="shortcut icon" href="/favicon.ico"/>
       <meta name="theme-color" content="#000000"/>
+      {!isProd && <meta name="robots" content="noindex, nofollow" />}
     </head>
     <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
     <NextIntlClientProvider>

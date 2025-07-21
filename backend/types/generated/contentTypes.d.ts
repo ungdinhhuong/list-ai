@@ -856,7 +856,7 @@ export interface ApiToolTool extends Struct.CollectionTypeSchema {
       Schema.Attribute.Unique &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }>;
     toolContent: Schema.Attribute.Relation<

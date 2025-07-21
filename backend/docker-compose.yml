@@ -32,5 +32,17 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
 
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5.2.1
+    container_name: strapi-pma
+    restart: unless-stopped
+    environment:
+      PMA_HOST: db
+      PMA_USER: ${DATABASE_USERNAME}
+      PMA_PASSWORD: ${DATABASE_PASSWORD}
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
 volumes:
   mysql_data:

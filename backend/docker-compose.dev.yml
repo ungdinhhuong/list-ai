@@ -1,0 +1,96 @@
+services:
+  strapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    container_name: strapi-dev
+    environment:
+      DATABASE_CLIENT: mysql
+      DATABASE_HOST: db
+      DATABASE_PORT: 3306
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      NODE_ENV: development
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - strapi_uploads:/app/public/uploads
+    ports:
+      - "1337:1337"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - strapi-network
+
+  db:
+    image: mysql:8
+    container_name: strapi-db-dev
+    environment:
+      MYSQL_DATABASE: ${DATABASE_NAME:-strapi_dev}
+      MYSQL_USER: ${DATABASE_USERNAME:-strapi}
+      MYSQL_PASSWORD: ${DATABASE_PASSWORD:-strapi}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_dev_data:/var/lib/mysql
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD:-root}"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 20s
+    networks:
+      - strapi-network
+
+  # Redis for caching (optional)
+  redis:
+    image: redis:7-alpine
+    container_name: strapi-redis-dev
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_dev_data:/data
+    restart: unless-stopped
+    networks:
+      - strapi-network
+
+  # Mailhog for email testing
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: strapi-mailhog-dev
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    restart: unless-stopped
+    networks:
+      - strapi-network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5.2.1
+    container_name: strapi-pma
+    restart: unless-stopped
+    environment:
+      PMA_HOST: db
+      PMA_USER: ${DATABASE_USERNAME}
+      PMA_PASSWORD: ${DATABASE_PASSWORD}
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    networks:
+      - strapi-network
+
+volumes:
+  mysql_dev_data:
+  redis_dev_data:
+  strapi_uploads:
+
+networks:
+  strapi-network:
+    driver: bridge
