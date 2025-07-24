@@ -37,6 +37,8 @@ build_be:
   rules:
     - if: '$CI_COMMIT_BRANCH == "dev"'
       changes: [backend/**]
+    - if: '$CI_COMMIT_BRANCH == "master" && $FORCE_DEPLOY == "true"'
+      when: always
     - if: '$CI_COMMIT_BRANCH == "master"'
       changes: [backend/**]
   script:
