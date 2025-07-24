@@ -37,8 +37,6 @@ build_be:
   rules:
     - if: '$CI_COMMIT_BRANCH == "dev"'
       changes: [backend/**]
-    - if: '$CI_COMMIT_BRANCH == "master" && $FORCE_DEPLOY == "true"'
-      when: always
     - if: '$CI_COMMIT_BRANCH == "master"'
       changes: [backend/**]
   script:
@@ -57,10 +55,9 @@ deploy_fe_dev:
       set -e
       ssh $SSH_USER@$SSH_HOST "
         cd $WORKDIR/frontend &&
-        cp .env.dev .env &&
-        docker compose --env-file .env -f docker-compose.yml pull &&
-        docker compose --env-file .env -f docker-compose.yml down &&
-        docker compose --env-file .env -f docker-compose.yml up -d
+        docker compose pull &&
+        docker compose down &&
+        docker compose up -d
       "
       ./send_telegram.sh "[FE - DEV] ✅ DEPLOYED" "Image: \`$IMAGE_TAG_FE\`%0ABranch: \`$CI_COMMIT_REF_NAME\`%0ABy: \`$GITLAB_USER_NAME\`%0ATime: \`$(date -u '+%Y-%m-%d %H:%M UTC')\`"
 
@@ -76,16 +73,17 @@ deploy_be_dev:
       set -e
       ssh $SSH_USER@$SSH_HOST "
         cd $WORKDIR/backend &&
-        cp .env.dev .env &&
-        docker compose --env-file .env -f docker-compose.yml pull &&
-        docker compose --env-file .env -f docker-compose.yml down &&
-        docker compose --env-file .env -f docker-compose.yml up -d
+        docker compose pull &&
+        docker compose down &&
+        docker compose up -d
       "
       ./send_telegram.sh "[BE - DEV] ✅ DEPLOYED" "Image: \`$IMAGE_TAG_BE\`%0ABranch: \`$CI_COMMIT_REF_NAME\`%0ABy: \`$GITLAB_USER_NAME\`%0ATime: \`$(date -u '+%Y-%m-%d %H:%M UTC')\`"
 
 deploy_fe_prod:
   stage: deploy
   rules:
+    - if: '$CI_COMMIT_BRANCH == "master" && $FORCE_DEPLOY == "true"'
+      when: manual
     - if: '$CI_COMMIT_BRANCH == "master"'
       changes: [frontend/**]
       when: manual
@@ -96,10 +94,9 @@ deploy_fe_prod:
       set -e
       ssh $SSH_USER@$SSH_HOST "
         cd $WORKDIR/frontend &&
-        cp .env.prod .env &&
-        docker compose --env-file .env -f docker-compose.yml pull &&
-        docker compose --env-file .env -f docker-compose.yml down &&
-        docker compose --env-file .env -f docker-compose.yml up -d
+        docker compose pull &&
+        docker compose down &&
+        docker compose up -d
       "
       ./send_telegram.sh "[FE - PROD] ✅ DEPLOYED" "Image: \`$IMAGE_TAG_FE\`%0ABranch: \`$CI_COMMIT_REF_NAME\`%0ABy: \`$GITLAB_USER_NAME\`%0ATime: \`$(date -u '+%Y-%m-%d %H:%M UTC')\`"
   after_script:
@@ -111,6 +108,8 @@ deploy_fe_prod:
 deploy_be_prod:
   stage: deploy
   rules:
+    - if: '$CI_COMMIT_BRANCH == "master" && $FORCE_DEPLOY == "true"'
+      when: manual
     - if: '$CI_COMMIT_BRANCH == "master"'
       changes: [backend/**]
       when: manual
