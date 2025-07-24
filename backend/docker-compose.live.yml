@@ -1,6 +1,6 @@
 services:
   strapi:
-    image: registry.gitlab.com/huongdev-2025/ontoolaz/backend:${IMAGE_TAG}
+    image: registry.gitlab.com/huongdev-2025/ontoolaz/backend:master-${IMAGE_TAG}
     container_name: strapi
     env_file:
       - .env
