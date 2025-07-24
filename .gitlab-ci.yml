@@ -82,8 +82,6 @@ deploy_be_dev:
 deploy_fe_prod:
   stage: deploy
   rules:
-    - if: '$CI_COMMIT_BRANCH == "master" && $FORCE_DEPLOY == "true"'
-      when: manual
     - if: '$CI_COMMIT_BRANCH == "master"'
       changes: [frontend/**]
       when: manual
@@ -108,8 +106,6 @@ deploy_fe_prod:
 deploy_be_prod:
   stage: deploy
   rules:
-    - if: '$CI_COMMIT_BRANCH == "master" && $FORCE_DEPLOY == "true"'
-      when: manual
     - if: '$CI_COMMIT_BRANCH == "master"'
       changes: [backend/**]
       when: manual
