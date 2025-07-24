@@ -72,3 +72,5 @@ volumes:
 networks:
   strapi-network:
     driver: bridge
+
+#   environment:
