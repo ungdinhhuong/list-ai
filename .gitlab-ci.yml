@@ -120,7 +120,7 @@ deploy_be_prod:
       set -e
       ssh $SSH_USER@$SSH_HOST "
         cd $WORKDIR/backend &&
-        export IMAGE_TAG=$IMAGE_TAG_BE &&
+        export IMAGE_TAG=$CI_COMMIT_SHORT_SHA &&
         export NODE_ENV=production &&
         docker compose pull &&
         docker compose down &&
