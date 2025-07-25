@@ -60,7 +60,7 @@ deploy_fe_dev:
         docker compose down &&
         docker compose up -d
       "
-      ./send_telegram.sh "[FE - DEV] ✅ DEPLOYED" "Image: \`$IMAGE_TAG_FE\`%0ABranch: \`$CI_COMMIT_REF_NAME\`%0ABy: \`$GITLAB_USER_NAME\`%0ATime: \`$(date -u '+%Y-%m-%d %H:%M UTC')\`"
+      bash $CI_PROJECT_DIR/send_telegram.sh "[FE - DEV] ✅ DEPLOYED" "Image: \`$IMAGE_TAG_FE\`%0ABranch: \`$CI_COMMIT_REF_NAME\`%0ABy: \`$GITLAB_USER_NAME\`%0ATime: \`$(date -u '+%Y-%m-%d %H:%M UTC')\`"
 
 deploy_be_dev:
   stage: deploy
@@ -78,7 +78,7 @@ deploy_be_dev:
         docker compose down &&
         docker compose up -d
       "
-      ./send_telegram.sh "[BE - DEV] ✅ DEPLOYED" "Image: \`$IMAGE_TAG_BE\`%0ABranch: \`$CI_COMMIT_REF_NAME\`%0ABy: \`$GITLAB_USER_NAME\`%0ATime: \`$(date -u '+%Y-%m-%d %H:%M UTC')\`"
+      bash $CI_PROJECT_DIR/send_telegram.sh "[BE - DEV] ✅ DEPLOYED" "Image: \`$IMAGE_TAG_BE\`%0ABranch: \`$CI_COMMIT_REF_NAME\`%0ABy: \`$GITLAB_USER_NAME\`%0ATime: \`$(date -u '+%Y-%m-%d %H:%M UTC')\`"
 
 deploy_fe_prod:
   stage: deploy
@@ -100,11 +100,11 @@ deploy_fe_prod:
         docker compose down &&
         docker compose up -d
       "
-      ./send_telegram.sh "[FE - PROD] ✅ DEPLOYED" "Image: \`$IMAGE_TAG_FE\`%0ABranch: \`$CI_COMMIT_REF_NAME\`%0ABy: \`$GITLAB_USER_NAME\`%0ATime: \`$(date -u '+%Y-%m-%d %H:%M UTC')\`"
+      bash $CI_PROJECT_DIR/send_telegram.sh "[FE - PROD] ✅ DEPLOYED" "Image: \`$IMAGE_TAG_FE\`%0ABranch: \`$CI_COMMIT_REF_NAME\`%0ABy: \`$GITLAB_USER_NAME\`%0ATime: \`$(date -u '+%Y-%m-%d %H:%M UTC')\`"
   after_script:
     - |
       if [ "$CI_JOB_STATUS" != "success" ]; then
-        ./send_telegram.sh "[FE - PROD] ❌ FAILED" "Job: \`$CI_JOB_NAME\`%0AStatus: \`$CI_JOB_STATUS\`%0ABranch: \`$CI_COMMIT_REF_NAME\`%0ABy: \`$GITLAB_USER_NAME\`"
+        bash $CI_PROJECT_DIR/send_telegram.sh "[FE - PROD] ❌ FAILED" "Job: \`$CI_JOB_NAME\`%0AStatus: \`$CI_JOB_STATUS\`%0ABranch: \`$CI_COMMIT_REF_NAME\`%0ABy: \`$GITLAB_USER_NAME\`"
       fi
 
 deploy_be_prod:
@@ -128,9 +128,9 @@ deploy_be_prod:
         docker compose down &&
         docker compose up -d
       "
-      ./send_telegram.sh "[BE - PROD] ✅ DEPLOYED" "Image: \`$IMAGE_TAG_BE\`%0ABranch: \`$CI_COMMIT_REF_NAME\`%0ABy: \`$GITLAB_USER_NAME\`%0ATime: \`$(date -u '+%Y-%m-%d %H:%M UTC')\`"
+      bash $CI_PROJECT_DIR/send_telegram.sh "[BE - PROD] ✅ DEPLOYED" "Image: \`$IMAGE_TAG_BE\`%0ABranch: \`$CI_COMMIT_REF_NAME\`%0ABy: \`$GITLAB_USER_NAME\`%0ATime: \`$(date -u '+%Y-%m-%d %H:%M UTC')\`"
   after_script:
     - |
       if [ "$CI_JOB_STATUS" != "success" ]; then
-        ./send_telegram.sh "[BE - PROD] ❌ FAILED" "Job: \`$CI_JOB_NAME\`%0AStatus: \`$CI_JOB_STATUS\`%0ABranch: \`$CI_COMMIT_REF_NAME\`%0ABy: \`$GITLAB_USER_NAME\`"
+        bash $CI_PROJECT_DIR/send_telegram.sh "[BE - PROD] ❌ FAILED" "Job: \`$CI_JOB_NAME\`%0AStatus: \`$CI_JOB_STATUS\`%0ABranch: \`$CI_COMMIT_REF_NAME\`%0ABy: \`$GITLAB_USER_NAME\`"
       fi
