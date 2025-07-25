@@ -15,6 +15,7 @@ variables:
   WORKDIR: /home/deployer/app/ontoolaz
 
 before_script:
+  - apk add --no-cache curl
   - echo "$CI_JOB_TOKEN" | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
   - mkdir -p ~/.ssh
   - echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
@@ -94,7 +95,7 @@ deploy_fe_prod:
       ssh $SSH_USER@$SSH_HOST "
         echo $DEPLOY_REGISTRY_PASSWORD | docker login -u $DEPLOY_REGISTRY_USER --password-stdin registry.gitlab.com &&
         cd $WORKDIR/frontend &&
-        export IMAGE_TAG=$IMAGE_TAG_FE &&
+        export IMAGE_TAG=$CI_COMMIT_SHORT_SHA &&
         export NODE_ENV=production &&
         docker compose pull &&
         docker compose down &&
