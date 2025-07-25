@@ -4,10 +4,12 @@ import { useState, useEffect, useRef } from "react";
 import { Input } from "@/components/ui/input";
 import { Search, X, Loader2 } from "lucide-react";
 import BadgeCustom from "@/components/common/BadgeCustom";
+import {useTranslations} from "next-intl";
 
 const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337';
 
 export default function SearchBar() {
+  const t = useTranslations();
   const [searchQuery, setSearchQuery] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [results, setResults] = useState<any[]>([]);
@@ -100,8 +102,6 @@ export default function SearchBar() {
     setSearchQuery(result.name);
     setIsOpen(false);
     setHighlightedIndex(-1);
-    console.log('Selected:', result);
-    // window.location.href = `/tools/${result.id}`;
   };
 
   const clearSearch = () => {
@@ -125,7 +125,7 @@ export default function SearchBar() {
             <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
             <Input
               ref={inputRef}
-              placeholder="Search Tools"
+              placeholder={t('Common.searchTools')}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onKeyDown={handleKeyDown}
@@ -155,7 +155,7 @@ export default function SearchBar() {
               {isLoading && (
                 <div className="px-4 py-6 text-center text-muted-foreground">
                   <Loader2 className="w-6 h-6 mx-auto mb-2 animate-spin" />
-                  <p>Đang tìm kiếm...</p>
+                  <p>{t('Common.searching')}...</p>
                 </div>
               )}
 
@@ -204,7 +204,7 @@ export default function SearchBar() {
                   ))}
 
                   <div className="px-4 py-2 text-xs text-muted-foreground bg-muted/30 border-t border-border">
-                    {results.length} kết quả được tìm thấy
+                    {t('Common.resultsFound', { count: results.length })}
                   </div>
                 </>
               )}

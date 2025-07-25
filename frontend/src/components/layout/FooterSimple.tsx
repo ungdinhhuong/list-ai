@@ -4,8 +4,10 @@ import {SOCIALS} from "@/constants/constants";
 import ReCaptchaPolicy from "@/components/section/newsletter/ReCaptchaPolicy";
 import Link from "next/link";
 import {ROUTES} from "@/constants/routes";
+import {useTranslations} from "next-intl";
 
 const FooterSimple = () => {
+  const t = useTranslations();
 
   return (
     <footer className="bg-background text-foreground border-t border-border">
@@ -21,9 +23,9 @@ const FooterSimple = () => {
 
           <div className="flex items-center space-x-6 mt-4 sm:mt-0  text-sm">
             <Link href={ROUTES.POLICY} className="text-muted-foreground hover:text-foreground transition-colors">
-              Policy
+              {t('Common.policy')}
             </Link>
-            <span className="text-muted-foreground">Follow Us:</span>
+            <span className="text-muted-foreground"> {t('Common.followUs')}:</span>
             <div className="flex space-x-3">
               {Object.values(SOCIALS).map((social) => {
                 const Icon = social.icon;

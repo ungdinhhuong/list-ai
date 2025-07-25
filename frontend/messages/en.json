@@ -1,7 +1,8 @@
 {
   "HomePage": {
     "title": "Discover The Best AI Websites & Tools",
-    "about": "Go to the about page"
+    "about": "Go to the about page",
+    "featuredTools": "Featured AI Tools"
   },
   "LanguageSwitcher": {
     "chooseLanguage": "Language"
@@ -17,10 +18,54 @@
     "backToTop": "Back to Top",
     "loadMore": "Load More",
     "noTranslationTitle": "No Translation",
-    "noTranslationDesc": "This page is not available in your selected language!"
+    "noTranslationDesc": "This page is not available in your selected language!",
+    "policy": "Privacy Policy",
+    "about": "About",
+    "categories": "Categories",
+    "type": "Type",
+    "followUs": "Follow Us",
+    "visitWebsite": "Visit Website",
+    "updating": "Updating",
+    "submitAITool": "Submit AI Tool",
+    "joinCommunity": "Join Our Community",
+    "ads": "Advertisement",
+    "sending": "Sending",
+    "subscribe": "Subscribe",
+    "searching": "Searching",
+    "searchTools": "Search Tools",
+    "searchResultTotal": "Total {count} results found",
+    "notFoundResult": "No results found."
   },
   "CategoryPage": {
     "title": "Categories",
     "description": "Explore tools and websites in the category."
+  },
+  "Newsletter": {
+    "text1": "Be part of our Newsletter to get Exclusive content and Get",
+    "text2": "100+ free AI tools",
+    "text3": "to help increase your productivity today!",
+    "youAreSubscribed": "You're subscribed!",
+    "text4": "Already over",
+    "text5": "50,000 Subscribers",
+    "text6": "DON'T",
+    "text7": "get behind.",
+    "simple": {
+      "title": "Stay Updated with Latest AI Tools",
+      "description": "Join over 50,000 subscribers and get exclusive access to new AI tools,\n          curated lists, and productivity tips delivered to your inbox."
+    }
+  },
+  "recaptcha": {
+    "enter_email": "Please enter your email",
+    "invalid_email": "Invalid email format",
+    "please_complete_captcha": "Please complete the reCAPTCHA"
+  },
+  "category": {
+    "noTools": "No tools found in this category."
+  },
+  "mode": {
+    "toggle": "Toggle Theme",
+    "light": "Light Mode",
+    "dark": "Dark Mode",
+    "system": "System Default"
   }
 }

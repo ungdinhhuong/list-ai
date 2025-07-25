@@ -1,7 +1,8 @@
 {
   "HomePage": {
     "title": "Khám phá các trang web & công cụ AI tốt nhất",
-    "about": "Đến trang nào"
+    "about": "Đến trang nào",
+    "featuredTools": "Công cụ AI nổi bật"
   },
   "LanguageSwitcher": {
     "chooseLanguage": "Ngôn ngữ"
@@ -17,10 +18,54 @@
     "backToTop": "Trở về đầu trang",
     "loadMore": "Tải thêm",
     "noTranslationTitle": "Không có bản dịch",
-    "noTranslationDesc": "Trang này chưa có bản dịch cho ngôn ngữ hiện tại!"
+    "noTranslationDesc": "Trang này chưa có bản dịch cho ngôn ngữ hiện tại!",
+    "policy": "Chính sách bảo mật",
+    "about": "Về chúng tôi",
+    "categories": "Danh mục",
+    "type": "Phân loại",
+    "followUs": "Theo dõi",
+    "visitWebsite": "Truy cập trang web",
+    "updating": "Đang cập nhật",
+    "submitAITool": "Gửi công cụ AI",
+    "joinCommunity": "Tham gia cộng đồng",
+    "ads": "Quảng cáo",
+    "sending": "Đang gửi",
+    "subscribe": "Đăng ký",
+    "searching": "Đang tìm kiếm",
+    "searchTools": "Tìm kiếm công cụ",
+    "searchResultTotal": "{count} kết quả được tìm thấy",
+    "notFoundResult": "Không tìm thấy kết quả."
   },
   "CategoryPage": {
     "title": "Danh mục",
     "description": "Khám phá các công cụ và trang web trong danh mục."
+  },
+  "Newsletter": {
+    "text1": "Hãy tham gia bản tin của chúng tôi để nhận nội dung độc quyền và",
+    "text2": "100+ công cụ AI miễn phí",
+    "text3": "giúp tăng năng suất của bạn ngay hôm nay!",
+    "youAreSubscribed": "Bạn đã đăng ký!",
+    "text4": "Đã có hơn",
+    "text5": "50.000 người đăng ký",
+    "text6": "ĐỪNG ĐỂ",
+    "text7": "bị tụt lại.",
+    "simple": {
+      "title": "Cập nhật công cụ AI mới nhất",
+      "description": "Tham gia cùng hơn 50.000 người đăng ký và nhận quyền truy cập độc quyền vào các công cụ AI mới,\n          danh sách được chọn lọc và mẹo năng suất được gửi đến hộp thư của bạn."
+    }
+  },
+  "recaptcha": {
+    "enter_email": "Vui lòng nhập email của bạn",
+    "invalid_email": "Định dạng email không hợp lệ",
+    "please_complete_captcha": "Vui lòng hoàn thành reCAPTCHA"
+  },
+  "category": {
+    "noTools": "Không tìm thấy công cụ nào trong danh mục này."
+  },
+  "mode": {
+    "toggle": "Chuyển đổi",
+    "light": "Sáng",
+    "dark": "Tối",
+    "system": "Theo hệ thống"
   }
 }

@@ -1,5 +1,6 @@
 import ToolCard from "@/components/ToolCard";
 import { ToolType } from "@/types/tool.type";
+import {useTranslations} from "next-intl";
 
 interface AllToolsSectionProps {
   title?: string;
@@ -10,6 +11,7 @@ interface AllToolsSectionProps {
 
 export default function AllToolsSection({title,  name, tools, lengthItems = 4 }: AllToolsSectionProps) {
   const isGridFour = lengthItems === 4;
+  const t = useTranslations();
 
   return (
     <section>
@@ -19,7 +21,7 @@ export default function AllToolsSection({title,  name, tools, lengthItems = 4 }:
 
       {tools.length === 0 ? (
         <div className="text-muted-foreground text-lg">
-          No tools found in this category.
+          {t('category.noTools')}
         </div>
       ) : (
         <div

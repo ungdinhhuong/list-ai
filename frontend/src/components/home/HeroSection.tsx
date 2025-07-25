@@ -44,12 +44,12 @@ export default function HeroSection({homePage}: HeroSectionProps) {
         <div className="flex justify-center lg:justify-start items-center flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
           <button className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-full font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center space-x-2 w-full sm:w-auto justify-center">
             <Upload className="w-5 h-5 group-hover:rotate-12 transition-transform" />
-            <span>Submit AI Tool</span>
+            <span>{t('Common.submitAITool')}</span>
           </button>
 
           <button className="group bg-background text-foreground px-8 py-3 rounded-full font-semibold border-2 border-border hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center space-x-2 w-full sm:w-auto justify-center">
             <Users className="w-5 h-5 group-hover:scale-110 transition-transform" />
-            <span>Join Community</span>
+            <span>{t('Common.joinCommunity')}</span>
           </button>
         </div>
       </div>
@@ -80,7 +80,7 @@ export default function HeroSection({homePage}: HeroSectionProps) {
 
           {/* Ad badge */}
           <div className="absolute top-4 right-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xs px-3 py-1 rounded-full font-semibold shadow-lg">
-            Quảng cáo
+            {t('Common.ads')}
           </div>
 
           {/* Decorative elements */}

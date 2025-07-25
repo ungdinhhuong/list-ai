@@ -6,9 +6,11 @@ import { ROUTES } from "@/constants/routes";
 import { useSidebar } from "@/contexts/SidebarProvider";
 import Image from "next/image";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import {useTranslations} from "next-intl";
 
 export default function Header() {
   const { sidebarOpen, setSidebarOpen } = useSidebar();
+  const t = useTranslations();
 
   return (
     <header className="bg-background border-b border-border">
@@ -39,10 +41,10 @@ export default function Header() {
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center space-x-4 lg:space-x-6 text-sm">
           <Link href={ROUTES.CATEGORY} className="text-muted-foreground hover:text-foreground transition-colors">
-            Categories
+            {t('Common.categories')}
           </Link>
           <Link href={ROUTES.ABOUT} className="text-muted-foreground hover:text-foreground transition-colors">
-            About
+            {t('Common.about')}
           </Link>
           <LanguageSwitcher/>
           <ModeToggle />

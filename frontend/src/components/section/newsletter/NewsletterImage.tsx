@@ -8,8 +8,10 @@ import Image from 'next/image'
 import ReCAPTCHA from 'react-google-recaptcha'
 import {subscriberService} from '@/services/subscriber.service'
 import {isValidEmail} from "@/lib/utils";
+import {useTranslations} from "next-intl";
 
 export default function NewsletterImage() {
+  const t = useTranslations();
   const [emailImage, setEmailImage] = useState('')
   const [isSubscribed, setIsSubscribed] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -60,7 +62,7 @@ export default function NewsletterImage() {
         </div>
 
         {/* Image Section */}
-        <div className="relative flex-1">
+        <div className="relative flex-1 rounded-2xl overflow-hidden shadow-lg">
           <Image
             src="/images/ads.png"
             alt="Tôi vượt mình - Hành trình phát triển bản thân"
@@ -74,14 +76,14 @@ export default function NewsletterImage() {
         <div className="flex-1">
           <div className="space-y-6">
             <p className="text-foreground text-lg font-medium">
-              Be part of our Newsletter to get Exclusive content and Get{' '}
-              <span className="text-blue-500 font-bold">100+ free AI tools</span>{' '}
-              to help increase your productivity today!
+              {t('Newsletter.text1')}{' '}
+              <span className="text-blue-500 font-bold">{t('Newsletter.text2')}</span>{' '}
+              {t('Newsletter.text3')}
             </p>
 
             <div className="space-y-4">
               {isSubscribed ? (
-                <div className="text-green-600 font-semibold text-lg">You're subscribed! 🎉</div>
+                <div className="text-green-600 font-semibold text-lg">{t("Newsletter.youAreSubscribed")} 🎉</div>
               ) : (
                 <div className="flex flex-col gap-2">
                   <div className="flex gap-3">
@@ -113,11 +115,11 @@ export default function NewsletterImage() {
             </div>
 
             <div className="flex items-center flex-wrap space-x-2 text-sm">
-              <span className="text-muted-foreground">Already over</span>
-              <span className="text-foreground font-bold text-lg">50,000 Subscribers</span>
+              <span className="text-muted-foreground">{t('Newsletter.text4')}</span>
+              <span className="text-foreground font-bold text-lg">{t('Newsletter.text5')}</span>
               <span className="text-yellow-400">🔥</span>
-              <span className="text-red-400 font-semibold">DON'T</span>
-              <span className="text-muted-foreground">get behind.</span>
+              <span className="text-red-400 font-semibold">{t('Newsletter.text6')}</span>
+              <span className="text-muted-foreground">{t('Newsletter.text7')}</span>
             </div>
           </div>
         </div>

@@ -22,7 +22,7 @@ interface AIDetailPageProps {
 }
 
 export default async function AIDetailPage({params}: AIDetailPageProps) {
-  const {slug} = await params;
+  const {slug} = params;
   const tool = await toolService.findBySlug(slug);
   if (!tool) {
     notFound();

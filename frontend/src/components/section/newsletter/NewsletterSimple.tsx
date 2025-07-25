@@ -6,8 +6,10 @@ import ReCAPTCHA from 'react-google-recaptcha'
 import { subscriberService } from '@/services/subscriber.service'
 import { ExternalLink } from 'lucide-react'
 import {isValidEmail} from "@/lib/utils";
+import {useTranslations} from "next-intl";
 
 export default function NewsletterSimple() {
+  const t = useTranslations();
   const [emailSimple, setEmailSimple] = useState('')
   const [loading, setLoading] = useState(false)
   const [isSubscribed, setIsSubscribed] = useState(false)
@@ -16,12 +18,12 @@ export default function NewsletterSimple() {
 
   const handleSubmit = async () => {
     if (!emailSimple) {
-      setErrorMessage('Please enter your email')
+      setErrorMessage(t('recaptcha.enter_email'))
       return
     }
 
     if (!isValidEmail(emailSimple)) {
-      setErrorMessage('Invalid email format')
+      setErrorMessage(t('recaptcha.invalid_email'))
       return
     }
 
@@ -29,7 +31,7 @@ export default function NewsletterSimple() {
     recaptchaRef.current?.reset()
 
     if (!token) {
-      setErrorMessage('Please complete the reCAPTCHA')
+      setErrorMessage(t('recaptcha.please_complete_recaptcha'))
       return
     }
 
@@ -50,17 +52,12 @@ export default function NewsletterSimple() {
   return (
     <div className="w-full mx-auto">
       <div className="text-center">
-        <h3 className="text-2xl font-bold mb-4 text-foreground">
-          Stay Updated with Latest AI Tools
-        </h3>
-        <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-          Join over 50,000 subscribers and get exclusive access to new AI tools,
-          curated lists, and productivity tips delivered to your inbox.
-        </p>
+        <h3 className="text-2xl font-bold mb-4 text-foreground">{t('Newsletter.simple.title')}</h3>
+        <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">{t('Newsletter.simple.description')}</p>
 
         {isSubscribed ? (
           <p className="text-green-600 font-semibold text-lg">
-            You're subscribed! 🎉
+            {t("Newsletter.youAreSubscribed")} 🎉
           </p>
         ) : (
           <>
@@ -79,7 +76,7 @@ export default function NewsletterSimple() {
                 disabled={loading}
                 className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
               >
-                {loading ? 'Sending...' : 'Subscribe'}
+                {loading ? `${t('Common.sending')}` : `${t('Common.subscribe')}`}
                 <ExternalLink size={16} />
               </button>
               <ReCAPTCHA
