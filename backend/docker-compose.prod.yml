@@ -1,17 +1,14 @@
 services:
   strapi:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: production
-    container_name: strapi-prod
+    image: registry.gitlab.com/huongdev-2025/ontoolaz/backend:master-${IMAGE_TAG}
+    container_name: strapi
     env_file:
       - .env
     environment:
-      NODE_ENV: production
+      NODE_ENV: ${NODE_ENV}
       STRAPI_TELEMETRY_DISABLED: true
     volumes:
-      - strapi_uploads:/app/public/uploads
+      - strapi_prod_uploads:/app/public/uploads
     ports:
       - "1337:1337"
     depends_on:
@@ -23,7 +20,7 @@ services:
 
   db:
     image: mysql:8
-    container_name: strapi-db-prod
+    container_name: strapi-db
     environment:
       MYSQL_DATABASE: ${DATABASE_NAME}
       MYSQL_USER: ${DATABASE_USERNAME}
@@ -31,7 +28,9 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     volumes:
       - mysql_prod_data:/var/lib/mysql
-      - ./docker/mysql/prod.cnf:/etc/mysql/conf.d/prod.cnf:ro
+      - ./docker/mysql/prod.cnf:/etc/mysql/conf.d/mysql.cnf:ro
+    ports:
+      - "3307:3306"
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
@@ -42,7 +41,7 @@ services:
 
   redis:
     image: redis:7-alpine
-    container_name: strapi-redis-prod
+    container_name: strapi-redis
     volumes:
       - redis_prod_data:/data
       - ./docker/redis/redis.conf:/usr/local/etc/redis/redis.conf:ro
@@ -67,7 +66,7 @@ services:
 volumes:
   mysql_prod_data:
   redis_prod_data:
-  strapi_uploads:
+  strapi_prod_uploads:
 
 networks:
   strapi-network:
