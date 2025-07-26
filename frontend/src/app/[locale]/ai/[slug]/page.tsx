@@ -1,10 +1,11 @@
-import React from 'react'
-import AIDetailClient from "@/components/ai/AIDetailClient";
-import {toolService} from "@/services/tool.service";
-import {notFound} from "next/navigation";
-import {ToolType} from "@/types/tool.type";
 import {Metadata} from "next";
+import {notFound} from "next/navigation";
+import React from 'react'
+
+import AIDetailClient from "@/components/ai/AIDetailClient";
 import {seoMeta} from "@/lib/seoMeta";
+import {toolService} from "@/services/tool.service";
+import {ToolType} from "@/types/tool.type";
 
 export async function generateMetadata({params}: AIDetailPageProps): Promise<Metadata> {
   const {slug} = await params;

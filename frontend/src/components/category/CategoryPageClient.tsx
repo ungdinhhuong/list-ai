@@ -1,11 +1,12 @@
 'use client';
-import React from 'react';
-import {Card, CardContent} from '@/components/ui/card';
-import NewsletterImage from '@/components/section/newsletter/NewsletterImage';
-import {CategoryPageType, CategoryType} from "@/types/category.type";
-import {ROUTES} from "@/constants/routes";
 import Link from "next/link";
 import {useTranslations} from "next-intl";
+import React from 'react';
+
+import NewsletterImage from '@/components/section/newsletter/NewsletterImage';
+import {Card, CardContent} from '@/components/ui/card';
+import {ROUTES} from "@/constants/routes";
+import {CategoryPageType, CategoryType} from "@/types/category.type";
 
 interface CategoryPageClientProps {
   categories: CategoryType[];

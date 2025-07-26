@@ -1,6 +1,7 @@
+import {useTranslations} from "next-intl";
+
 import ToolCard from "@/components/ToolCard";
 import {ToolType} from "@/types/tool.type";
-import {useTranslations} from "next-intl";
 
 interface FeaturedToolsSectionProps {
   tools: ToolType[]

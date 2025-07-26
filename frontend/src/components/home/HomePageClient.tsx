@@ -1,19 +1,20 @@
 'use client';
 
-import {useState} from 'react';
+import { Loader2 } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { useState } from 'react';
+
 import HeroSection from "@/components/home/HeroSection";
 import SearchBar from "@/components/home/SearchBar";
-import FeaturedToolsSection from "@/components/section/FeaturedToolsSection";
 import AllToolsSection from "@/components/section/AllToolsSection";
+import FeaturedToolsSection from "@/components/section/FeaturedToolsSection";
 import NewsletterImage from "@/components/section/newsletter/NewsletterImage";
 import NewsletterSimple from "@/components/section/newsletter/NewsletterSimple";
-import {ToolType} from "@/types/tool.type";
-import {Loader2} from "lucide-react";
-import {Button} from "@/components/ui/button";
-import {PaginatedResponse} from "@/types/api.type";
-import {HomePageType} from "@/types/home-page.type";
-import {useTranslations} from "next-intl";
-import {useFetchApiData} from "@/lib/fetchApiData";
+import { Button } from "@/components/ui/button";
+import { useFetchApiData } from "@/lib/fetchApiData";
+import { PaginatedResponse } from "@/types/api.type";
+import { HomePageType } from "@/types/home-page.type";
+import { ToolType } from "@/types/tool.type";
 
 interface HomePageClientProps {
   featuredTools: PaginatedResponse<ToolType>;
@@ -21,19 +22,20 @@ interface HomePageClientProps {
   homePage: HomePageType;
 }
 
-export default function HomePageClient({featuredTools, initialTools, homePage}: HomePageClientProps) {
+export default function HomePageClient({ featuredTools, initialTools, homePage }: HomePageClientProps) {
   const [pagination, setPagination] = useState(initialTools.meta.pagination);
   const [tools, setTools] = useState(initialTools.data);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(pagination.page < pagination.pageCount);
+
   const t = useTranslations();
+  const fetchApiData = useFetchApiData(); // ✅ gọi hook ở cấp component
 
   const loadMore = async () => {
     setLoading(true);
     const nextPage = pagination.page + 1;
 
     try {
-      const fetchApiData = useFetchApiData();
       const url = `/api/tools?page=${nextPage}&pageSize=${pagination.pageSize}`;
       const json = await fetchApiData<PaginatedResponse<ToolType>>(url);
 
@@ -49,17 +51,17 @@ export default function HomePageClient({featuredTools, initialTools, homePage}: 
 
   return (
     <div className="container mx-auto lg:max-w-7xl space-y-8 text-foreground">
-      <HeroSection homePage={homePage}/>
-      <SearchBar/>
-      <FeaturedToolsSection tools={featuredTools.data}/>
+      <HeroSection homePage={homePage} />
+      <SearchBar />
+      <FeaturedToolsSection tools={featuredTools.data} />
 
       {/* Newsletter hình ảnh */}
       <section className="mb-8 lg:mb-12">
-        <NewsletterImage/>
+        <NewsletterImage />
       </section>
 
       {/* Danh sách tool AI */}
-      <AllToolsSection tools={tools}/>
+      <AllToolsSection tools={tools} />
 
       {hasMore && (
         <div className="text-center xl:mb-16">
@@ -71,7 +73,7 @@ export default function HomePageClient({featuredTools, initialTools, homePage}: 
           >
             {loading ? (
               <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin"/>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                 {t('common.loading')}
               </>
             ) : (
@@ -81,7 +83,7 @@ export default function HomePageClient({featuredTools, initialTools, homePage}: 
         </div>
       )}
 
-      <NewsletterSimple/>
+      <NewsletterSimple />
     </div>
   );
 }

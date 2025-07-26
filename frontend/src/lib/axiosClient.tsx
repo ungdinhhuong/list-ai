@@ -1,4 +1,5 @@
 import axios from 'axios'
+
 import {STRAPI_URL} from "@/constants/env";
 
 const instance = axios.create({

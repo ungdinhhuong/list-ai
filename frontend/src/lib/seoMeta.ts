@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+
 import { OgType, StrapiImage, StrapiSeoToMetadataOpts, validOgTypes } from "@/types/seo.type";
 
 export function getValidOgType(type?: string): OgType {

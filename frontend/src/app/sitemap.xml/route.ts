@@ -1,4 +1,5 @@
 import { type NextRequest } from "next/server";
+
 import { BASE_URL, STRAPI_URL } from "@/constants/env";
 
 const LOCALES = ["en", "vi"];

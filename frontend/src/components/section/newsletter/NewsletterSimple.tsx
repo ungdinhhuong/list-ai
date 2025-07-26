@@ -1,13 +1,14 @@
 'use client'
 
-import { useState, useRef } from 'react'
-// @ts-ignore
-import ReCAPTCHA from 'react-google-recaptcha'
-import { subscriberService } from '@/services/subscriber.service'
-import { ExternalLink } from 'lucide-react'
-import {isValidEmail} from "@/lib/utils";
+import {ExternalLink} from 'lucide-react'
 import {useTranslations} from "next-intl";
+import {useRef, useState} from 'react'
+// @ts-ignore
+import {ReCAPTCHA} from 'react-google-recaptcha'
+
 import {RECAPTCHA_SITE_KEY} from "@/constants/env";
+import {isValidEmail} from "@/lib/utils";
+import {subscriberService} from '@/services/subscriber.service'
 
 export default function NewsletterSimple() {
   const t = useTranslations();
@@ -78,10 +79,10 @@ export default function NewsletterSimple() {
                 className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
               >
                 {loading ? `${t('common.sending')}` : `${t('common.subscribe')}`}
-                <ExternalLink size={16} />
+                <ExternalLink size={16}/>
               </button>
               <ReCAPTCHA
-                sitekey="6LdGY3wrAAAAAAQz6-vQBRDohZRmfDVK2fEhroq_"
+                sitekey={RECAPTCHA_SITE_KEY}
                 size="invisible"
                 ref={recaptchaRef}
               />

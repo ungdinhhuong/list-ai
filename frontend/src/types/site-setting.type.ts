@@ -1,16 +1,4 @@
-import type { StrapiSEO } from "@/types/seo.type";
-
-export interface SiteSettingType {
-  id: number;
-  documentId: string;
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
-  locale: string;
-  title: string;
-  description: string;
-  seo: StrapiSEO;
-}
+import type {StrapiSEO} from "@/types/seo.type";
 
 // Strapi Media
 export interface StrapiImageFormat {

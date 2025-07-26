@@ -1,6 +1,7 @@
 'use client';
 
 import React from "react";
+
 import AllToolsSection from "@/components/section/AllToolsSection";
 import NewsletterImage from "@/components/section/newsletter/NewsletterImage";
 import { CategoryType } from "@/types/category.type";

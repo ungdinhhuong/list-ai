@@ -1,5 +1,6 @@
-import axiosClient from "@/lib/axiosClient";
 import {getLocale} from "next-intl/server";
+
+import axiosClient from "@/lib/axiosClient";
 
 export async function apiGet<T = any>(url: string, params: any = {}): Promise<T> {
   const locale = await getLocale();

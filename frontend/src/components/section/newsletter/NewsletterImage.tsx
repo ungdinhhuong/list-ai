@@ -1,17 +1,19 @@
 'use client'
 
+import Image from 'next/image'
+import {useTranslations} from 'next-intl'
 import React, {useRef, useState} from 'react'
+// @ts-ignore
+import {ReCAPTCHA} from 'react-google-recaptcha'
+
 import {Button} from '@/components/ui/button'
 import {Input} from '@/components/ui/input'
-import Image from 'next/image'
-// @ts-ignore
-import ReCAPTCHA from 'react-google-recaptcha'
+import {RECAPTCHA_SITE_KEY} from '@/constants/env'
+import {isValidEmail} from '@/lib/utils'
 import {subscriberService} from '@/services/subscriber.service'
-import {isValidEmail} from "@/lib/utils";
-import {useTranslations} from "next-intl";
 
 export default function NewsletterImage() {
-  const t = useTranslations();
+  const t = useTranslations()
   const [emailImage, setEmailImage] = useState('')
   const [isSubscribed, setIsSubscribed] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -45,7 +47,7 @@ export default function NewsletterImage() {
       setIsSubscribed(true)
       setEmailImage('')
     } catch (err: any) {
-      setErrorMessage(err.message)
+      setErrorMessage(err.message || 'Something went wrong')
     } finally {
       setLoading(false)
     }
@@ -56,19 +58,21 @@ export default function NewsletterImage() {
       <div className="relative flex flex-col lg:flex-row items-center justify-between p-4 lg:p-8 gap-4 lg:gap-8">
         {/* Background Blurs */}
         <div className="absolute inset-0 opacity-10 pointer-events-none">
-          <div className="absolute top-4 left-4 w-32 h-32 bg-purple-500 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-4 right-4 w-24 h-24 bg-blue-500 rounded-full blur-2xl"></div>
-          <div className="absolute top-1/2 left-1/3 w-16 h-16 bg-pink-500 rounded-full blur-xl"></div>
+          <div className="absolute top-4 left-4 w-32 h-32 bg-purple-500 rounded-full blur-3xl"/>
+          <div className="absolute bottom-4 right-4 w-24 h-24 bg-blue-500 rounded-full blur-2xl"/>
+          <div className="absolute top-1/2 left-1/3 w-16 h-16 bg-pink-500 rounded-full blur-xl"/>
         </div>
 
         {/* Image Section */}
         <div className="relative flex-1 rounded-2xl overflow-hidden shadow-lg">
           <Image
             src="/images/ads.png"
-            alt="Tôi vượt mình - Hành trình phát triển bản thân"
+            alt="Toi Vuot Minh - Hanh trinh phat trien ban than"
             width={600}
             height={400}
             sizes="(max-width: 600px) 100vw, 600px"
+            className="rounded-xl object-cover"
+            priority
           />
         </div>
 
@@ -83,7 +87,9 @@ export default function NewsletterImage() {
 
             <div className="space-y-4">
               {isSubscribed ? (
-                <div className="text-green-600 font-semibold text-lg">{t("newsletter.youAreSubscribed")} 🎉</div>
+                <div className="text-green-600 font-semibold text-lg">
+                  {t('newsletter.youAreSubscribed')} 🎉
+                </div>
               ) : (
                 <div className="flex flex-col gap-2">
                   <div className="flex gap-3">
@@ -101,15 +107,17 @@ export default function NewsletterImage() {
                       className="px-8 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold transition-all duration-300 hover:scale-105"
                       disabled={loading}
                     >
-                      {loading ? 'Sending...' : 'Subscribe'}
+                      {loading ? t('common.sending') : t('common.subscribe')}
                     </Button>
                     <ReCAPTCHA
-                      sitekey="6LdGY3wrAAAAAAQz6-vQBRDohZRmfDVK2fEhroq_"
+                      sitekey={RECAPTCHA_SITE_KEY}
                       size="invisible"
                       ref={recaptchaRef}
                     />
                   </div>
-                  {errorMessage && <p className="text-red-500 text-sm">{errorMessage}</p>}
+                  {errorMessage && (
+                    <p className="text-red-500 text-sm">{errorMessage}</p>
+                  )}
                 </div>
               )}
             </div>
@@ -125,10 +133,14 @@ export default function NewsletterImage() {
         </div>
 
         {/* Floating dots */}
-        <div className="absolute top-6 right-20 w-3 h-3 bg-blue-400 rounded-full animate-bounce"
-             style={{animationDelay: '0.5s'}}/>
-        <div className="absolute bottom-8 left-1/4 w-2 h-2 bg-purple-400 rounded-full animate-bounce"
-             style={{animationDelay: '1s'}}/>
+        <div
+          className="absolute top-6 right-20 w-3 h-3 bg-blue-400 rounded-full animate-bounce"
+          style={{animationDelay: '0.5s'}}
+        />
+        <div
+          className="absolute bottom-8 left-1/4 w-2 h-2 bg-purple-400 rounded-full animate-bounce"
+          style={{animationDelay: '1s'}}
+        />
         <div className="absolute top-1/3 right-8 w-4 h-4 bg-pink-400 rounded-full animate-pulse"/>
       </div>
     </div>

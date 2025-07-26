@@ -1,4 +1,4 @@
-import { FaYoutube, FaFacebook, FaInstagram, FaTiktok, FaTwitter } from 'react-icons/fa'
+import { FaFacebook, FaInstagram, FaTiktok, FaTwitter,FaYoutube } from 'react-icons/fa'
 
 export const BADGE = {
   FEATURED: "Featured",

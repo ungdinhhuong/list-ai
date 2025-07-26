@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import { useEffect } from "react";
+
 import { ROUTES } from "@/constants/routes";
 import { useSidebar } from "@/contexts/SidebarProvider";
 import { CategoryType } from "@/types/category.type";

@@ -1,9 +1,10 @@
 'use client';
 
-import React from 'react';
 import { Settings, Upload, Users } from 'lucide-react';
 import Image from "next/image";
 import {useTranslations} from 'next-intl';
+import React from 'react';
+
 import {HomePageType} from "@/types/home-page.type";
 
 interface HeroSectionProps {

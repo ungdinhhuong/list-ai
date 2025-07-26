@@ -1,5 +1,5 @@
-import {MediaType} from "@/types/media.type";
 import {CategoryType} from "@/types/category.type";
+import {MediaType} from "@/types/media.type";
 import type {StrapiSEO} from "@/types/seo.type";
 
 export interface ToolType {

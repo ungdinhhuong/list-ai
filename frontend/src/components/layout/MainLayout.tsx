@@ -1,9 +1,10 @@
 import React from "react";
-import Header from "@/components/layout/Header";
+
 import FooterSimple from "@/components/layout/FooterSimple";
+import Header from "@/components/layout/Header";
 import Sidebar from "@/components/layout/Sidebar";
-import {categoryService} from "@/services/category.service";
 import {SidebarProvider} from "@/contexts/SidebarProvider";
+import {categoryService} from "@/services/category.service";
 
 export default async function MainLayout({children}: { children: React.ReactNode }) {
   const res = await categoryService.getCategories();

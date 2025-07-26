@@ -1,9 +1,10 @@
-import NewsletterImage from "@/components/section/newsletter/NewsletterImage";
-import React from "react";
 import {Metadata} from "next";
-import {singleTypeService} from "@/services/single-type.service";
-import {seoMeta} from "@/lib/seoMeta";
 import {notFound} from "next/navigation";
+import React from "react";
+
+import NewsletterImage from "@/components/section/newsletter/NewsletterImage";
+import {seoMeta} from "@/lib/seoMeta";
+import {singleTypeService} from "@/services/single-type.service";
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await singleTypeService.getPolicyPage();

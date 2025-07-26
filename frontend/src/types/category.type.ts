@@ -1,5 +1,5 @@
-import {ToolType} from "@/types/tool.type";
 import type {StrapiSEO} from "@/types/seo.type";
+import {ToolType} from "@/types/tool.type";
 
 export interface CategoryType {
   id: number;

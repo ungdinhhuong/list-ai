@@ -1,15 +1,16 @@
 'use client'
-import React from 'react'
-import AllToolsSection from "@/components/section/AllToolsSection"
-import {Button} from '@/components/ui/button';
 import {ExternalLink} from 'lucide-react';
-import BadgeCustom from "@/components/common/BadgeCustom";
-import NewsletterImage from "@/components/section/newsletter/NewsletterImage";
-import {ToolType} from "@/types/tool.type";
-import AvatarLogo from "@/components/common/AvatarLogo";
-import {Card, CardContent} from "@/components/ui/card";
-import {Badge} from "@/components/ui/badge";
 import {useTranslations} from "next-intl";
+import React from 'react'
+
+import AvatarLogo from "@/components/common/AvatarLogo";
+import BadgeCustom from "@/components/common/BadgeCustom";
+import AllToolsSection from "@/components/section/AllToolsSection"
+import NewsletterImage from "@/components/section/newsletter/NewsletterImage";
+import {Badge} from "@/components/ui/badge";
+import {Button} from '@/components/ui/button';
+import {Card, CardContent} from "@/components/ui/card";
+import {ToolType} from "@/types/tool.type";
 
 interface AIDetailClientProps {
   tool: ToolType,
@@ -50,7 +51,7 @@ export default function AIDetailClient({tool, relatedTools}: AIDetailClientProps
             </div>
             <div className="flex items-center gap-4">
               <h3 className="text-sm font-medium text-muted-foreground">{t('common.type')}:</h3>
-              <Badge variant="outline" className="border-green-500 text-green-400">{tool.type || t('Common.updating')}</Badge>
+              <Badge variant="outline" className="border-green-500 text-green-400">{tool.type || t('common.updating')}</Badge>
             </div>
           </div>
         </CardContent>

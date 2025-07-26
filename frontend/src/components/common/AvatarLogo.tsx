@@ -1,5 +1,6 @@
-import { char2BgColor } from "@/constants/constants";
 import Image from "next/image";
+
+import { char2BgColor } from "@/constants/constants";
 
 interface AvatarLogoProps {
   text: string;

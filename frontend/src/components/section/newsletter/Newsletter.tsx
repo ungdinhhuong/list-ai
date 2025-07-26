@@ -1,22 +1,23 @@
 'use client';
 
-import React, { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import {
-  Zap,
+  Bot,
   Brain,
+  Camera,
+  Code,
+  Cpu,
+  FileText,
+  Lightbulb,
+  Music,
+  Palette,
   Sparkles,
   Wand2,
-  Bot,
-  Cpu,
-  Lightbulb,
-  Camera,
-  Palette,
-  Code,
-  Music,
-  FileText
+  Zap,
 } from 'lucide-react';
+import React, { useState } from 'react';
+
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 export default function Newsletter() {
   const [email, setEmail] = useState('');
@@ -42,18 +43,17 @@ export default function Newsletter() {
     { Icon: Code, color: 'text-cyan-400', size: 'w-6 h-6' },
     { Icon: Music, color: 'text-emerald-400', size: 'w-7 h-7' },
     { Icon: FileText, color: 'text-violet-400', size: 'w-6 h-6' },
-    { Icon: Zap, color: 'text-amber-400', size: 'w-8 h-8' }
+    { Icon: Zap, color: 'text-amber-400', size: 'w-8 h-8' },
   ];
 
   return (
     <div className="w-full mx-auto bg-gradient-to-r from-background via-purple-950 to-background rounded-2xl overflow-hidden shadow-2xl">
       <div className="relative flex flex-col xl:flex-row items-center justify-between p-8 lg:p-12">
-
         {/* Background Blurs */}
         <div className="absolute inset-0 opacity-10 pointer-events-none">
-          <div className="absolute top-4 left-4 w-32 h-32 bg-purple-500 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-4 right-4 w-24 h-24 bg-blue-500 rounded-full blur-2xl"></div>
-          <div className="absolute top-1/2 left-1/3 w-16 h-16 bg-pink-500 rounded-full blur-xl"></div>
+          <div className="absolute top-4 left-4 w-32 h-32 bg-purple-500 rounded-full blur-3xl" />
+          <div className="absolute bottom-4 right-4 w-24 h-24 bg-blue-500 rounded-full blur-2xl" />
+          <div className="absolute top-1/2 left-1/3 w-16 h-16 bg-pink-500 rounded-full blur-xl" />
         </div>
 
         {/* Icon Grid */}
@@ -62,10 +62,12 @@ export default function Newsletter() {
             {toolIcons.map(({ Icon, color, size }, index) => (
               <div
                 key={index}
-                className={`flex items-center justify-center p-3 rounded-xl bg-muted/60 backdrop-blur-sm border border-border hover:bg-muted transition-all duration-300 hover:scale-110 hover:rotate-3 ${index % 3 === 0 ? 'animate-pulse' : ''}`}
+                className={`flex items-center justify-center p-3 rounded-xl bg-muted/60 backdrop-blur-sm border border-border hover:bg-muted transition-all duration-300 hover:scale-110 hover:rotate-3 ${
+                  index % 3 === 0 ? 'animate-pulse' : ''
+                }`}
                 style={{
                   animationDelay: `${index * 0.2}s`,
-                  animationDuration: '2s'
+                  animationDuration: '2s',
                 }}
               >
                 <Icon className={`${size} ${color} drop-shadow`} />
@@ -121,7 +123,7 @@ export default function Newsletter() {
               <span className="text-muted-foreground">Already over</span>
               <span className="text-foreground font-bold text-lg">50,000 Subscribers</span>
               <span className="text-yellow-400">🔥</span>
-              <span className="text-red-400 font-semibold">DON'T</span>
+              <span className="text-red-400 font-semibold">Don&rsquo;t</span>
               <span className="text-muted-foreground">get behind.</span>
             </div>
           </div>

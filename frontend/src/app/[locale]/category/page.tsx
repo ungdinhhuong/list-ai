@@ -1,9 +1,10 @@
-import React from 'react';
-import CategoryPageClient from "@/components/category/CategoryPageClient";
-import {categoryService} from "@/services/category.service";
 import {Metadata} from "next";
-import {singleTypeService} from "@/services/single-type.service";
+import React from 'react';
+
+import CategoryPageClient from "@/components/category/CategoryPageClient";
 import {seoMeta} from "@/lib/seoMeta";
+import {categoryService} from "@/services/category.service";
+import {singleTypeService} from "@/services/single-type.service";
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await singleTypeService.getCategoryPage();

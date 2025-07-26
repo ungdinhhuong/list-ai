@@ -1,9 +1,10 @@
-import { Card, CardContent } from "@/components/ui/card";
-import BadgeCustom from "@/components/common/BadgeCustom";
-import AvatarLogo from "@/components/common/AvatarLogo";
 import Link from "next/link";
-import { ToolType } from "@/types/tool.type";
+
+import AvatarLogo from "@/components/common/AvatarLogo";
+import BadgeCustom from "@/components/common/BadgeCustom";
+import { Card, CardContent } from "@/components/ui/card";
 import {ROUTES} from "@/constants/routes";
+import { ToolType } from "@/types/tool.type";
 
 interface ToolCardProps {
   tool: ToolType;

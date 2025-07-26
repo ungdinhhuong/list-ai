@@ -1,10 +1,11 @@
-import React from 'react';
-import {APP_NAME} from "@/constants/env";
-import {SOCIALS} from "@/constants/constants";
-import ReCaptchaPolicy from "@/components/section/newsletter/ReCaptchaPolicy";
 import Link from "next/link";
-import {ROUTES} from "@/constants/routes";
 import {useTranslations} from "next-intl";
+import React from 'react';
+
+import ReCaptchaPolicy from "@/components/section/newsletter/ReCaptchaPolicy";
+import {SOCIALS} from "@/constants/constants";
+import {APP_NAME} from "@/constants/env";
+import {ROUTES} from "@/constants/routes";
 
 const FooterSimple = () => {
   const t = useTranslations();

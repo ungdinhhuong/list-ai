@@ -1,6 +1,6 @@
-import { ToolType } from '@/types/tool.type'
-import { PaginatedResponse } from '@/types/api.type'
 import { apiGet } from '@/lib/apiRequest'
+import { PaginatedResponse } from '@/types/api.type'
+import { ToolType } from '@/types/tool.type'
 
 class ToolService {
   async getToolsByBadge(badge: string): Promise<PaginatedResponse<ToolType>> {

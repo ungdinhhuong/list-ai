@@ -1,15 +1,16 @@
 "use client";
 
+import { Check, Globe2 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
-import { useRouter, usePathname } from "@/i18n/navigation";
+
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
-import { Check, Globe2 } from "lucide-react";
+import { usePathname,useRouter } from "@/i18n/navigation";
 import { cn } from "@/lib/utils"; // Nếu bạn đã có hàm cn để merge class, nếu không có thì bỏ
 
 const LANGUAGES = [

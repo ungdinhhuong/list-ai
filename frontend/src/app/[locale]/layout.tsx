@@ -1,14 +1,16 @@
+import "./globals.css";
+
 import type {Metadata} from "next";
 import {Geist, Geist_Mono} from "next/font/google";
 import {notFound} from "next/navigation";
-import {ThemeProvider} from "@/components/shared/theme-provider";
-import MainLayout from "@/components/layout/MainLayout";
 import {hasLocale, NextIntlClientProvider} from "next-intl";
-import "./globals.css";
-import {routing} from "@/i18n/routing";
+
+import MainLayout from "@/components/layout/MainLayout";
+import {ThemeProvider} from "@/components/shared/theme-provider";
 import {GlobalDataProvider} from "@/contexts/GlobalProvider";
-import {singleTypeService} from "@/services/single-type.service";
+import {routing} from "@/i18n/routing";
 import {getValidOgType} from "@/lib/seoMeta";
+import {singleTypeService} from "@/services/single-type.service";
 
 const geistSans = Geist({variable: "--font-geist-sans", subsets: ["latin"]});
 const geistMono = Geist_Mono({variable: "--font-geist-mono", subsets: ["latin"]});

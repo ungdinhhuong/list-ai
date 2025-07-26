@@ -1,12 +1,11 @@
 'use client'
 
-import ModeToggle from "@/components/shared/mode-toggle";
-import Link from "next/link";
-import { ROUTES } from "@/constants/routes";
-import { useSidebar } from "@/contexts/SidebarProvider";
 import Image from "next/image";
-import LanguageSwitcher from "@/components/LanguageSwitcher";
+import Link from "next/link";
 import { useTranslations } from "next-intl";
+
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import ModeToggle from "@/components/shared/mode-toggle";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,6 +13,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { ROUTES } from "@/constants/routes";
+import { useSidebar } from "@/contexts/SidebarProvider";
 
 export default function Header() {
   const { sidebarOpen, setSidebarOpen } = useSidebar();

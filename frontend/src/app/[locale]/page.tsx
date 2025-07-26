@@ -1,11 +1,12 @@
-import HomePageClient from "@/components/home/HomePageClient";
-import {toolService} from "@/services/tool.service";
-import {BADGE, PAGE_SIZE} from "@/constants/constants";
-import {singleTypeService} from "@/services/single-type.service";
-import {StructuredData} from "@/components/common/StructuredData";
 import {Metadata} from "next";
-import {seoMeta} from "@/lib/seoMeta";
+
 import NoTranslationMessage from "@/components/common/NoTranslationMessage";
+import {StructuredData} from "@/components/common/StructuredData";
+import HomePageClient from "@/components/home/HomePageClient";
+import {BADGE, PAGE_SIZE} from "@/constants/constants";
+import {seoMeta} from "@/lib/seoMeta";
+import {singleTypeService} from "@/services/single-type.service";
+import {toolService} from "@/services/tool.service";
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await singleTypeService.getHomePage();

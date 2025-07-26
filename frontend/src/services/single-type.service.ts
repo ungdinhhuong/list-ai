@@ -1,5 +1,5 @@
-import {HomePageResponse} from "@/types/home-page.type";
 import {apiGet} from "@/lib/apiRequest";
+import {HomePageResponse} from "@/types/home-page.type";
 import {SiteSettingResponse} from "@/types/site-setting.type";
 import {StaticPageType} from "@/types/static-page.type";
 
