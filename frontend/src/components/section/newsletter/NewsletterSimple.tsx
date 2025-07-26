@@ -81,7 +81,7 @@ export default function NewsletterSimple() {
                 <ExternalLink size={16} />
               </button>
               <ReCAPTCHA
-                sitekey={RECAPTCHA_SITE_KEY!}
+                sitekey={RECAPTCHA_SITE_KEY}
                 size="invisible"
                 ref={recaptchaRef}
               />

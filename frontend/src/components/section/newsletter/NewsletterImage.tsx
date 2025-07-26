@@ -105,7 +105,7 @@ export default function NewsletterImage() {
                       {loading ? 'Sending...' : 'Subscribe'}
                     </Button>
                     <ReCAPTCHA
-                      sitekey={RECAPTCHA_SITE_KEY!}
+                      sitekey={RECAPTCHA_SITE_KEY}
                       size="invisible"
                       ref={recaptchaRef}
                     />
