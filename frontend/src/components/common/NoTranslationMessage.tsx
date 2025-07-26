@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 
 export default function NoTranslationMessage() {
-  const t = useTranslations("Common");
+  const t = useTranslations();
 
   return (
     <div className="flex justify-center mt-10">
@@ -15,10 +15,10 @@ export default function NoTranslationMessage() {
         "
       >
         <div className="font-bold text-lg mb-1">
-          {t("noTranslationTitle")}
+          {t("common.noTranslationTitle")}
         </div>
         <div className="text-base">
-          {t("noTranslationDesc")}
+          {t("common.noTranslationDesc")}
         </div>
       </div>
     </div>
