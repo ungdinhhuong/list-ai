@@ -2,14 +2,24 @@ FROM node:22.14.0-alpine
 
 WORKDIR /app
 
+# Biến môi trường build (dev/prod)
+ARG NODE_ENV=development
+ENV NODE_ENV=$NODE_ENV
+
 COPY package*.json ./
-RUN npm install --frozen-lockfile
+
+# Cài gọn cho prod, đầy đủ cho dev
+RUN if [ "$NODE_ENV" = "production" ]; then \
+      npm install --frozen-lockfile --omit=dev; \
+    else \
+      npm install --frozen-lockfile; \
+    fi
 
 COPY . .
 
-# Build production cho prod, không cần build cho dev
+# Build nếu là production
 RUN if [ "$NODE_ENV" = "production" ]; then npm run build; fi
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["npm", "run", "start"]

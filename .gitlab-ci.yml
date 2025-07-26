@@ -57,6 +57,8 @@ deploy_fe_dev:
       set -e
       ssh $SSH_USER@$SSH_HOST "
         cd $WORKDIR/frontend &&
+        export IMAGE_TAG=$CI_COMMIT_SHORT_SHA &&
+        export NODE_ENV=development &&
         docker compose pull &&
         docker compose down &&
         docker compose up -d
@@ -75,6 +77,8 @@ deploy_be_dev:
       set -e
       ssh $SSH_USER@$SSH_HOST "
         cd $WORKDIR/backend &&
+        export IMAGE_TAG=$CI_COMMIT_SHORT_SHA &&
+        export NODE_ENV=development &&
         docker compose pull &&
         docker compose down &&
         docker compose up -d

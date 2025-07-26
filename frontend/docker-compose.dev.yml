@@ -3,6 +3,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        NODE_ENV: development
     container_name: ontoolaz-dev
     ports:
       - "3000:3000"
