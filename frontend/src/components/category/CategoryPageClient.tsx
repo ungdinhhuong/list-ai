@@ -18,8 +18,8 @@ export default function CategoryPageClient({categories, page}: CategoryPageClien
     <div className="container mx-auto lg:max-w-7xl space-y-8 relative">
       {/* Title + Description */}
       <div className="space-y-4 mb-8">
-        <h1 className="text-3xl md:text-4xl font-bold text-foreground">{page?.title || t('CategoryPage.title')}</h1>
-        <p className="text-muted-foreground text-lg max-w-2xl">{page?.title || t('CategoryPage.description')}</p>
+        <h1 className="text-3xl md:text-4xl font-bold text-foreground">{page?.title || t('categoryPage.title')}</h1>
+        <p className="text-muted-foreground text-lg max-w-2xl">{page?.title || t('categoryPage.description')}</p>
       </div>
 
       {/* Grid Cards */}

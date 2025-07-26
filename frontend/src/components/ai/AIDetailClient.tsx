@@ -31,7 +31,7 @@ export default function AIDetailClient({tool, relatedTools}: AIDetailClientProps
 
       <a href={tool.link} target="_blank" rel="noopener noreferrer" className={"inline-flex items-center gap-2"}>
         <Button className="bg-muted hover:bg-muted/80 text-foreground">
-          {t('Common.visitWebsite')}
+          {t('common.visitWebsite')}
           <ExternalLink className="ml-2 w-4 h-4"/>
         </Button>
       </a>
@@ -41,7 +41,7 @@ export default function AIDetailClient({tool, relatedTools}: AIDetailClientProps
         <CardContent>
           <div className="grid grid-cols-1 grid-rows-2 gap-4">
             <div className="flex items-center gap-4">
-              <h3 className="text-sm font-medium text-muted-foreground">{t('Common.categories')}:</h3>
+              <h3 className="text-sm font-medium text-muted-foreground">{t('common.categories')}:</h3>
               <div className="flex flex-wrap gap-2">
                 {tool.categories?.map((category, index) => (
                   <BadgeCustom key={index + category.name} badge="New" title={category.name} type="outline"/>
@@ -49,7 +49,7 @@ export default function AIDetailClient({tool, relatedTools}: AIDetailClientProps
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <h3 className="text-sm font-medium text-muted-foreground">{t('Common.type')}:</h3>
+              <h3 className="text-sm font-medium text-muted-foreground">{t('common.type')}:</h3>
               <Badge variant="outline" className="border-green-500 text-green-400">{tool.type || t('Common.updating')}</Badge>
             </div>
           </div>

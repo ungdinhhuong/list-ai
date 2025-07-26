@@ -11,8 +11,8 @@ const FooterSimple = () => {
 
   return (
     <footer className="bg-background text-foreground border-t border-border">
-      <div className="w-full mx-auto px-4 py-4">
-        <div className="flex flex-col sm:flex-row justify-between items-center">
+      <div className="w-full mx-auto px-4 py-4 text-center lg:text-left">
+        <div className="flex flex-col-reverse gap-4 flex-d lg:flex-row justify-between items-center">
           <div>
             <p className="text-muted-foreground text-sm mb-1">
               © 2025 {APP_NAME}. All rights reserved.
@@ -21,11 +21,11 @@ const FooterSimple = () => {
           </div>
 
 
-          <div className="flex items-center space-x-6 mt-4 sm:mt-0  text-sm">
+          <div className="flex items-center space-x-6 sm:mt-0  text-sm">
             <Link href={ROUTES.POLICY} className="text-muted-foreground hover:text-foreground transition-colors">
-              {t('Common.policy')}
+              {t('common.policy')}
             </Link>
-            <span className="text-muted-foreground"> {t('Common.followUs')}:</span>
+            <span className="text-muted-foreground"> {t('common.followUs')}:</span>
             <div className="flex space-x-3">
               {Object.values(SOCIALS).map((social) => {
                 const Icon = social.icon;

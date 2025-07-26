@@ -116,16 +116,16 @@ export default function SearchBar() {
     <>
       {/* Hiển thị backdrop blur khi dropdown đang mở */}
       {isOpen && (
-        <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 transition-all duration-300" />
+        <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-4 transition-all duration-300" />
       )}
 
-      <div className="max-w-2xl mx-auto mb-8 lg:mb-12 relative z-50">
+      <div className="max-w-2xl mx-auto mb-8 lg:mb-12 relative z-5">
         <div className="relative" ref={searchRef}>
           <div className="relative">
             <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
             <Input
               ref={inputRef}
-              placeholder={t('Common.searchTools')}
+              placeholder={t('common.searchTools')}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onKeyDown={handleKeyDown}
@@ -155,7 +155,7 @@ export default function SearchBar() {
               {isLoading && (
                 <div className="px-4 py-6 text-center text-muted-foreground">
                   <Loader2 className="w-6 h-6 mx-auto mb-2 animate-spin" />
-                  <p>{t('Common.searching')}...</p>
+                  <p>{t('common.searching')}...</p>
                 </div>
               )}
 
@@ -204,7 +204,7 @@ export default function SearchBar() {
                   ))}
 
                   <div className="px-4 py-2 text-xs text-muted-foreground bg-muted/30 border-t border-border">
-                    {t('Common.resultsFound', { count: results.length })}
+                    {t('common.resultsFound', { count: results.length })}
                   </div>
                 </>
               )}

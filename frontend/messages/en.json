@@ -1,13 +1,13 @@
 {
-  "HomePage": {
+  "homePage": {
     "title": "Discover The Best AI Websites & Tools",
     "about": "Go to the about page",
     "featuredTools": "Featured AI Tools"
   },
-  "LanguageSwitcher": {
+  "languageSwitcher": {
     "chooseLanguage": "Language"
   },
-  "Common": {
+  "common": {
     "search": "Search",
     "searchPlaceholder": "Search for websites, tools, or categories...",
     "noResults": "No results found",
@@ -34,13 +34,14 @@
     "searching": "Searching",
     "searchTools": "Search Tools",
     "searchResultTotal": "Total {count} results found",
-    "notFoundResult": "No results found."
+    "notFoundResult": "No results found.",
+    "theme": "Theme"
   },
-  "CategoryPage": {
+  "categoryPage": {
     "title": "Categories",
     "description": "Explore tools and websites in the category."
   },
-  "Newsletter": {
+  "newsletter": {
     "text1": "Be part of our Newsletter to get Exclusive content and Get",
     "text2": "100+ free AI tools",
     "text3": "to help increase your productivity today!",

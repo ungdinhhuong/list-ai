@@ -1,13 +1,13 @@
 {
-  "HomePage": {
+  "homePage": {
     "title": "Khám phá các trang web & công cụ AI tốt nhất",
     "about": "Đến trang nào",
     "featuredTools": "Công cụ AI nổi bật"
   },
-  "LanguageSwitcher": {
+  "languageSwitcher": {
     "chooseLanguage": "Ngôn ngữ"
   },
-  "Common": {
+  "common": {
     "search": "Tìm kiếm",
     "searchPlaceholder": "Tìm kiếm trang web, công cụ hoặc danh mục...",
     "noResults": "Không tìm thấy kết quả",
@@ -34,13 +34,14 @@
     "searching": "Đang tìm kiếm",
     "searchTools": "Tìm kiếm công cụ",
     "searchResultTotal": "{count} kết quả được tìm thấy",
-    "notFoundResult": "Không tìm thấy kết quả."
+    "notFoundResult": "Không tìm thấy kết quả.",
+    "theme": "Giao diện"
   },
-  "CategoryPage": {
+  "categoryPage": {
     "title": "Danh mục",
     "description": "Khám phá các công cụ và trang web trong danh mục."
   },
-  "Newsletter": {
+  "newsletter": {
     "text1": "Hãy tham gia bản tin của chúng tôi để nhận nội dung độc quyền và",
     "text2": "100+ công cụ AI miễn phí",
     "text3": "giúp tăng năng suất của bạn ngay hôm nay!",

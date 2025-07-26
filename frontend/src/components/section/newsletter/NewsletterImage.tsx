@@ -76,9 +76,9 @@ export default function NewsletterImage() {
         <div className="flex-1">
           <div className="space-y-6">
             <p className="text-foreground text-lg font-medium">
-              {t('Newsletter.text1')}{' '}
-              <span className="text-blue-500 font-bold">{t('Newsletter.text2')}</span>{' '}
-              {t('Newsletter.text3')}
+              {t('newsletter.text1')}{' '}
+              <span className="text-blue-500 font-bold">{t('newsletter.text2')}</span>{' '}
+              {t('newsletter.text3')}
             </p>
 
             <div className="space-y-4">
@@ -115,11 +115,11 @@ export default function NewsletterImage() {
             </div>
 
             <div className="flex items-center flex-wrap space-x-2 text-sm">
-              <span className="text-muted-foreground">{t('Newsletter.text4')}</span>
-              <span className="text-foreground font-bold text-lg">{t('Newsletter.text5')}</span>
+              <span className="text-muted-foreground">{t('newsletter.text4')}</span>
+              <span className="text-foreground font-bold text-lg">{t('newsletter.text5')}</span>
               <span className="text-yellow-400">🔥</span>
-              <span className="text-red-400 font-semibold">{t('Newsletter.text6')}</span>
-              <span className="text-muted-foreground">{t('Newsletter.text7')}</span>
+              <span className="text-red-400 font-semibold">{t('newsletter.text6')}</span>
+              <span className="text-muted-foreground">{t('newsletter.text7')}</span>
             </div>
           </div>
         </div>

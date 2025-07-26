@@ -18,7 +18,7 @@ const LANGUAGES = [
 ];
 
 export default function LanguageSwitcher() {
-  const t = useTranslations("LanguageSwitcher");
+  const t = useTranslations();
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
@@ -37,7 +37,7 @@ export default function LanguageSwitcher() {
         <Button
           variant="outline"
           className="w-auto justify-between"
-          aria-label={t("chooseLanguage") || "Change language"}
+          aria-label={t("languageSwitcher.chooseLanguage")}
         >
           <Globe2 size={18} className="mr-1" />
           <span>{current?.label}</span>

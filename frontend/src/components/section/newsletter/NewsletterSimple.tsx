@@ -52,8 +52,8 @@ export default function NewsletterSimple() {
   return (
     <div className="w-full mx-auto">
       <div className="text-center">
-        <h3 className="text-2xl font-bold mb-4 text-foreground">{t('Newsletter.simple.title')}</h3>
-        <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">{t('Newsletter.simple.description')}</p>
+        <h3 className="text-2xl font-bold mb-4 text-foreground">{t('newsletter.simple.title')}</h3>
+        <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">{t('newsletter.simple.description')}</p>
 
         {isSubscribed ? (
           <p className="text-green-600 font-semibold text-lg">
@@ -76,7 +76,7 @@ export default function NewsletterSimple() {
                 disabled={loading}
                 className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
               >
-                {loading ? `${t('Common.sending')}` : `${t('Common.subscribe')}`}
+                {loading ? `${t('common.sending')}` : `${t('common.subscribe')}`}
                 <ExternalLink size={16} />
               </button>
               <ReCAPTCHA

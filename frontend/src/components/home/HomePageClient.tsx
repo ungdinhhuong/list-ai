@@ -2,7 +2,7 @@
 
 import {useState} from 'react';
 import HeroSection from "@/components/home/HeroSection";
-import SearchBar from "@/components/SearchBar";
+import SearchBar from "@/components/home/SearchBar";
 import FeaturedToolsSection from "@/components/section/FeaturedToolsSection";
 import AllToolsSection from "@/components/section/AllToolsSection";
 import NewsletterImage from "@/components/section/newsletter/NewsletterImage";
@@ -72,10 +72,10 @@ export default function HomePageClient({featuredTools, initialTools, homePage}: 
             {loading ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin"/>
-                {t('Common.loading')}
+                {t('common.loading')}
               </>
             ) : (
-              `${t('Common.loadMore')}`
+              `${t('common.loadMore')}`
             )}
           </Button>
         </div>

@@ -2,7 +2,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import BadgeCustom from "@/components/common/BadgeCustom";
 import AvatarLogo from "@/components/common/AvatarLogo";
 import Link from "next/link";
-import { toSlug } from "@/lib/utils";
 import { ToolType } from "@/types/tool.type";
 import {ROUTES} from "@/constants/routes";
 
