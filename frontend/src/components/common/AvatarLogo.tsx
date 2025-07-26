@@ -9,9 +9,8 @@ interface AvatarLogoProps {
 }
 
 export default function AvatarLogo({ text, img }: AvatarLogoProps) {
-  const strapiBaseUrl = STRAPI_URL.endsWith("/") ? STRAPI_URL : STRAPI_URL + "/";
   const firstChar = text.charAt(0).toUpperCase();
-  const fullUrl = strapiBaseUrl + img;
+  const fullUrl = STRAPI_URL + img;
 
   if (img) {
     return (

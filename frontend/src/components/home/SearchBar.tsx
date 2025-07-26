@@ -9,7 +9,6 @@ import BadgeCustom from "@/components/common/BadgeCustom";
 import {Input} from "@/components/ui/input";
 import {STRAPI_URL} from "@/constants/env";
 
-const STRAPI_DOMAIN = STRAPI_URL.endsWith('/') ? STRAPI_URL : STRAPI_URL + '/';
 
 export default function SearchBar() {
   const t = useTranslations();
@@ -181,7 +180,7 @@ export default function SearchBar() {
                           {result.avatar ? (
                             <Image
                               src={result.avatar.startsWith('/')
-                                ? STRAPI_DOMAIN + result.avatar
+                                ? STRAPI_URL + result.avatar
                                 : result.avatar}
                               alt={result.name}
                               className="w-full h-full object-cover"
@@ -216,7 +215,7 @@ export default function SearchBar() {
 
               {!isLoading && searchQuery && results.length === 0 && (
                 <div className="px-4 py-6 text-center text-muted-foreground">
-                  <Search className="w-8 h-8 mx-auto mb-2 opacity-40" />
+                  <Search className="w-8 h-8 mx-auto mb-2 opacity-40"/>
                   <p>Không tìm thấy kết quả nào cho &quot;{searchQuery}&quot;</p>
                 </div>
               )}
