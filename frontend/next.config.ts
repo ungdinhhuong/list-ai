@@ -5,6 +5,11 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
+        protocol: 'https',
+        hostname: 'api.ontoolaz.com',
+        pathname: '/uploads/**',
+      },
+      {
         protocol: 'http',
         hostname: 'host.docker.internal',
         port: '1337',
