@@ -7,6 +7,7 @@ import { subscriberService } from '@/services/subscriber.service'
 import { ExternalLink } from 'lucide-react'
 import {isValidEmail} from "@/lib/utils";
 import {useTranslations} from "next-intl";
+import {RECAPTCHA_SITE_KEY} from "@/constants/env";
 
 export default function NewsletterSimple() {
   const t = useTranslations();
@@ -80,7 +81,7 @@ export default function NewsletterSimple() {
                 <ExternalLink size={16} />
               </button>
               <ReCAPTCHA
-                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+                sitekey={RECAPTCHA_SITE_KEY!}
                 size="invisible"
                 ref={recaptchaRef}
               />

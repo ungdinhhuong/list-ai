@@ -9,6 +9,7 @@ import ReCAPTCHA from 'react-google-recaptcha'
 import {subscriberService} from '@/services/subscriber.service'
 import {isValidEmail} from "@/lib/utils";
 import {useTranslations} from "next-intl";
+import {RECAPTCHA_SITE_KEY} from "@/constants/env";
 
 export default function NewsletterImage() {
   const t = useTranslations();
@@ -104,7 +105,7 @@ export default function NewsletterImage() {
                       {loading ? 'Sending...' : 'Subscribe'}
                     </Button>
                     <ReCAPTCHA
-                      sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+                      sitekey={RECAPTCHA_SITE_KEY!}
                       size="invisible"
                       ref={recaptchaRef}
                     />
