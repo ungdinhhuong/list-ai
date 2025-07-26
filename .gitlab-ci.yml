@@ -31,7 +31,7 @@ build_fe:
     - if: '$CI_COMMIT_BRANCH == "master"'
       changes: [frontend/**]
   script:
-    - docker build -t $IMAGE_TAG_FE ./frontend
+    - docker build --build-arg NODE_ENV=production -t $IMAGE_TAG_FE ./frontend
     - docker push $IMAGE_TAG_FE
 
 build_be:
@@ -103,7 +103,6 @@ deploy_fe_prod:
         export IMAGE_TAG=$CI_COMMIT_SHORT_SHA &&
         export NODE_ENV=production &&
         docker compose pull &&
-        docker build --build-arg NODE_ENV=production -t $IMAGE_TAG_FE . &&
         docker compose down &&
         docker compose up -d
       "
