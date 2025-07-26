@@ -7,8 +7,9 @@ import {useEffect, useRef, useState} from "react";
 
 import BadgeCustom from "@/components/common/BadgeCustom";
 import {Input} from "@/components/ui/input";
+import {STRAPI_URL} from "@/constants/env";
 
-const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337';
+const STRAPI_DOMAIN = STRAPI_URL.endsWith('/') ? STRAPI_URL : STRAPI_URL + '/';
 
 export default function SearchBar() {
   const t = useTranslations();
@@ -180,7 +181,7 @@ export default function SearchBar() {
                           {result.avatar ? (
                             <Image
                               src={result.avatar.startsWith('/')
-                                ? STRAPI_URL + result.avatar
+                                ? STRAPI_DOMAIN + result.avatar
                                 : result.avatar}
                               alt={result.name}
                               className="w-full h-full object-cover"

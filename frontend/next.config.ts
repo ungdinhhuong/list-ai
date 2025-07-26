@@ -6,8 +6,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'api.ontoolaz.com',
-        pathname: '/uploads/**',
+        hostname: '*.ontoolaz.com',
       },
       {
         protocol: 'http',

@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import { char2BgColor } from "@/constants/constants";
+import {STRAPI_URL} from "@/constants/env";
 
 interface AvatarLogoProps {
   text: string;
@@ -8,7 +9,7 @@ interface AvatarLogoProps {
 }
 
 export default function AvatarLogo({ text, img }: AvatarLogoProps) {
-  const strapiBaseUrl = process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337';
+  const strapiBaseUrl = STRAPI_URL.endsWith("/") ? STRAPI_URL : STRAPI_URL + "/";
   const firstChar = text.charAt(0).toUpperCase();
   const fullUrl = strapiBaseUrl + img;
 
@@ -29,9 +30,9 @@ export default function AvatarLogo({ text, img }: AvatarLogoProps) {
   return (
     <div
       className={`
-        w-14 h-14 
-        ${char2BgColor[firstChar] || "bg-muted"} 
-        rounded-lg flex items-center justify-center 
+        w-14 h-14
+        ${char2BgColor[firstChar] || "bg-muted"}
+        rounded-lg flex items-center justify-center
         text-foreground font-bold text-sm flex-shrink-0
       `}
     >
