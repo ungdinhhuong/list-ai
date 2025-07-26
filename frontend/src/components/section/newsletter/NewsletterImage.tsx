@@ -20,12 +20,12 @@ export default function NewsletterImage() {
 
   const handleSubmit = async () => {
     if (!emailImage) {
-      setErrorMessage('Please enter your email')
+      setErrorMessage(t('recaptcha.enter_email'))
       return
     }
 
     if (!isValidEmail(emailImage)) {
-      setErrorMessage('Invalid email format')
+      setErrorMessage(t('recaptcha.invalid_email'))
       return
     }
 
@@ -33,7 +33,7 @@ export default function NewsletterImage() {
     recaptchaRef.current?.reset()
 
     if (!token) {
-      setErrorMessage('Please complete the reCAPTCHA')
+      setErrorMessage(t('recaptcha.please_complete_recaptcha'))
       return
     }
 
@@ -83,7 +83,7 @@ export default function NewsletterImage() {
 
             <div className="space-y-4">
               {isSubscribed ? (
-                <div className="text-green-600 font-semibold text-lg">{t("Newsletter.youAreSubscribed")} 🎉</div>
+                <div className="text-green-600 font-semibold text-lg">{t("newsletter.youAreSubscribed")} 🎉</div>
               ) : (
                 <div className="flex flex-col gap-2">
                   <div className="flex gap-3">

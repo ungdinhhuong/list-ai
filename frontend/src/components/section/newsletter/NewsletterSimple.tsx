@@ -58,7 +58,7 @@ export default function NewsletterSimple() {
 
         {isSubscribed ? (
           <p className="text-green-600 font-semibold text-lg">
-            {t("Newsletter.youAreSubscribed")} 🎉
+            {t("newsletter.youAreSubscribed")} 🎉
           </p>
         ) : (
           <>
@@ -67,7 +67,7 @@ export default function NewsletterSimple() {
                 type="email"
                 name="email_simple"
                 id="email_simple"
-                placeholder="Enter your email"
+                placeholder={`${t('recaptcha.enter_email')}`}
                 value={emailSimple}
                 onChange={(e) => setEmailSimple(e.target.value)}
                 className="flex-1 px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
