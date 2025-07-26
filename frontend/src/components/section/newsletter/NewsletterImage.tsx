@@ -18,6 +18,7 @@ export default function NewsletterImage() {
   const [loading, setLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
   const recaptchaRef = useRef<ReCAPTCHA>(null)
+  console.log('RECAPTCHA_SITE_KEY================', RECAPTCHA_SITE_KEY)
 
   const handleSubmit = async () => {
     if (!emailImage) {
