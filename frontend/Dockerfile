@@ -8,7 +8,9 @@ ENV NODE_ENV=$NODE_ENV
 
 COPY package*.json ./
 
-RUN npm ci --include=dev
+# Cài curl và node_modules
+RUN apk add --no-cache curl && \
+    npm ci --include=dev
 
 COPY . .
 
