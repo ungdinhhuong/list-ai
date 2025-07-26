@@ -8,12 +8,7 @@ ENV NODE_ENV=$NODE_ENV
 
 COPY package*.json ./
 
-# Cài gọn cho prod, đầy đủ cho dev
-RUN if [ "$NODE_ENV" = "production" ]; then \
-      npm install --frozen-lockfile --omit=dev; \
-    else \
-      npm install --frozen-lockfile; \
-    fi
+RUN npm install --frozen-lockfile
 
 COPY . .
 
