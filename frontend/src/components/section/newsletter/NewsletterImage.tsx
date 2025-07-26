@@ -9,7 +9,6 @@ import ReCAPTCHA from 'react-google-recaptcha'
 import {subscriberService} from '@/services/subscriber.service'
 import {isValidEmail} from "@/lib/utils";
 import {useTranslations} from "next-intl";
-import {RECAPTCHA_SITE_KEY} from "@/constants/env";
 
 export default function NewsletterImage() {
   const t = useTranslations();
@@ -18,7 +17,6 @@ export default function NewsletterImage() {
   const [loading, setLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
   const recaptchaRef = useRef<ReCAPTCHA>(null)
-  console.log('RECAPTCHA_SITE_KEY================', RECAPTCHA_SITE_KEY)
 
   const handleSubmit = async () => {
     if (!emailImage) {
@@ -106,7 +104,7 @@ export default function NewsletterImage() {
                       {loading ? 'Sending...' : 'Subscribe'}
                     </Button>
                     <ReCAPTCHA
-                      sitekey={RECAPTCHA_SITE_KEY}
+                      sitekey="6LdGY3wrAAAAAAQz6-vQBRDohZRmfDVK2fEhroq_"
                       size="invisible"
                       ref={recaptchaRef}
                     />
