@@ -1,7 +1,6 @@
 import {dirname} from "path";
 import {fileURLToPath} from "url";
 import {FlatCompat} from "@eslint/eslintrc";
-import prettier from "eslint-config-next";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
 import importPlugin from "eslint-plugin-import";
 
@@ -31,10 +30,7 @@ const eslintConfig = [
       'import/newline-after-import': 'error',
     },
   },
-  {
-    name: 'prettier',
-    rules: prettier.rules,
-  },
+  // Xóa phần prettier rules vì không đúng
 ];
 
 export default eslintConfig;

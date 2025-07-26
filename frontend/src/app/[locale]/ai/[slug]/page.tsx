@@ -18,11 +18,11 @@ export async function generateMetadata({params}: AIDetailPageProps): Promise<Met
 }
 
 interface AIDetailPageProps {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
 export default async function AIDetailPage({params}: AIDetailPageProps) {
-  const {slug} = params;
+  const {slug} = await params;
   const tool = await toolService.findBySlug(slug);
   if (!tool) {
     notFound();
