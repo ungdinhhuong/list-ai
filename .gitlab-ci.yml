@@ -90,7 +90,6 @@ deploy_fe_prod:
   rules:
     - if: '$CI_COMMIT_BRANCH == "master"'
       changes: [frontend/**]
-      when: manual
   environment:
     name: production
   script:
@@ -102,6 +101,7 @@ deploy_fe_prod:
         export IMAGE_TAG=$CI_COMMIT_SHORT_SHA &&
         export NODE_ENV=production &&
         docker compose pull &&
+        docker build --build-arg NODE_ENV=production -t $IMAGE_TAG_FE . &&
         docker compose down &&
         docker compose up -d
       "
@@ -118,7 +118,6 @@ deploy_be_prod:
     - if: '$CI_COMMIT_BRANCH == "master" && $FORCE_DEPLOY == "true"'
     - if: '$CI_COMMIT_BRANCH == "master"'
       changes: [backend/**]
-      when: manual
   environment:
     name: production
   script:
