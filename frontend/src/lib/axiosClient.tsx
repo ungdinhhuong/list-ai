@@ -1,7 +1,8 @@
 import axios from 'axios'
+import {STRAPI_URL} from "@/constants/env";
 
 const instance = axios.create({
-  baseURL: (process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337") + '/api',
+  baseURL: STRAPI_URL + '/api',
 })
 
 instance.interceptors.request.use(function (config: any) {
