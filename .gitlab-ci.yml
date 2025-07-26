@@ -31,6 +31,7 @@ build_fe:
     - if: '$CI_COMMIT_BRANCH == "master"'
       changes: [frontend/**]
   script:
+    - echo "$ENV_FILE_FE_PRODUCTION" > .env.production
     - docker build --build-arg NODE_ENV=production -t $IMAGE_TAG_FE ./frontend
     - docker push $IMAGE_TAG_FE
 

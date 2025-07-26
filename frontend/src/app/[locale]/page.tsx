@@ -23,17 +23,22 @@ export default async function HomePage() {
 
   const featuredTools = resToolsByBadge || [];
   const initialTools = resAllTools || [];
-  const homePage = resHomePage.data || null;
+  const homePage = resHomePage?.data || null;
+
   if (!homePage) {
     return <NoTranslationMessage/>;
   }
 
   let structuredData: string | null = null;
   if (homePage?.seo?.structuredData) {
-    structuredData =
-      typeof homePage.seo.structuredData === "string"
+    try {
+      structuredData = typeof homePage.seo.structuredData === "string"
         ? homePage.seo.structuredData
         : JSON.stringify(homePage.seo.structuredData);
+    } catch (error) {
+      console.error("Error processing structured data:", error);
+      structuredData = null;
+    }
   }
 
   return (

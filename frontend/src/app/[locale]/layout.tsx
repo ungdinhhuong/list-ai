@@ -21,12 +21,26 @@ export const generateMetadata = async ({params}: { params: { locale: string }; }
 
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "";
   const defaultSeo = siteSetting?.defaultSeo || {};
+  const isProd = process.env.NODE_ENV === 'production';
 
   return {
     title: defaultSeo.metaTitle,
     description: defaultSeo.metaDescription,
     keywords: defaultSeo.keywords,
-    robots: defaultSeo.metaRobots,
+    robots: isProd ? defaultSeo.metaRobots : "noindex, nofollow",
+    // Icons và manifest
+    icons: {
+      icon: [
+        { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+        { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      ],
+      apple: [
+        { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+      ],
+      shortcut: '/favicon.ico',
+    },
+    manifest: '/site.webmanifest',
+    // Canonical và alternate languages
     alternates: {
       canonical: defaultSeo.canonicalURL,
       languages: {
@@ -35,6 +49,7 @@ export const generateMetadata = async ({params}: { params: { locale: string }; }
         "x-default": `${baseUrl}/`,
       },
     },
+    // OpenGraph
     openGraph: {
       title: defaultSeo.openGraph?.ogTitle,
       description: defaultSeo.openGraph?.ogDescription,
@@ -51,7 +66,15 @@ export const generateMetadata = async ({params}: { params: { locale: string }; }
         ]
         : [],
     },
-    // Có thể thêm structuredData nếu Next.js support (hoặc render riêng trong <script type="application/ld+json">)
+    // Twitter card (optional)
+    twitter: {
+      card: 'summary_large_image',
+      title: defaultSeo.openGraph?.ogTitle,
+      description: defaultSeo.openGraph?.ogDescription,
+      images: defaultSeo.openGraph?.ogImage
+        ? [`${baseUrl}${defaultSeo.openGraph.ogImage.url}`]
+        : [],
+    },
   };
 };
 
@@ -69,19 +92,9 @@ export default async function LocaleLayout({
 
   const resSiteSetting = await singleTypeService.getSiteSetting();
   const siteSetting = resSiteSetting?.data || [];
-  const isProd = process.env.NODE_ENV === 'production';
 
   return (
     <html lang={locale} suppressHydrationWarning>
-    <head>
-      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
-      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
-      <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
-      <link rel="manifest" href="/site.webmanifest"/>
-      <link rel="shortcut icon" href="/favicon.ico"/>
-      <meta name="theme-color" content="#000000"/>
-      {!isProd && <meta name="robots" content="noindex, nofollow" />}
-    </head>
     <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
     <NextIntlClientProvider>
       <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
