@@ -58,7 +58,7 @@ export default function AIDetailClient({tool, relatedTools}: AIDetailClientProps
       </Card>
 
       {/* Nội dung */}
-      <div dangerouslySetInnerHTML={{__html: tool.toolContent?.content || ''}}/>
+      <div dangerouslySetInnerHTML={{__html: tool.toolContent?.content || ''}} className="prose-ckeditor"/>
 
       {/* Danh sách tool AI */}
       <AllToolsSection title="Similar tools" tools={relatedTools} lengthItems={3}/>

@@ -124,3 +124,67 @@
 .grecaptcha-badge {
   visibility: hidden;
 }
+.prose-ckeditor {
+  @apply text-base leading-relaxed text-gray-900 dark:text-gray-200;
+
+  h1, h2, h3, h4 {
+    @apply font-bold mt-6 mb-4;
+  }
+
+  h1 { @apply text-3xl; }
+  h2 { @apply text-2xl; }
+  h3 { @apply text-xl; }
+  h4 { @apply text-lg; }
+
+  p {
+    @apply mb-4;
+  }
+
+  ul, ol {
+    @apply pl-6 mb-4;
+  }
+
+  ul {
+    @apply list-disc;
+  }
+
+  ol {
+    @apply list-decimal;
+  }
+
+  a {
+    @apply text-blue-600 underline hover:text-blue-800;
+  }
+
+  blockquote {
+    @apply border-l-4 pl-4 italic text-gray-600 dark:text-gray-400;
+  }
+
+  code {
+    @apply bg-gray-100 dark:bg-gray-800 text-sm px-1 py-0.5 rounded;
+  }
+
+  pre {
+    @apply bg-gray-900 text-white p-4 rounded mb-4 overflow-x-auto text-sm;
+  }
+
+  table {
+    @apply w-full border-collapse mb-4;
+  }
+
+  th, td {
+    @apply border px-4 py-2;
+  }
+
+  figure {
+    @apply my-4;
+  }
+
+  img {
+    @apply max-w-full h-auto mx-auto;
+  }
+
+  figcaption {
+    @apply text-sm text-center text-gray-500 mt-2;
+  }
+}

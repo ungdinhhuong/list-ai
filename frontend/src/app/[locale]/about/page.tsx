@@ -21,7 +21,7 @@ export default async function AboutPage() {
   return (
     <div className="container mx-auto lg:max-w-4xl space-y-8">
       <h1 className="text-3xl md:text-4xl font-bold mb-6">{page.title}</h1>
-      <div dangerouslySetInnerHTML={{__html: page.content}}/>
+      <div dangerouslySetInnerHTML={{__html: page.content}} className="prose-ckeditor" />
       <NewsletterImage/>
     </div>
   );
