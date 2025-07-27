@@ -23,19 +23,19 @@ export default function AIDetailClient({tool, relatedTools}: AIDetailClientProps
     <div className="container mx-auto lg:max-w-4xl space-y-6 xl:space-y-8">
       {!!tool.badge && <BadgeCustom badge={tool.badge}/>}
 
-      <div className="flex items-center gap-4">
-        <AvatarLogo text={tool.name} img={tool?.avatar?.url || ""}/>
-        <h1 className="text-3xl md:text-4xl font-bold">{tool.name}</h1>
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div className="flex items-center gap-4">
+          <AvatarLogo text={tool.name} img={tool?.avatar?.url || ""}/>
+          <h1 className="text-3xl md:text-4xl font-bold">{tool.name}</h1>
+        </div>
+        <a href={tool.link} target="_blank" rel="noopener noreferrer" className={"inline-flex items-center gap-2"}>
+          <Button className="text-white bg-primary hover:bg-primary/90 transition-colors">
+            {t('common.visitWebsite')}
+            <ExternalLink className="ml-2 w-4 h-4"/>
+          </Button>
+        </a>
       </div>
-
       <p className="text-muted-foreground text-lg max-w-2xl">{tool.description}</p>
-
-      <a href={tool.link} target="_blank" rel="noopener noreferrer" className={"inline-flex items-center gap-2"}>
-        <Button className="bg-muted hover:bg-muted/80 text-foreground">
-          {t('common.visitWebsite')}
-          <ExternalLink className="ml-2 w-4 h-4"/>
-        </Button>
-      </a>
 
       {/* Info Card */}
       <Card className="bg-muted border-border">
