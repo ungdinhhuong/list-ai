@@ -38,6 +38,21 @@
         "audios"
       ]
     },
+    "logoLight": {
+      "type": "media",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
     "defaultSeo": {
       "type": "component",
       "pluginOptions": {
