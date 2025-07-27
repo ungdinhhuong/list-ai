@@ -712,6 +712,14 @@ export interface ApiSiteSettingSiteSetting extends Struct.SingleTypeSchema {
           localized: false;
         };
       }>;
+    logoLight: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
     publishedAt: Schema.Attribute.DateTime;
     scripts: Schema.Attribute.Component<'common.scripts', false> &
       Schema.Attribute.SetPluginOptions<{
