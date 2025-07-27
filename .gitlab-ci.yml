@@ -17,6 +17,13 @@ before_script:
   - chmod 600 ~/.ssh/id_rsa
   - ssh-keyscan $SSH_HOST >> ~/.ssh/known_hosts
 
+test-docker:
+  stage: build
+  image: docker:24.0-cli
+  script:
+    - docker version
+    - docker ps
+
 build_fe:
   stage: build
   rules:
