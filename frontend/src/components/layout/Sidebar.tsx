@@ -1,34 +1,34 @@
-'use client';
+'use client'
 
-import { usePathname, useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { usePathname, useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 
-import { ROUTES } from "@/constants/routes";
-import { useSidebar } from "@/contexts/SidebarProvider";
-import { CategoryType } from "@/types/category.type";
+import { ROUTES } from '@/constants/routes'
+import { useSidebar } from '@/contexts/SidebarProvider'
+import { CategoryType } from '@/types/category.type'
 
 interface SidebarProps {
-  categories: CategoryType[];
+  categories: CategoryType[]
 }
 
 export default function Sidebar({ categories }: SidebarProps) {
-  const { sidebarOpen, setSidebarOpen } = useSidebar();
-  const pathname = usePathname();
-  const router = useRouter();
+  const { sidebarOpen, setSidebarOpen } = useSidebar()
+  const pathname = usePathname()
+  const router = useRouter()
 
   useEffect(() => {
     if (sidebarOpen) {
-      document.body.classList.add("overflow-hidden");
+      document.body.classList.add('overflow-hidden')
     } else {
-      document.body.classList.remove("overflow-hidden");
+      document.body.classList.remove('overflow-hidden')
     }
-    return () => document.body.classList.remove("overflow-hidden");
-  }, [sidebarOpen]);
+    return () => document.body.classList.remove('overflow-hidden')
+  }, [sidebarOpen])
 
   const handleClick = (category: CategoryType) => {
-    setSidebarOpen(false);
-    router.push(ROUTES.CATEGORY_DETAIL(category.slug));
-  };
+    setSidebarOpen(false)
+    router.push(ROUTES.CATEGORY_DETAIL(category.slug))
+  }
 
   return (
     <>
@@ -58,7 +58,12 @@ export default function Sidebar({ categories }: SidebarProps) {
             className="text-muted-foreground hover:text-foreground"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           </button>
         </div>
@@ -66,27 +71,28 @@ export default function Sidebar({ categories }: SidebarProps) {
         {/* Category list */}
         <div className="p-4 space-y-1">
           {categories.map((category, index) => {
-            const isActive = pathname === ROUTES.CATEGORY_DETAIL(category.slug);
+            const isActive = pathname === ROUTES.CATEGORY_DETAIL(category.slug)
 
             return (
               <div
                 key={index}
                 className={`
                   flex items-center space-x-3 px-3 py-2 rounded cursor-pointer transition-colors
-                  ${isActive
-                  ? 'bg-muted text-foreground'
-                  : 'text-muted-foreground hover:bg-accent hover:text-foreground'
-                }
+                  ${
+                    isActive
+                      ? 'bg-muted text-foreground'
+                      : 'text-muted-foreground hover:bg-accent hover:text-foreground'
+                  }
                 `}
                 onClick={() => handleClick(category)}
               >
                 <span className="text-lg">{category.icon}</span>
                 <span className="text-sm">{category.name}</span>
               </div>
-            );
+            )
           })}
         </div>
       </aside>
     </>
-  );
+  )
 }

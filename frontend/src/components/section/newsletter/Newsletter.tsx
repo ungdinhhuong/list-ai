@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 import {
   Bot,
@@ -13,23 +13,23 @@ import {
   Sparkles,
   Wand2,
   Zap,
-} from 'lucide-react';
-import React, { useState } from 'react';
+} from 'lucide-react'
+import React, { useState } from 'react'
 
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 
 export default function Newsletter() {
-  const [email, setEmail] = useState('');
-  const [isSubscribed, setIsSubscribed] = useState(false);
+  const [email, setEmail] = useState('')
+  const [isSubscribed, setIsSubscribed] = useState(false)
 
   const handleSubmit = () => {
     if (email) {
-      setIsSubscribed(true);
-      setTimeout(() => setIsSubscribed(false), 3000);
-      setEmail('');
+      setIsSubscribed(true)
+      setTimeout(() => setIsSubscribed(false), 3000)
+      setEmail('')
     }
-  };
+  }
 
   const toolIcons = [
     { Icon: Brain, color: 'text-purple-400', size: 'w-8 h-8' },
@@ -44,7 +44,7 @@ export default function Newsletter() {
     { Icon: Music, color: 'text-emerald-400', size: 'w-7 h-7' },
     { Icon: FileText, color: 'text-violet-400', size: 'w-6 h-6' },
     { Icon: Zap, color: 'text-amber-400', size: 'w-8 h-8' },
-  ];
+  ]
 
   return (
     <div className="w-full mx-auto bg-gradient-to-r from-background via-purple-950 to-background rounded-2xl overflow-hidden shadow-2xl">
@@ -96,8 +96,8 @@ export default function Newsletter() {
           <div className="space-y-6">
             <p className="text-foreground text-lg font-medium">
               Be part of our Newsletter to get exclusive content and get{' '}
-              <span className="text-blue-400 font-bold">100+ free AI tools</span>{' '}
-              to help increase your productivity today!
+              <span className="text-blue-400 font-bold">100+ free AI tools</span> to help increase
+              your productivity today!
             </p>
 
             <div className="space-y-4">
@@ -106,7 +106,7 @@ export default function Newsletter() {
                   type="email"
                   placeholder="name@email.com"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={e => setEmail(e.target.value)}
                   className="flex-1 bg-muted border-border text-foreground placeholder-muted-foreground"
                 />
                 <Button
@@ -130,10 +130,16 @@ export default function Newsletter() {
         </div>
 
         {/* Floating Dots */}
-        <div className="absolute top-6 right-20 w-3 h-3 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0.5s' }} />
-        <div className="absolute bottom-8 left-1/4 w-2 h-2 bg-purple-400 rounded-full animate-bounce" style={{ animationDelay: '1s' }} />
+        <div
+          className="absolute top-6 right-20 w-3 h-3 bg-blue-400 rounded-full animate-bounce"
+          style={{ animationDelay: '0.5s' }}
+        />
+        <div
+          className="absolute bottom-8 left-1/4 w-2 h-2 bg-purple-400 rounded-full animate-bounce"
+          style={{ animationDelay: '1s' }}
+        />
         <div className="absolute top-1/3 right-8 w-4 h-4 bg-pink-400 rounded-full animate-pulse" />
       </div>
     </div>
-  );
+  )
 }

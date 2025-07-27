@@ -1,7 +1,7 @@
-import {apiGet} from "@/lib/apiRequest";
-import {HomePageResponse} from "@/types/home-page.type";
-import {SiteSettingResponse} from "@/types/site-setting.type";
-import {StaticPageType} from "@/types/static-page.type";
+import { apiGet } from '@/lib/apiRequest'
+import { HomePageResponse } from '@/types/home-page.type'
+import { SiteSettingResponse } from '@/types/site-setting.type'
+import { StaticPageType } from '@/types/static-page.type'
 
 class SingleTypeService {
   async getHomePage(): Promise<HomePageResponse> {
@@ -16,9 +16,9 @@ class SingleTypeService {
               metaImage: true,
             },
           },
-        }
-      }
-    });
+        },
+      },
+    })
   }
 
   async getCategoryPage(): Promise<HomePageResponse> {
@@ -33,9 +33,9 @@ class SingleTypeService {
               metaImage: true,
             },
           },
-        }
-      }
-    });
+        },
+      },
+    })
   }
 
   async getPolicyPage(): Promise<StaticPageType> {
@@ -50,9 +50,9 @@ class SingleTypeService {
               metaImage: true,
             },
           },
-        }
-      }
-    }).then(res => res.data);
+        },
+      },
+    }).then(res => res.data)
   }
 
   async getAboutPage(): Promise<StaticPageType> {
@@ -67,9 +67,9 @@ class SingleTypeService {
               metaImage: true,
             },
           },
-        }
-      }
-    }).then(res => res.data);
+        },
+      },
+    }).then(res => res.data)
   }
 
   async getSiteSetting(): Promise<SiteSettingResponse> {
@@ -80,18 +80,18 @@ class SingleTypeService {
           defaultSeo: {
             populate: {
               openGraph: {
-                populate: ['ogImage']
+                populate: ['ogImage'],
               },
-              metaImage: true
-            }
+              metaImage: true,
+            },
           },
           socialLinks: '*',
           footerLinks: '*',
-          contactInfo: '*'
-        }
-      }
-    });
+          contactInfo: '*',
+        },
+      },
+    })
   }
 }
 
-export const singleTypeService = new SingleTypeService();
+export const singleTypeService = new SingleTypeService()

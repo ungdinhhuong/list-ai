@@ -1,5 +1,5 @@
 export function StructuredData({ jsonLd }: { jsonLd: string }) {
-  if (!jsonLd) return null;
+  if (!jsonLd) return null
   return (
     <head>
       <script
@@ -8,5 +8,5 @@ export function StructuredData({ jsonLd }: { jsonLd: string }) {
         dangerouslySetInnerHTML={{ __html: jsonLd }}
       />
     </head>
-  );
+  )
 }

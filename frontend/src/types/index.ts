@@ -3,7 +3,7 @@ export interface AITool {
   name: string
   description: string
   image: string
-  badge?: "Featured" | "Popular" | "New"
+  badge?: 'Featured' | 'Popular' | 'New'
   category: string
   color?: string
 }

@@ -1,9 +1,9 @@
-"use client";
+'use client'
 
-import { useTranslations } from "next-intl";
+import { useTranslations } from 'next-intl'
 
 export default function NoTranslationMessage() {
-  const t = useTranslations();
+  const t = useTranslations()
 
   return (
     <div className="flex justify-center mt-10">
@@ -14,13 +14,9 @@ export default function NoTranslationMessage() {
           rounded-xl px-6 py-5 max-w-md w-full text-center shadow-sm
         "
       >
-        <div className="font-bold text-lg mb-1">
-          {t("common.noTranslationTitle")}
-        </div>
-        <div className="text-base">
-          {t("common.noTranslationDesc")}
-        </div>
+        <div className="font-bold text-lg mb-1">{t('common.noTranslationTitle')}</div>
+        <div className="text-base">{t('common.noTranslationDesc')}</div>
       </div>
     </div>
-  );
+  )
 }

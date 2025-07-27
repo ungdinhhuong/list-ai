@@ -7,9 +7,9 @@ services:
         NODE_ENV: development
     container_name: ontoolaz-dev
     ports:
-      - "3000:3000"
+      - '3000:3000'
     extra_hosts:
-      - "host.docker.internal:host-gateway"
+      - 'host.docker.internal:host-gateway'
     environment:
       - NODE_ENV=development
     command: npm run dev

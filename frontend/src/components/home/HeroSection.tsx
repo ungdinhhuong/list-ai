@@ -1,28 +1,28 @@
-'use client';
+'use client'
 
-import { Settings, Upload, Users } from 'lucide-react';
-import Image from "next/image";
-import {useTranslations} from 'next-intl';
-import React from 'react';
+import { Settings, Upload, Users } from 'lucide-react'
+import Image from 'next/image'
+import { useTranslations } from 'next-intl'
+import React from 'react'
 
-import {HomePageType} from "@/types/home-page.type";
+import { HomePageType } from '@/types/home-page.type'
 
 interface HeroSectionProps {
-  homePage: HomePageType;
+  homePage: HomePageType
 }
 
-export default function HeroSection({homePage}: HeroSectionProps) {
-  const t = useTranslations();
+export default function HeroSection({ homePage }: HeroSectionProps) {
+  const t = useTranslations()
 
   const ads = [
     {
       id: 1,
-      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
-      title: "Quảng cáo 1",
-      description: "Mô tả sản phẩm hoặc dịch vụ quảng cáo số 1",
-      link: "#"
-    }
-  ];
+      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop',
+      title: 'Quảng cáo 1',
+      description: 'Mô tả sản phẩm hoặc dịch vụ quảng cáo số 1',
+      link: '#',
+    },
+  ]
 
   return (
     <div className="flex flex-col lg:flex-row gap-8 items-center max-w-7xl mx-auto">
@@ -39,7 +39,8 @@ export default function HeroSection({homePage}: HeroSectionProps) {
         </h1>
 
         <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto lg:mx-0">
-          {homePage.description || 'Explore the latest and most innovative AI tools to enhance your productivity and creativity. Join our community of AI enthusiasts and discover tools that can transform your workflow.'}
+          {homePage.description ||
+            'Explore the latest and most innovative AI tools to enhance your productivity and creativity. Join our community of AI enthusiasts and discover tools that can transform your workflow.'}
         </p>
 
         <div className="flex justify-center lg:justify-start items-center flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
@@ -90,5 +91,5 @@ export default function HeroSection({homePage}: HeroSectionProps) {
         </div>
       </div>
     </div>
-  );
+  )
 }

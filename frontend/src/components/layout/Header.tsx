@@ -1,66 +1,63 @@
 'use client'
 
-import Image from "next/image";
-import Link from "next/link";
-import { useTranslations } from "next-intl";
-import { useState, useEffect } from "react";
+import Image from 'next/image'
+import Link from 'next/link'
+import { useTranslations } from 'next-intl'
+import { useEffect, useState } from 'react'
 
-import LanguageSwitcher from "@/components/LanguageSwitcher";
-import ModeToggle from "@/components/shared/mode-toggle";
+import LanguageSwitcher from '@/components/LanguageSwitcher'
+import ModeToggle from '@/components/shared/mode-toggle'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { ROUTES } from "@/constants/routes";
-import { useSidebar } from "@/contexts/SidebarProvider";
+} from '@/components/ui/dropdown-menu'
+import { ROUTES } from '@/constants/routes'
+import { useSidebar } from '@/contexts/SidebarProvider'
 
 export default function Header() {
-  const { sidebarOpen, setSidebarOpen } = useSidebar();
-  const t = useTranslations();
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const { sidebarOpen, setSidebarOpen } = useSidebar()
+  const t = useTranslations()
+  const [dropdownOpen, setDropdownOpen] = useState(false)
 
   const handleDropdownItemClick = (e: React.MouseEvent) => {
     // Prevent event bubbling to avoid closing dropdown prematurely
-    e.stopPropagation();
-  };
+    e.stopPropagation()
+  }
 
   const closeDropdown = () => {
-    setDropdownOpen(false);
-  };
+    setDropdownOpen(false)
+  }
 
   // Cleanup function to ensure no lingering effects
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        closeDropdown();
+        closeDropdown()
       }
-    };
+    }
 
     if (dropdownOpen) {
-      document.addEventListener('keydown', handleEscape);
+      document.addEventListener('keydown', handleEscape)
       // Prevent body scroll when dropdown is open
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden'
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = 'unset'
     }
 
     return () => {
-      document.removeEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'unset';
-    };
-  }, [dropdownOpen]);
+      document.removeEventListener('keydown', handleEscape)
+      document.body.style.overflow = 'unset'
+    }
+  }, [dropdownOpen])
 
   return (
     <>
       {/* Backdrop overlay for mobile dropdown */}
       {dropdownOpen && (
-        <div
-          className="fixed inset-0 bg-black/50 z-40 md:hidden"
-          onClick={closeDropdown}
-        />
+        <div className="fixed inset-0 bg-black/50 z-40 md:hidden" onClick={closeDropdown} />
       )}
 
       <header className="bg-background border-b border-border">
@@ -72,7 +69,12 @@ export default function Header() {
               onClick={() => setSidebarOpen(!sidebarOpen)}
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
               </svg>
             </button>
 
@@ -90,13 +92,19 @@ export default function Header() {
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-4 lg:space-x-6 text-sm">
-            <Link href={ROUTES.CATEGORY} className="text-muted-foreground hover:text-foreground transition-colors">
+            <Link
+              href={ROUTES.CATEGORY}
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
               {t('common.categories')}
             </Link>
-            <Link href={ROUTES.ABOUT} className="text-muted-foreground hover:text-foreground transition-colors">
+            <Link
+              href={ROUTES.ABOUT}
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
               {t('common.about')}
             </Link>
-            <LanguageSwitcher/>
+            <LanguageSwitcher />
             <ModeToggle />
           </div>
 
@@ -106,14 +114,19 @@ export default function Header() {
               <DropdownMenuTrigger asChild>
                 <button className="text-foreground p-1 hover:bg-accent hover:text-accent-foreground rounded-md transition-colors">
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zM12 13a1 1 0 110-2 1 1 0 010 2zM12 20a1 1 0 110-2 1 1 0 010 2z" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zM12 13a1 1 0 110-2 1 1 0 010 2zM12 20a1 1 0 110-2 1 1 0 010 2z"
+                    />
                   </svg>
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent
                 align="end"
                 className="w-56 relative z-50"
-                onCloseAutoFocus={(e) => e.preventDefault()}
+                onCloseAutoFocus={e => e.preventDefault()}
               >
                 <DropdownMenuItem asChild>
                   <Link
@@ -121,8 +134,18 @@ export default function Header() {
                     className="flex items-center !gap-0"
                     onClick={closeDropdown}
                   >
-                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                    <svg
+                      className="w-4 h-4 mr-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                      />
                     </svg>
                     {t('common.categories')}
                   </Link>
@@ -133,8 +156,18 @@ export default function Header() {
                     className="flex items-center !gap-0"
                     onClick={closeDropdown}
                   >
-                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <svg
+                      className="w-4 h-4 mr-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
                     </svg>
                     {t('common.about')}
                   </Link>
@@ -142,26 +175,46 @@ export default function Header() {
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
                   className="flex items-center justify-between"
-                  onSelect={(e) => e.preventDefault()}
+                  onSelect={e => e.preventDefault()}
                 >
-                <span className="flex items-center">
-                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
-                  </svg>
-                  {t('languageSwitcher.chooseLanguage')}
-                </span>
+                  <span className="flex items-center">
+                    <svg
+                      className="w-4 h-4 mr-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
+                      />
+                    </svg>
+                    {t('languageSwitcher.chooseLanguage')}
+                  </span>
                   <LanguageSwitcher />
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   className="flex items-center justify-between"
-                  onSelect={(e) => e.preventDefault()}
+                  onSelect={e => e.preventDefault()}
                 >
-                <span className="flex items-center">
-                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                  </svg>
-                  {t('common.theme')}
-                </span>
+                  <span className="flex items-center">
+                    <svg
+                      className="w-4 h-4 mr-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                      />
+                    </svg>
+                    {t('common.theme')}
+                  </span>
                   <ModeToggle />
                 </DropdownMenuItem>
               </DropdownMenuContent>

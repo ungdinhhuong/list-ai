@@ -1,5 +1,5 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -127,20 +127,32 @@
 .prose-ckeditor {
   @apply text-base leading-relaxed text-gray-900 dark:text-gray-200;
 
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     @apply font-bold mt-6 mb-4;
   }
 
-  h1 { @apply text-3xl; }
-  h2 { @apply text-2xl; }
-  h3 { @apply text-xl; }
-  h4 { @apply text-lg; }
+  h1 {
+    @apply text-3xl;
+  }
+  h2 {
+    @apply text-2xl;
+  }
+  h3 {
+    @apply text-xl;
+  }
+  h4 {
+    @apply text-lg;
+  }
 
   p {
     @apply mb-4;
   }
 
-  ul, ol {
+  ul,
+  ol {
     @apply pl-6 mb-4;
   }
 
@@ -172,7 +184,8 @@
     @apply w-full border-collapse mb-4;
   }
 
-  th, td {
+  th,
+  td {
     @apply border px-4 py-2;
   }
 

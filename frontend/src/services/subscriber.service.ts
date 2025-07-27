@@ -1,4 +1,4 @@
-import axiosClient from "@/lib/axiosClient";
+import axiosClient from '@/lib/axiosClient'
 
 export class SubscriberService {
   async subscribe(email: string, recaptchaToken: string) {

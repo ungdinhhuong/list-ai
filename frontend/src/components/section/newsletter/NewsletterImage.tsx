@@ -1,16 +1,16 @@
 'use client'
 
 import Image from 'next/image'
-import {useTranslations} from 'next-intl'
-import React, {useRef, useState} from 'react'
+import { useTranslations } from 'next-intl'
+import React, { useRef, useState } from 'react'
 // @ts-ignore
-import {ReCAPTCHA} from 'react-google-recaptcha'
+import { ReCAPTCHA } from 'react-google-recaptcha'
 
-import {Button} from '@/components/ui/button'
-import {Input} from '@/components/ui/input'
-import {RECAPTCHA_SITE_KEY} from '@/constants/env'
-import {isValidEmail} from '@/lib/utils'
-import {subscriberService} from '@/services/subscriber.service'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { RECAPTCHA_SITE_KEY } from '@/constants/env'
+import { isValidEmail } from '@/lib/utils'
+import { subscriberService } from '@/services/subscriber.service'
 
 export default function NewsletterImage() {
   const t = useTranslations()
@@ -58,9 +58,9 @@ export default function NewsletterImage() {
       <div className="relative flex flex-col lg:flex-row items-center justify-between p-4 lg:p-8 gap-4 lg:gap-8">
         {/* Background Blurs */}
         <div className="absolute inset-0 opacity-10 pointer-events-none">
-          <div className="absolute top-4 left-4 w-32 h-32 bg-purple-500 rounded-full blur-3xl"/>
-          <div className="absolute bottom-4 right-4 w-24 h-24 bg-blue-500 rounded-full blur-2xl"/>
-          <div className="absolute top-1/2 left-1/3 w-16 h-16 bg-pink-500 rounded-full blur-xl"/>
+          <div className="absolute top-4 left-4 w-32 h-32 bg-purple-500 rounded-full blur-3xl" />
+          <div className="absolute bottom-4 right-4 w-24 h-24 bg-blue-500 rounded-full blur-2xl" />
+          <div className="absolute top-1/2 left-1/3 w-16 h-16 bg-pink-500 rounded-full blur-xl" />
         </div>
 
         {/* Image Section */}
@@ -99,7 +99,7 @@ export default function NewsletterImage() {
                       id="email_image"
                       placeholder="name@email.com"
                       value={emailImage}
-                      onChange={(e) => setEmailImage(e.target.value)}
+                      onChange={e => setEmailImage(e.target.value)}
                       className="flex-1 bg-muted border-border text-foreground placeholder-muted-foreground"
                     />
                     <Button
@@ -109,15 +109,9 @@ export default function NewsletterImage() {
                     >
                       {loading ? t('common.sending') : t('common.subscribe')}
                     </Button>
-                    <ReCAPTCHA
-                      sitekey={RECAPTCHA_SITE_KEY}
-                      size="invisible"
-                      ref={recaptchaRef}
-                    />
+                    <ReCAPTCHA sitekey={RECAPTCHA_SITE_KEY} size="invisible" ref={recaptchaRef} />
                   </div>
-                  {errorMessage && (
-                    <p className="text-red-500 text-sm">{errorMessage}</p>
-                  )}
+                  {errorMessage && <p className="text-red-500 text-sm">{errorMessage}</p>}
                 </div>
               )}
             </div>
@@ -135,13 +129,13 @@ export default function NewsletterImage() {
         {/* Floating dots */}
         <div
           className="absolute top-6 right-20 w-3 h-3 bg-blue-400 rounded-full animate-bounce"
-          style={{animationDelay: '0.5s'}}
+          style={{ animationDelay: '0.5s' }}
         />
         <div
           className="absolute bottom-8 left-1/4 w-2 h-2 bg-purple-400 rounded-full animate-bounce"
-          style={{animationDelay: '1s'}}
+          style={{ animationDelay: '1s' }}
         />
-        <div className="absolute top-1/3 right-8 w-4 h-4 bg-pink-400 rounded-full animate-pulse"/>
+        <div className="absolute top-1/3 right-8 w-4 h-4 bg-pink-400 rounded-full animate-pulse" />
       </div>
     </div>
   )

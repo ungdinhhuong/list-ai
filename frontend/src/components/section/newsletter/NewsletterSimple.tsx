@@ -1,17 +1,17 @@
 'use client'
 
-import {ExternalLink} from 'lucide-react'
-import {useTranslations} from "next-intl";
-import {useRef, useState} from 'react'
+import { ExternalLink } from 'lucide-react'
+import { useTranslations } from 'next-intl'
+import { useRef, useState } from 'react'
 // @ts-ignore
-import {ReCAPTCHA} from 'react-google-recaptcha'
+import { ReCAPTCHA } from 'react-google-recaptcha'
 
-import {RECAPTCHA_SITE_KEY} from "@/constants/env";
-import {isValidEmail} from "@/lib/utils";
-import {subscriberService} from '@/services/subscriber.service'
+import { RECAPTCHA_SITE_KEY } from '@/constants/env'
+import { isValidEmail } from '@/lib/utils'
+import { subscriberService } from '@/services/subscriber.service'
 
 export default function NewsletterSimple() {
-  const t = useTranslations();
+  const t = useTranslations()
   const [emailSimple, setEmailSimple] = useState('')
   const [loading, setLoading] = useState(false)
   const [isSubscribed, setIsSubscribed] = useState(false)
@@ -55,11 +55,13 @@ export default function NewsletterSimple() {
     <div className="w-full mx-auto">
       <div className="text-center">
         <h3 className="text-2xl font-bold mb-4 text-foreground">{t('newsletter.simple.title')}</h3>
-        <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">{t('newsletter.simple.description')}</p>
+        <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+          {t('newsletter.simple.description')}
+        </p>
 
         {isSubscribed ? (
           <p className="text-green-600 font-semibold text-lg">
-            {t("newsletter.youAreSubscribed")} 🎉
+            {t('newsletter.youAreSubscribed')} 🎉
           </p>
         ) : (
           <>
@@ -70,7 +72,7 @@ export default function NewsletterSimple() {
                 id="email_simple"
                 placeholder={`${t('recaptcha.enter_email')}`}
                 value={emailSimple}
-                onChange={(e) => setEmailSimple(e.target.value)}
+                onChange={e => setEmailSimple(e.target.value)}
                 className="flex-1 px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
               <button
@@ -79,18 +81,12 @@ export default function NewsletterSimple() {
                 className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
               >
                 {loading ? `${t('common.sending')}` : `${t('common.subscribe')}`}
-                <ExternalLink size={16}/>
+                <ExternalLink size={16} />
               </button>
-              <ReCAPTCHA
-                sitekey={RECAPTCHA_SITE_KEY}
-                size="invisible"
-                ref={recaptchaRef}
-              />
+              <ReCAPTCHA sitekey={RECAPTCHA_SITE_KEY} size="invisible" ref={recaptchaRef} />
             </div>
 
-            {errorMessage && (
-              <p className="text-red-500 text-sm mt-2">{errorMessage}</p>
-            )}
+            {errorMessage && <p className="text-red-500 text-sm mt-2">{errorMessage}</p>}
           </>
         )}
       </div>

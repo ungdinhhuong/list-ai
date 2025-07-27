@@ -1,18 +1,23 @@
-import {useTranslations} from "next-intl";
+import { useTranslations } from 'next-intl'
 
-import ToolCard from "@/components/ToolCard";
-import { ToolType } from "@/types/tool.type";
+import ToolCard from '@/components/ToolCard'
+import { ToolType } from '@/types/tool.type'
 
 interface AllToolsSectionProps {
-  title?: string;
-  name?: string;
-  tools: ToolType[];
-  lengthItems?: number;
+  title?: string
+  name?: string
+  tools: ToolType[]
+  lengthItems?: number
 }
 
-export default function AllToolsSection({title,  name, tools, lengthItems = 4 }: AllToolsSectionProps) {
-  const isGridFour = lengthItems === 4;
-  const t = useTranslations();
+export default function AllToolsSection({
+  title,
+  name,
+  tools,
+  lengthItems = 4,
+}: AllToolsSectionProps) {
+  const isGridFour = lengthItems === 4
+  const t = useTranslations()
 
   return (
     <section>
@@ -21,9 +26,7 @@ export default function AllToolsSection({title,  name, tools, lengthItems = 4 }:
       </h2>
 
       {tools.length === 0 ? (
-        <div className="text-muted-foreground text-lg">
-          {t('category.noTools')}
-        </div>
+        <div className="text-muted-foreground text-lg">{t('category.noTools')}</div>
       ) : (
         <div
           className={`grid gap-4 lg:gap-4 ${
@@ -32,11 +35,11 @@ export default function AllToolsSection({title,  name, tools, lengthItems = 4 }:
               : 'grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3'
           }`}
         >
-          {tools.map((tool) => (
+          {tools.map(tool => (
             <ToolCard key={tool.id} tool={tool} />
           ))}
         </div>
       )}
     </section>
-  );
+  )
 }

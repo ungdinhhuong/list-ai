@@ -3,7 +3,7 @@ services:
     image: registry.gitlab.com/huongdev-2025/ontoolaz/frontend:master-${IMAGE_TAG}
     container_name: ontoolaz-prod
     ports:
-      - "3000:3000"
+      - '3000:3000'
     env_file:
       - .env
     environment:

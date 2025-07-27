@@ -1,16 +1,16 @@
-import Image from "next/image";
+import Image from 'next/image'
 
-import { char2BgColor } from "@/constants/constants";
-import {STRAPI_URL} from "@/constants/env";
+import { char2BgColor } from '@/constants/constants'
+import { STRAPI_URL } from '@/constants/env'
 
 interface AvatarLogoProps {
-  text: string;
-  img?: string;
+  text: string
+  img?: string
 }
 
 export default function AvatarLogo({ text, img }: AvatarLogoProps) {
-  const firstChar = text.charAt(0).toUpperCase();
-  const fullUrl = STRAPI_URL + img;
+  const firstChar = text.charAt(0).toUpperCase()
+  const fullUrl = STRAPI_URL + img
 
   if (img) {
     return (
@@ -23,19 +23,19 @@ export default function AvatarLogo({ text, img }: AvatarLogoProps) {
           className="w-full h-full object-cover"
         />
       </div>
-    );
+    )
   }
 
   return (
     <div
       className={`
         w-14 h-14
-        ${char2BgColor[firstChar] || "bg-muted"}
+        ${char2BgColor[firstChar] || 'bg-muted'}
         rounded-lg flex items-center justify-center
         text-foreground font-bold text-sm flex-shrink-0
       `}
     >
       {firstChar}
     </div>
-  );
+  )
 }

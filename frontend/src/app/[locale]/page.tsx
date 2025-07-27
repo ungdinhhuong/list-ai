@@ -1,56 +1,55 @@
-import {Metadata} from "next";
+import { Metadata } from 'next'
 
-import NoTranslationMessage from "@/components/common/NoTranslationMessage";
-import {StructuredData} from "@/components/common/StructuredData";
-import HomePageClient from "@/components/home/HomePageClient";
-import {BADGE, PAGE_SIZE} from "@/constants/constants";
-import {seoMeta} from "@/lib/seoMeta";
-import {singleTypeService} from "@/services/single-type.service";
-import {toolService} from "@/services/tool.service";
+import NoTranslationMessage from '@/components/common/NoTranslationMessage'
+import { StructuredData } from '@/components/common/StructuredData'
+import HomePageClient from '@/components/home/HomePageClient'
+import { BADGE, PAGE_SIZE } from '@/constants/constants'
+import { seoMeta } from '@/lib/seoMeta'
+import { singleTypeService } from '@/services/single-type.service'
+import { toolService } from '@/services/tool.service'
 
 export async function generateMetadata(): Promise<Metadata> {
-  const page = await singleTypeService.getHomePage();
-  const seo = page?.data?.seo || null;
-  return seoMeta({seo});
+  const page = await singleTypeService.getHomePage()
+  const seo = page?.data?.seo || null
+  return seoMeta({ seo })
 }
 
 export default async function HomePage() {
   const [resToolsByBadge, resAllTools, resHomePage] = await Promise.all([
     toolService.getToolsByBadge(BADGE.FEATURED),
-    toolService.getAllTools({page: 1, pageSize: PAGE_SIZE}),
-    singleTypeService.getHomePage()
-  ]);
+    toolService.getAllTools({ page: 1, pageSize: PAGE_SIZE }),
+    singleTypeService.getHomePage(),
+  ])
 
-  const featuredTools = resToolsByBadge || [];
-  const initialTools = resAllTools || [];
-  const homePage = resHomePage?.data || null;
+  const featuredTools = resToolsByBadge || []
+  const initialTools = resAllTools || []
+  const homePage = resHomePage?.data || null
 
   if (!homePage) {
-    return <NoTranslationMessage/>;
+    return <NoTranslationMessage />
   }
 
-  let structuredData: string | null = null;
+  let structuredData: string | null = null
   if (homePage?.seo?.structuredData) {
     try {
-      structuredData = typeof homePage.seo.structuredData === "string"
-        ? homePage.seo.structuredData
-        : JSON.stringify(homePage.seo.structuredData);
+      structuredData =
+        typeof homePage.seo.structuredData === 'string'
+          ? homePage.seo.structuredData
+          : JSON.stringify(homePage.seo.structuredData)
     } catch (error) {
-      console.error("Error processing structured data:", error);
-      structuredData = null;
+      console.error('Error processing structured data:', error)
+      structuredData = null
     }
   }
 
   return (
     <>
-      {structuredData && (
-        <StructuredData jsonLd={structuredData}/>
-      )}
+      {structuredData && <StructuredData jsonLd={structuredData} />}
       <HomePageClient
         featuredTools={featuredTools}
         initialTools={initialTools}
         homePage={homePage}
       />
     </>
-  );
+  )
 }

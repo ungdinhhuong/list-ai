@@ -1,13 +1,13 @@
-'use client';
+'use client'
 
-import React from "react";
+import React from 'react'
 
-import AllToolsSection from "@/components/section/AllToolsSection";
-import NewsletterImage from "@/components/section/newsletter/NewsletterImage";
-import { CategoryType } from "@/types/category.type";
+import AllToolsSection from '@/components/section/AllToolsSection'
+import NewsletterImage from '@/components/section/newsletter/NewsletterImage'
+import { CategoryType } from '@/types/category.type'
 
 interface CategoryDetailClientProps {
-  category: CategoryType;
+  category: CategoryType
 }
 
 export default function CategoryDetailClient({ category }: CategoryDetailClientProps) {
@@ -22,9 +22,7 @@ export default function CategoryDetailClient({ category }: CategoryDetailClientP
       </div>
 
       {/* Mô tả danh mục */}
-      <p className="text-muted-foreground text-lg mb-16 max-w-2xl">
-        {category.description}
-      </p>
+      <p className="text-muted-foreground text-lg mb-16 max-w-2xl">{category.description}</p>
 
       {/* Danh sách tool */}
       <AllToolsSection tools={category.tools} name={category.name} />
@@ -32,5 +30,5 @@ export default function CategoryDetailClient({ category }: CategoryDetailClientP
       {/* Banner quảng cáo / đăng ký */}
       <NewsletterImage />
     </div>
-  );
+  )
 }

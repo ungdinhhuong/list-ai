@@ -1,8 +1,8 @@
-import { ExternalLink,Github, Linkedin, Mail, Twitter } from 'lucide-react';
-import React from 'react';
+import { ExternalLink, Github, Linkedin, Mail, Twitter } from 'lucide-react'
+import React from 'react'
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
+  const currentYear = new Date().getFullYear()
 
   const footerLinks = {
     product: [
@@ -28,14 +28,14 @@ const Footer = () => {
       { name: 'Terms of Service', href: '/terms' },
       { name: 'Cookie Policy', href: '/cookies' },
     ],
-  };
+  }
 
   const socialLinks = [
     { name: 'Twitter', href: '#', icon: Twitter },
     { name: 'GitHub', href: '#', icon: Github },
     { name: 'LinkedIn', href: '#', icon: Linkedin },
     { name: 'Email', href: 'mailto:hello@benlistai.com', icon: Mail },
-  ];
+  ]
 
   return (
     <footer className="bg-background text-foreground">
@@ -45,8 +45,8 @@ const Footer = () => {
           <div className="text-center">
             <h3 className="text-2xl font-bold mb-4">Stay Updated with Latest AI Tools</h3>
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Join over 50,000 subscribers and get exclusive access to new AI tools,
-              curated lists, and productivity tips delivered to your inbox.
+              Join over 50,000 subscribers and get exclusive access to new AI tools, curated lists,
+              and productivity tips delivered to your inbox.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
               <input
@@ -75,12 +75,12 @@ const Footer = () => {
               <h3 className="text-xl font-bold">BenListAI</h3>
             </div>
             <p className="text-muted-foreground mb-6 max-w-md">
-              The Best AI Websites & AI Tools Directory. Discover, explore, and find the perfect AI tools
-              to boost your productivity and creativity.
+              The Best AI Websites & AI Tools Directory. Discover, explore, and find the perfect AI
+              tools to boost your productivity and creativity.
             </p>
             <div className="flex space-x-4">
-              {socialLinks.map((social) => {
-                const Icon = social.icon;
+              {socialLinks.map(social => {
+                const Icon = social.icon
                 return (
                   <a
                     key={social.name}
@@ -90,17 +90,17 @@ const Footer = () => {
                   >
                     <Icon size={20} />
                   </a>
-                );
+                )
               })}
             </div>
           </div>
 
           {/* Footer Columns */}
-          {['product', 'categories', 'company', 'legal'].map((section) => (
+          {['product', 'categories', 'company', 'legal'].map(section => (
             <div key={section}>
               <h4 className="text-lg font-semibold mb-4 capitalize">{section}</h4>
               <ul className="space-y-3">
-                {footerLinks[section as keyof typeof footerLinks].map((link) => (
+                {footerLinks[section as keyof typeof footerLinks].map(link => (
                   <li key={link.name}>
                     <a
                       href={link.href}
@@ -126,8 +126,8 @@ const Footer = () => {
             <div className="flex items-center space-x-6 mt-4 sm:mt-0">
               <span className="text-muted-foreground text-sm">Follow Us:</span>
               <div className="flex space-x-3">
-                {socialLinks.slice(0, 3).map((social) => {
-                  const Icon = social.icon;
+                {socialLinks.slice(0, 3).map(social => {
+                  const Icon = social.icon
                   return (
                     <a
                       key={social.name}
@@ -137,7 +137,7 @@ const Footer = () => {
                     >
                       <Icon size={18} />
                     </a>
-                  );
+                  )
                 })}
               </div>
             </div>
@@ -145,7 +145,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer
