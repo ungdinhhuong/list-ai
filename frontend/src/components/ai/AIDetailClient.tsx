@@ -23,7 +23,7 @@ export default function AIDetailClient({tool, relatedTools}: AIDetailClientProps
     <div className="container mx-auto lg:max-w-4xl space-y-6 xl:space-y-8">
       {!!tool.badge && <BadgeCustom badge={tool.badge}/>}
 
-      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="flex items-center gap-4">
           <AvatarLogo text={tool.name} img={tool?.avatar?.url || ""}/>
           <h1 className="text-3xl md:text-4xl font-bold">{tool.name}</h1>
@@ -38,10 +38,10 @@ export default function AIDetailClient({tool, relatedTools}: AIDetailClientProps
       <p className="text-muted-foreground text-lg max-w-2xl">{tool.description}</p>
 
       {/* Info Card */}
-      <Card className="bg-muted border-border">
-        <CardContent>
+      <Card className="bg-muted border-border py-4">
+        <CardContent className="px-4">
           <div className="grid grid-cols-1 grid-rows-2 gap-4">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <h3 className="text-sm font-medium text-muted-foreground">{t('common.categories')}:</h3>
               <div className="flex flex-wrap gap-2">
                 {tool.categories?.map((category, index) => (
@@ -49,7 +49,7 @@ export default function AIDetailClient({tool, relatedTools}: AIDetailClientProps
                 ))}
               </div>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <h3 className="text-sm font-medium text-muted-foreground">{t('common.type')}:</h3>
               <Badge variant="outline" className="border-green-500 text-green-400">{tool.type || t('common.updating')}</Badge>
             </div>
