@@ -491,7 +491,7 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
     singularName: 'category';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   pluginOptions: {
     i18n: {
@@ -562,7 +562,7 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
     singularName: 'home-page';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   pluginOptions: {
     i18n: {
@@ -611,7 +611,7 @@ export interface ApiPolicyPagePolicyPage extends Struct.SingleTypeSchema {
     singularName: 'policy-page';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   pluginOptions: {
     i18n: {
@@ -783,7 +783,7 @@ export interface ApiToolContentToolContent extends Struct.CollectionTypeSchema {
     singularName: 'tool-content';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   pluginOptions: {
     i18n: {
@@ -827,7 +827,7 @@ export interface ApiToolTool extends Struct.CollectionTypeSchema {
     singularName: 'tool';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   pluginOptions: {
     i18n: {
