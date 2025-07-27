@@ -28,10 +28,10 @@ build_fe:
   stage: build
   rules:
     - if: '$CI_COMMIT_BRANCH == "dev"'
-      changes: [frontend/**]
+      changes: [frontend/**/*]
     - if: '$CI_COMMIT_BRANCH == "master" && $FORCE_DEPLOY_FE == "true"'
     - if: '$CI_COMMIT_BRANCH == "master"'
-      changes: [frontend/**]
+      changes: [frontend/**/*]
   script:
     - echo "$ENV_FILE_FE_PRODUCTION" > .env.production
     - docker build --build-arg NODE_ENV=production -t $IMAGE_TAG_FE ./frontend
@@ -41,10 +41,10 @@ build_be:
   stage: build
   rules:
     - if: '$CI_COMMIT_BRANCH == "dev"'
-      changes: [backend/**]
+      changes: [backend/**/*]
     - if: '$CI_COMMIT_BRANCH == "master" && $FORCE_DEPLOY_BE == "true"'
     - if: '$CI_COMMIT_BRANCH == "master"'
-      changes: [backend/**]
+      changes: [backend/**/*]
   script:
     - docker build -t $IMAGE_TAG_BE ./backend
     - docker push $IMAGE_TAG_BE
@@ -53,7 +53,7 @@ deploy_fe_dev:
   stage: deploy
   rules:
     - if: '$CI_COMMIT_BRANCH == "dev"'
-      changes: [frontend/**]
+      changes: [frontend/**/*]
   environment:
     name: dev
   script:
@@ -73,7 +73,7 @@ deploy_be_dev:
   stage: deploy
   rules:
     - if: '$CI_COMMIT_BRANCH == "dev"'
-      changes: [backend/**]
+      changes: [backend/**/*]
   environment:
     name: dev
   script:
@@ -94,7 +94,7 @@ deploy_fe_prod:
   rules:
     - if: '$CI_COMMIT_BRANCH == "master" && $FORCE_DEPLOY_FE == "true"'
     - if: '$CI_COMMIT_BRANCH == "master"'
-      changes: [frontend/**]
+      changes: [frontend/**/*]
   environment:
     name: production
   script:
@@ -121,7 +121,7 @@ deploy_be_prod:
   rules:
     - if: '$CI_COMMIT_BRANCH == "master" && $FORCE_DEPLOY_BE == "true"'
     - if: '$CI_COMMIT_BRANCH == "master"'
-      changes: [backend/**]
+      changes: [backend/**/*]
   environment:
     name: production
   script:
