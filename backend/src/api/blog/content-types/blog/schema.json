@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "tools",
+  "collectionName": "blogs",
   "info": {
-    "singularName": "tool",
-    "pluralName": "tools",
-    "displayName": "Tool"
+    "singularName": "blog",
+    "pluralName": "blogs",
+    "displayName": "Blog"
   },
   "options": {
     "draftAndPublish": false
@@ -15,23 +15,22 @@
     }
   },
   "attributes": {
-    "name": {
+    "title": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "slug": {
       "type": "string",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "required": true
-    },
-    "slug": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
-      "required": true,
+      "required": false,
       "unique": true
     },
     "description": {
@@ -42,7 +41,13 @@
         }
       }
     },
-    "avatar": {
+    "blogCategory": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::blog-category.blog-category",
+      "inversedBy": "blogs"
+    },
+    "thumbnail": {
       "type": "media",
       "pluginOptions": {
         "i18n": {
@@ -55,40 +60,6 @@
         "files",
         "videos",
         "audios"
-      ]
-    },
-    "link": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
-      "required": true
-    },
-    "badge": {
-      "type": "enumeration",
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
-      "enum": [
-        "Featured",
-        "Popular",
-        "New"
-      ]
-    },
-    "type": {
-      "type": "enumeration",
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
-      "enum": [
-        "Free",
-        "Paid"
       ]
     },
     "seo": {

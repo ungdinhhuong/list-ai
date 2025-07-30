@@ -2,6 +2,8 @@ import { apiGet } from '@/lib/apiRequest'
 import { HomePageResponse } from '@/types/home-page.type'
 import { SiteSettingResponse } from '@/types/site-setting.type'
 import { StaticPageType } from '@/types/static-page.type'
+import {BlogPageResponse, BlogPageType} from "@/types/blog.type";
+import {CategoryPageResponse} from "@/types/category.type";
 
 class SingleTypeService {
   async getHomePage(): Promise<HomePageResponse> {
@@ -21,8 +23,25 @@ class SingleTypeService {
     })
   }
 
-  async getCategoryPage(): Promise<HomePageResponse> {
+  async getCategoryPage(): Promise<CategoryPageResponse> {
     return await apiGet('/category-page', {
+      params: {
+        populate: {
+          seo: {
+            populate: {
+              openGraph: {
+                populate: ['ogImage'],
+              },
+              metaImage: true,
+            },
+          },
+        },
+      },
+    })
+  }
+
+  async getBlogPage(): Promise<BlogPageResponse> {
+    return await apiGet('/blog-page', {
       params: {
         populate: {
           seo: {

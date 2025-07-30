@@ -16,19 +16,7 @@ export interface ToolType {
   publishedAt: string
   locale: string
   avatar?: MediaType | null
-  categories?: CategoryType[]
-  toolContent?: ToolContent | null
-  seo?: StrapiSEO | null
-}
-
-export interface ToolContent {
-  id: number
-  documentId: string
+  toolCategories?: CategoryType[]
   content: string
-  metaTitle: string | null
-  metaDescription: string | null
-  createdAt: string // ISO 8601 format
-  updatedAt: string
-  publishedAt: string
-  locale: string
+  seo?: StrapiSEO | null
 }

@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "categories",
+  "collectionName": "blog_categories",
   "info": {
-    "singularName": "category",
-    "pluralName": "categories",
-    "displayName": "ToolCategory"
+    "singularName": "blog-category",
+    "pluralName": "blog-categories",
+    "displayName": "BlogCategory"
   },
   "options": {
     "draftAndPublish": false
@@ -21,8 +21,7 @@
         "i18n": {
           "localized": true
         }
-      },
-      "required": true
+      }
     },
     "icon": {
       "type": "string",
@@ -39,7 +38,6 @@
           "localized": true
         }
       },
-      "required": false,
       "unique": true
     },
     "description": {
@@ -58,6 +56,22 @@
         }
       },
       "default": 0
+    },
+    "seo": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "shared.seo",
+      "repeatable": false
+    },
+    "blogs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::blog.blog",
+      "mappedBy": "blogCategory"
     }
   }
 }

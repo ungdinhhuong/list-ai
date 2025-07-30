@@ -7,6 +7,7 @@ import NewsletterImage from '@/components/section/newsletter/NewsletterImage'
 import { Card, CardContent } from '@/components/ui/card'
 import { ROUTES } from '@/constants/routes'
 import { CategoryPageType, CategoryType } from '@/types/category.type'
+import TitlePage from "@/components/common/TitlePage";
 
 interface CategoryPageClientProps {
   categories: CategoryType[]
@@ -16,16 +17,8 @@ interface CategoryPageClientProps {
 export default function CategoryPageClient({ categories, page }: CategoryPageClientProps) {
   const t = useTranslations()
   return (
-    <div className="container mx-auto lg:max-w-7xl space-y-8 relative">
-      {/* Title + Description */}
-      <div className="space-y-4 mb-8">
-        <h1 className="text-3xl md:text-4xl font-bold text-foreground">
-          {page?.title || t('categoryPage.title')}
-        </h1>
-        <p className="text-muted-foreground text-lg max-w-2xl">
-          {page?.title || t('categoryPage.description')}
-        </p>
-      </div>
+    <div className="container mx-auto lg:w-7xl space-y-8 relative">
+      <TitlePage title={page?.title || ''} description={page?.description || ''}/>
 
       {/* Grid Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
