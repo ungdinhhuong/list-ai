@@ -58,6 +58,12 @@
         }
       },
       "default": 0
+    },
+    "tools": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tool.tool",
+      "inversedBy": "categories"
     }
   }
 }

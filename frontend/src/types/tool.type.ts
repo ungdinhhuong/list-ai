@@ -16,7 +16,7 @@ export interface ToolType {
   publishedAt: string
   locale: string
   avatar?: MediaType | null
-  toolCategories?: CategoryType[]
+  categories?: CategoryType[]
   content: string
   seo?: StrapiSEO | null
 }

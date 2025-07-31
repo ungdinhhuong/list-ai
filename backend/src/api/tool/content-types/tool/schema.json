@@ -112,6 +112,12 @@
       "options": {
         "preset": "defaultHtml"
       }
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "mappedBy": "tools"
     }
   }
 }

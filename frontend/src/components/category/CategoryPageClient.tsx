@@ -3,11 +3,11 @@ import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import React from 'react'
 
+import TitlePage from "@/components/common/TitlePage";
 import NewsletterImage from '@/components/section/newsletter/NewsletterImage'
 import { Card, CardContent } from '@/components/ui/card'
 import { ROUTES } from '@/constants/routes'
 import { CategoryPageType, CategoryType } from '@/types/category.type'
-import TitlePage from "@/components/common/TitlePage";
 
 interface CategoryPageClientProps {
   categories: CategoryType[]

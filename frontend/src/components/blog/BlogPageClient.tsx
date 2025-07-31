@@ -1,15 +1,17 @@
 "use client";
 
-import React from 'react';
-import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from '@/components/ui/card';
-import {Badge} from '@/components/ui/badge';
-import {Button} from '@/components/ui/button';
 import {CalendarDays, User} from 'lucide-react';
 import Image from "next/image";
+import Link from "next/link";
+import React from 'react';
+
 import TitlePage from "@/components/common/TitlePage";
+import {Badge} from '@/components/ui/badge';
+import {Button} from '@/components/ui/button';
+import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from '@/components/ui/card';
 import {BlogPageType, BlogType} from "@/types/blog.type";
+import {fromNow} from '@/utils/date'
 import {renderUrlImage} from "@/utils/functions";
-import { fromNow } from '@/utils/date'
 
 interface BlogPageClientProps {
   blogs: BlogType[]
@@ -25,7 +27,7 @@ export default function BlogPageClient({blogs, page}: BlogPageClientProps) {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {blogs.map((post) => (
           <Card key={post.id}
-                className="group hover:shadow-lg transition-all duration-300 cursor-pointer overflow-hidden py-0 gap-4">
+                className="group hover:shadow-lg transition-all duration-300 cursor-pointer overflow-hidden py-0 gap-4 shadow-none">
             {/* Image */}
             <div className="relative overflow-hidden border-b">
               <Image
@@ -46,7 +48,7 @@ export default function BlogPageClient({blogs, page}: BlogPageClientProps) {
 
             <CardHeader className="gap-0">
               <CardTitle className="text-xl font-semibold line-clamp-2 group-hover:text-primary transition-colors">
-              {post.title}
+                <Link href={`/blog/${post.slug}`}>{post.title}</Link>
               </CardTitle>
             </CardHeader>
 

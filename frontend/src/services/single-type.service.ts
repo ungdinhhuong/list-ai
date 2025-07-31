@@ -1,9 +1,9 @@
 import { apiGet } from '@/lib/apiRequest'
+import {BlogPageResponse, BlogPageType} from "@/types/blog.type";
+import {CategoryPageResponse} from "@/types/category.type";
 import { HomePageResponse } from '@/types/home-page.type'
 import { SiteSettingResponse } from '@/types/site-setting.type'
 import { StaticPageType } from '@/types/static-page.type'
-import {BlogPageResponse, BlogPageType} from "@/types/blog.type";
-import {CategoryPageResponse} from "@/types/category.type";
 
 class SingleTypeService {
   async getHomePage(): Promise<HomePageResponse> {

@@ -1,7 +1,7 @@
 import { apiGet } from '@/lib/apiRequest'
 import { PaginatedResponse } from '@/types/api.type'
-import { CategoryType } from '@/types/category.type'
 import {BlogType} from "@/types/blog.type";
+import { CategoryType } from '@/types/category.type'
 
 class BlogService {
   async getBlogs(): Promise<PaginatedResponse<BlogType>> {
@@ -25,10 +25,10 @@ class BlogService {
   }
 
   async findBySlug(slug: string): Promise<BlogType | null> {
-    const res = await apiGet(`/categories`, {
+    const res = await apiGet(`/blogs`, {
       params: {
         'filters[slug][$eq]': slug,
-        populate: 'tools.avatar',
+        populate: 'thumbnail',
       },
     })
     return res.data?.[0]

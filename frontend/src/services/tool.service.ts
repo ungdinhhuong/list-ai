@@ -17,7 +17,7 @@ class ToolService {
     const res = await apiGet(`/tools`, {
       params: {
         'filters[slug][$eq]': slug,
-        populate: ['avatar', 'categories', 'toolContent', 'seo'],
+        populate: ['avatar', 'categories', 'seo'],
       },
     })
     return res.data?.[0]

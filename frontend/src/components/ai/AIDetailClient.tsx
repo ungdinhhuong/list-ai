@@ -73,7 +73,7 @@ export default function AIDetailClient({ tool, relatedTools }: AIDetailClientPro
 
       {/* Nội dung */}
       <div
-        dangerouslySetInnerHTML={{ __html: tool.toolContent?.content || '' }}
+        dangerouslySetInnerHTML={{ __html: tool.content || '' }}
         className="prose-ckeditor"
       />
 
