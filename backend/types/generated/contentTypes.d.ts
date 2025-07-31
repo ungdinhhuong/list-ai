@@ -570,7 +570,7 @@ export interface ApiBlogBlog extends Struct.CollectionTypeSchema {
     };
   };
   attributes: {
-    blogCategory: Schema.Attribute.Relation<
+    category: Schema.Attribute.Relation<
       'manyToOne',
       'api::blog-category.blog-category'
     >;

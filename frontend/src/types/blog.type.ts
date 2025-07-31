@@ -14,7 +14,7 @@ export interface BlogType {
   publishedAt: string
   locale: string
   thumbnail?: MediaType | null
-  blogCategory?: BlogCategoryType[]
+  category?: BlogCategoryType
   seo?: StrapiSEO | null
 }
 

@@ -10,7 +10,7 @@ class BlogService {
         sort: 'id:asc',
         populate: {
           thumbnail: true,
-          blogCategory: true,
+          category: true,
           seo: {
             populate: {
               openGraph: {

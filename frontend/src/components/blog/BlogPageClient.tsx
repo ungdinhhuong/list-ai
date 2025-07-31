@@ -37,10 +37,10 @@ export default function BlogPageClient({blogs, page}: BlogPageClientProps) {
                 height="250"
                 className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
               />
-              {post.blogCategory && (
+              {post.category && (
                 <div className="absolute top-3 left-3">
                   <Badge variant="secondary" className="transition-colors">
-                    {post.blogCategory?.name}
+                    {post.category?.name}
                   </Badge>
                 </div>
               )}

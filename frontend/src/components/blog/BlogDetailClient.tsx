@@ -23,18 +23,13 @@ export default function BlogDetailClient({blog}: BlogDetailClientProps) {
         {/* Header Section */}
         <div className="space-y-6 lg:space-y-8">
           {/* Categories/Tags */}
-          {blog.categories && blog.categories.length > 0 && (
-            <div className="flex flex-wrap gap-2">
-              {blog.categories.map((category, index) => (
-                <Badge
-                  key={index}
-                  variant="secondary"
-                  className="text-xs font-medium hover:bg-primary hover:text-primary-foreground transition-colors"
-                >
-                  {category}
-                </Badge>
-              ))}
-            </div>
+          {blog.category && (
+            <Badge
+              variant="secondary"
+              className="text-xs font-medium hover:bg-primary hover:text-primary-foreground transition-colors"
+            >
+              {blog.category.name}
+            </Badge>
           )}
 
           {/* Title */}
@@ -49,12 +44,10 @@ export default function BlogDetailClient({blog}: BlogDetailClientProps) {
 
           {/* Meta Information */}
           <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-            {blog.author && (
-              <div className="flex items-center gap-2">
-                <User className="h-4 w-4"/>
-                <span>{blog.author}</span>
-              </div>
-            )}
+            <div className="flex items-center gap-2">
+              <User className="h-4 w-4"/>
+              <span>Admin</span>
+            </div>
             {blog.publishedAt && (
               <div className="flex items-center gap-2">
                 <Calendar className="h-4 w-4"/>
@@ -67,12 +60,12 @@ export default function BlogDetailClient({blog}: BlogDetailClientProps) {
                 </time>
               </div>
             )}
-            {blog.readTime && (
-              <div className="flex items-center gap-2">
-                <Clock className="h-4 w-4"/>
-                <span>{blog.readTime} phút đọc</span>
-              </div>
-            )}
+            {/*{blog.readTime && (*/}
+            {/*  <div className="flex items-center gap-2">*/}
+            {/*    <Clock className="h-4 w-4"/>*/}
+            {/*    <span>{blog.readTime} phút đọc</span>*/}
+            {/*  </div>*/}
+            {/*)}*/}
           </div>
 
           <Separator className="my-8"/>

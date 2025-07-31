@@ -71,7 +71,7 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::blog.blog",
-      "mappedBy": "blogCategory"
+      "mappedBy": "category"
     }
   }
 }
