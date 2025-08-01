@@ -5,14 +5,14 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
+import Pagination from '@/components/common/Pagination'
 import TitlePage from '@/components/common/TitlePage'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { PaginatedResponse } from '@/types/api.type'
 import { BlogPageType, BlogType } from '@/types/blog.type'
 import { fromNow } from '@/utils/date'
 import { renderUrlImage } from '@/utils/functions'
-import Pagination from '@/components/common/Pagination'
-import { PaginatedResponse } from '@/types/api.type'
 
 interface BlogPageClientProps {
   blogs: PaginatedResponse<BlogType>

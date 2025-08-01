@@ -1,10 +1,10 @@
 import { apiGet } from '@/lib/apiRequest'
+import { SingleTypeResponse } from '@/types/api.type'
 import { BlogPageType } from '@/types/blog.type'
 import { CategoryPageResponse } from '@/types/category.type'
 import { HomePageType } from '@/types/home-page.type'
 import { SiteSettingResponse } from '@/types/site-setting.type'
 import { StaticPageType } from '@/types/static-page.type'
-import { SingleTypeResponse } from '@/types/api.type'
 
 class SingleTypeService {
   async getHomePage(): Promise<SingleTypeResponse<HomePageType>> {

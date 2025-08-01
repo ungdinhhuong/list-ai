@@ -2,11 +2,10 @@ import { Metadata } from 'next'
 import React from 'react'
 
 import BlogPageClient from '@/components/blog/BlogPageClient'
+import { ROUTES } from '@/constants/routes'
 import { seoMeta } from '@/lib/seoMeta'
 import { blogService } from '@/services/blog.service'
 import { singleTypeService } from '@/services/single-type.service'
-import { PAGE_SIZE } from '@/constants/constants'
-import { ROUTES } from '@/constants/routes'
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await singleTypeService.getBlogPage()

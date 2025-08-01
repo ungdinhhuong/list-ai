@@ -1,9 +1,10 @@
 'use client'
 
-import { useRouter, usePathname } from 'next/navigation'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { usePathname,useRouter } from 'next/navigation'
+
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { PaginationMeta } from '@/types/api.type'
 
 type Props = {

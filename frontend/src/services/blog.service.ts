@@ -2,6 +2,7 @@ import { apiGet } from '@/lib/apiRequest'
 import { PaginatedResponse } from '@/types/api.type'
 import {BlogType} from "@/types/blog.type";
 import { CategoryType } from '@/types/category.type'
+
 interface GetBlogsParams {
   page?: number
   pageSize?: number
