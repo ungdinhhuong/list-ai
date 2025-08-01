@@ -1,4 +1,3 @@
-// Kiểu dữ liệu cho hình ảnh từ Strapi
 export type StrapiImage = {
   url: string
   alternativeText?: string
@@ -6,7 +5,6 @@ export type StrapiImage = {
   height?: number
 }
 
-// Kiểu dữ liệu SEO từ Strapi
 export type StrapiSEO = {
   metaTitle?: string
   metaDescription?: string
@@ -31,7 +29,6 @@ export type StrapiSeoToMetadataOpts = {
   path?: string
 }
 
-// Các giá trị hợp lệ cho openGraph.type theo Next.js
 export const validOgTypes = [
   'website',
   'article',

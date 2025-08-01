@@ -11,8 +11,3 @@ export interface HomePageType {
   description: string
   seo: StrapiSEO
 }
-
-export interface HomePageResponse {
-  data: HomePageType
-  meta: Record<string, unknown>
-}

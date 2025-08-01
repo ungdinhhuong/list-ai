@@ -12,8 +12,3 @@ export interface StaticPageType {
   content: string
   seo: StrapiSEO
 }
-
-export interface StaticPageResponse {
-  data: StaticPageType
-  meta: Record<string, unknown>
-}

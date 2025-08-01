@@ -1,12 +1,13 @@
 import { apiGet } from '@/lib/apiRequest'
-import {BlogPageResponse, BlogPageType} from "@/types/blog.type";
-import {CategoryPageResponse} from "@/types/category.type";
-import { HomePageResponse } from '@/types/home-page.type'
+import { BlogPageType } from '@/types/blog.type'
+import { CategoryPageResponse } from '@/types/category.type'
+import { HomePageType } from '@/types/home-page.type'
 import { SiteSettingResponse } from '@/types/site-setting.type'
 import { StaticPageType } from '@/types/static-page.type'
+import { SingleTypeResponse } from '@/types/api.type'
 
 class SingleTypeService {
-  async getHomePage(): Promise<HomePageResponse> {
+  async getHomePage(): Promise<SingleTypeResponse<HomePageType>> {
     return await apiGet('/home-page', {
       params: {
         populate: {
@@ -40,7 +41,7 @@ class SingleTypeService {
     })
   }
 
-  async getBlogPage(): Promise<BlogPageResponse> {
+  async getBlogPage(): Promise<SingleTypeResponse<BlogPageType>> {
     return await apiGet('/blog-page', {
       params: {
         populate: {

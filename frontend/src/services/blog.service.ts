@@ -2,9 +2,12 @@ import { apiGet } from '@/lib/apiRequest'
 import { PaginatedResponse } from '@/types/api.type'
 import {BlogType} from "@/types/blog.type";
 import { CategoryType } from '@/types/category.type'
-
+interface GetBlogsParams {
+  page?: number
+  pageSize?: number
+}
 class BlogService {
-  async getBlogs(): Promise<PaginatedResponse<BlogType>> {
+  async getBlogs({ page, pageSize }: GetBlogsParams): Promise<PaginatedResponse<BlogType>> {
     return await apiGet('/blogs', {
       params: {
         sort: 'id:asc',
@@ -20,6 +23,8 @@ class BlogService {
             },
           },
         },
+        'pagination[page]': page || 1,
+        'pagination[pageSize]': pageSize || 10,
       },
     })
   }

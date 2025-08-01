@@ -1,4 +1,3 @@
-import { CategoryType } from '@/types/category.type'
 import { MediaType } from '@/types/media.type'
 import type { StrapiSEO } from '@/types/seo.type'
 
@@ -42,9 +41,4 @@ export interface BlogPageType {
   title: string
   description: string
   seo: StrapiSEO
-}
-
-export interface BlogPageResponse {
-  data: BlogPageType
-  meta: Record<string, unknown>
 }

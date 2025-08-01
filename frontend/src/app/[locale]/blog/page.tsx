@@ -1,24 +1,23 @@
 import { Metadata } from 'next'
 import React from 'react'
 
-import BlogPageClient from "@/components/blog/BlogPageClient";
+import BlogPageClient from '@/components/blog/BlogPageClient'
 import { seoMeta } from '@/lib/seoMeta'
-import {blogService} from "@/services/blog.service";
+import { blogService } from '@/services/blog.service'
 import { singleTypeService } from '@/services/single-type.service'
+import { PAGE_SIZE } from '@/constants/constants'
+import { ROUTES } from '@/constants/routes'
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await singleTypeService.getBlogPage()
-  const seo = page?.data?.seo || null
-  return seoMeta({ seo })
+  const seo = page?.data.seo || null
+  return seoMeta({ seo, path: ROUTES.BLOG })
 }
 
-export default async function BlogPage() {
+export default async function BlogMainPage() {
   const [resBlogs, resPage] = await Promise.all([
-    blogService.getBlogs(),
+    blogService.getBlogs({ page: 1, pageSize: 9 }),
     singleTypeService.getBlogPage(),
   ])
-  const blogs = resBlogs?.data || []
-  const page = resPage?.data || null
-
-  return <BlogPageClient blogs={blogs} page={page} />
+  return <BlogPageClient blogs={resBlogs} page={resPage?.data} />
 }

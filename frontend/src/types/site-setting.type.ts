@@ -1,6 +1,5 @@
 import type { StrapiSEO } from '@/types/seo.type'
 
-// Strapi Media
 export interface StrapiImageFormat {
   ext: string
   url: string
@@ -39,21 +38,18 @@ export interface StrapiMedia {
   publishedAt: string
 }
 
-// Social Link
 export interface SocialLink {
   id: number
   platform: string
   url: string
 }
 
-// Footer Link
 export interface FooterLink {
   id: number
   label: string
   url: string
 }
 
-// Contact Info
 export interface ContactInfo {
   id: number
   email: string
@@ -61,7 +57,6 @@ export interface ContactInfo {
   address: string
 }
 
-// SiteSetting
 export interface SiteSettingType {
   id: number
   documentId: string

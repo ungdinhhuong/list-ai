@@ -1,31 +1,32 @@
-"use client";
+'use client'
 
-import {CalendarDays, User} from 'lucide-react';
-import Image from "next/image";
-import Link from "next/link";
-import React from 'react';
+import { CalendarDays, User } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
+import React from 'react'
 
-import TitlePage from "@/components/common/TitlePage";
-import {Badge} from '@/components/ui/badge';
-import {Button} from '@/components/ui/button';
-import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from '@/components/ui/card';
-import {BlogPageType, BlogType} from "@/types/blog.type";
-import {fromNow} from '@/utils/date'
-import {renderUrlImage} from "@/utils/functions";
+import TitlePage from '@/components/common/TitlePage'
+import { Badge } from '@/components/ui/badge'
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { BlogPageType, BlogType } from '@/types/blog.type'
+import { fromNow } from '@/utils/date'
+import { renderUrlImage } from '@/utils/functions'
+import Pagination from '@/components/common/Pagination'
+import { PaginatedResponse } from '@/types/api.type'
 
 interface BlogPageClientProps {
-  blogs: BlogType[]
+  blogs: PaginatedResponse<BlogType>
   page?: BlogPageType
 }
 
-export default function BlogPageClient({blogs, page}: BlogPageClientProps) {
+export default function BlogPageClient({ blogs, page }: BlogPageClientProps) {
   return (
     <div className="container mx-auto lg:w-7xl space-y-8 relative">
-      <TitlePage title={page?.title || ''} description={page?.description || ''}/>
+      <TitlePage title={page?.title || ''} description={page?.description || ''} />
 
       {/* Blog Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {blogs.map((post) => (
+        {blogs.data.map((post) => (
           <Card key={post.id}
                 className="group hover:shadow-lg transition-all duration-300 cursor-pointer overflow-hidden py-0 gap-4 shadow-none">
             {/* Image */}
@@ -62,12 +63,12 @@ export default function BlogPageClient({blogs, page}: BlogPageClientProps) {
               <div className="flex items-center justify-between w-full text-sm">
                 <div
                   className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors">
-                  <User className="w-4 h-4"/>
+                  <User className="w-4 h-4" />
                   <span>{'Admin'}</span>
                 </div>
                 <div
                   className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors">
-                  <CalendarDays className="w-4 h-4"/>
+                  <CalendarDays className="w-4 h-4" />
                   <span>{fromNow(post.updatedAt)}</span>
                 </div>
               </div>
@@ -77,12 +78,8 @@ export default function BlogPageClient({blogs, page}: BlogPageClientProps) {
       </div>
 
       {/* Load More Button */}
-      <div className="flex justify-center mt-12">
-        <Button variant="outline" size="lg" className="px-8 transition-all duration-200">
-          Load More Posts
-        </Button>
-      </div>
+      <Pagination meta={blogs.meta} />
     </div>
-  );
+  )
 };
 

@@ -7,9 +7,3 @@ export interface AITool {
   category: string
   color?: string
 }
-
-export interface SidebarCategory {
-  name: string
-  icon: string
-  active?: boolean
-}
