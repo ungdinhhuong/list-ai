@@ -3,12 +3,13 @@ import {Calendar, User} from 'lucide-react'
 import Image from 'next/image'
 import {useTranslations} from 'next-intl'
 import React, {useEffect, useState} from 'react'
+
+import BlogGrid from '@/components/blog/BlogGrid'
+import ShareButtons from '@/components/blog/ShareButtons'
 import NewsletterImage from '@/components/section/newsletter/NewsletterImage'
 import {Badge} from '@/components/ui/badge'
 import {BlogType} from '@/types/blog.type'
 import {renderUrlImage} from '@/utils/functions'
-import BlogGrid from '@/components/blog/BlogGrid'
-import ShareButtons from '@/components/blog/ShareButtons'
 
 interface BlogDetailClientProps {
   blog: BlogType
