@@ -28,6 +28,12 @@ const FooterSimple = () => {
             >
               {t('common.policy')}
             </Link>
+            <Link
+              href={ROUTES.ABOUT}
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              {t('common.about')}
+            </Link>
             <span className="text-muted-foreground"> {t('common.followUs')}:</span>
             <div className="flex space-x-3">
               {Object.values(SOCIALS).map(social => {

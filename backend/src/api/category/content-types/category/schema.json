@@ -76,6 +76,21 @@
       "relation": "manyToMany",
       "target": "api::tool.tool",
       "inversedBy": "categories"
+    },
+    "isShow": {
+      "type": "boolean",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "default": false
+    },
+    "blogs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::blog.blog",
+      "mappedBy": "category"
     }
   }
 }

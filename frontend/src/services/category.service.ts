@@ -27,10 +27,13 @@ class CategoryService {
       params: {
         sort: 'order:asc',
         populate: 'parent',
+        filters: {
+          isShow: true,
+        },
       },
     })
     // B1: init all node with children array
-    response.data.forEach(cat => {
+    response.data.forEach((cat: CategoryType & { children: CategoryType[] }) => {
       map.set(cat.id, { ...cat, children: [] })
     })
 

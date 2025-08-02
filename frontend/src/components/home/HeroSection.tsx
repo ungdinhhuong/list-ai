@@ -6,6 +6,7 @@ import { useTranslations } from 'next-intl'
 import React from 'react'
 
 import { HomePageType } from '@/types/home-page.type'
+import { useGlobalData } from '@/contexts/GlobalProvider'
 
 interface HeroSectionProps {
   homePage: HomePageType
@@ -13,6 +14,7 @@ interface HeroSectionProps {
 
 export default function HeroSection({ homePage }: HeroSectionProps) {
   const t = useTranslations()
+  const {siteSetting} = useGlobalData()
 
   const ads = [
     {
@@ -28,11 +30,11 @@ export default function HeroSection({ homePage }: HeroSectionProps) {
     <div className="flex flex-col lg:flex-row gap-8 items-center max-w-7xl mx-auto">
       {/* Left Content */}
       <div className="w-full lg:w-1/2 text-center lg:text-left">
-        <div className="flex justify-center lg:justify-start mb-6">
+        {/*<div className="flex justify-center lg:justify-start mb-6">
           <div className="p-4 rounded-full bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30">
             <Settings className="w-12 h-12 lg:w-16 lg:h-16 text-blue-600 dark:text-blue-400" />
           </div>
-        </div>
+        </div>*/}
 
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent leading-tight">
           {homePage.title || 'Discover the Best AI Tools'}
@@ -49,10 +51,15 @@ export default function HeroSection({ homePage }: HeroSectionProps) {
             <span>{t('common.submitAITool')}</span>
           </button>
 
-          <button className="group bg-background text-foreground px-8 py-3 rounded-full font-semibold border-2 border-border hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center space-x-2 w-full sm:w-auto justify-center">
+          <a
+            href={siteSetting.joinCommunity}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group bg-background text-foreground px-8 py-3 rounded-full font-semibold border-2 border-border hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center space-x-2 w-full sm:w-auto justify-center"
+          >
             <Users className="w-5 h-5 group-hover:scale-110 transition-transform" />
             <span>{t('common.joinCommunity')}</span>
-          </button>
+          </a>
         </div>
       </div>
 
