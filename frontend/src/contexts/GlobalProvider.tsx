@@ -1,5 +1,6 @@
 'use client'
 import React, { createContext, useContext } from 'react'
+
 import { SiteSettingType } from '@/types/site-setting.type'
 
 interface GlobalData {

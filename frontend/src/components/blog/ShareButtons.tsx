@@ -1,8 +1,8 @@
 'use client'
-import { FaFacebook, FaTwitter } from 'react-icons/fa'
 import { usePathname } from 'next/navigation'
-import { useEffect, useState } from 'react'
 import { useTranslations } from 'next-intl'
+import { useEffect, useState } from 'react'
+import { FaFacebook, FaTwitter } from 'react-icons/fa'
 
 interface ShareButtonsProps {
   title?: string

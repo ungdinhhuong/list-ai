@@ -1,13 +1,14 @@
+import { CalendarDays, User } from 'lucide-react'
 import Image from 'next/image'
-import { renderUrlImage } from '@/utils/functions'
+import Link from 'next/link'
+import React from 'react'
+
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
-import Link from 'next/link'
-import { CalendarDays, User } from 'lucide-react'
-import { fromNow } from '@/utils/date'
-import React from 'react'
-import { BlogType } from '@/types/blog.type'
 import { ROUTES } from '@/constants/routes'
+import { BlogType } from '@/types/blog.type'
+import { fromNow } from '@/utils/date'
+import { renderUrlImage } from '@/utils/functions'
 
 interface BlogGridProps {
   post: BlogType

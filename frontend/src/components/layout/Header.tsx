@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { useEffect, useState } from 'react'
+import { FaBlog, FaRobot, FaThLarge } from 'react-icons/fa'
 
 import LanguageSwitcher from '@/components/common/LanguageSwitcher'
 import ModeToggle from '@/components/shared/mode-toggle'
@@ -16,7 +17,6 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { ROUTES } from '@/constants/routes'
 import { useSidebar } from '@/contexts/SidebarProvider'
-import { FaBlog, FaRobot, FaThLarge } from 'react-icons/fa'
 
 export default function Header() {
   const { sidebarOpen, setSidebarOpen } = useSidebar()

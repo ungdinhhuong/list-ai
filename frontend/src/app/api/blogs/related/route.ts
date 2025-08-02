@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+
 import { blogService } from '@/services/blog.service'
 
 export async function GET(req: NextRequest) {

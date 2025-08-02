@@ -1,6 +1,7 @@
 'use client'
 
 import { Loader2 } from 'lucide-react'
+import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 
@@ -11,12 +12,11 @@ import FeaturedToolsSection from '@/components/section/FeaturedToolsSection'
 import NewsletterImage from '@/components/section/newsletter/NewsletterImage'
 import NewsletterSimple from '@/components/section/newsletter/NewsletterSimple'
 import { Button } from '@/components/ui/button'
+import { ROUTES } from '@/constants/routes'
 import { useFetchApiData } from '@/lib/fetchApiData'
 import { PaginatedResponse } from '@/types/api.type'
 import { HomePageType } from '@/types/home-page.type'
 import { ToolType } from '@/types/tool.type'
-import Link from 'next/link'
-import { ROUTES } from '@/constants/routes'
 
 interface HomePageClientProps {
   featuredTools: PaginatedResponse<ToolType>

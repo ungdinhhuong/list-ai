@@ -44,7 +44,7 @@ export default function BlogDetailClient({ blog }: BlogDetailClientProps) {
     }
 
     fetchRelatedBlogs()
-  }, [])
+  }, [blog.category?.id, blog.id])
 
   return (
     <div className="container mx-auto lg:w-4xl space-y-8 relative">

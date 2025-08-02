@@ -1,5 +1,5 @@
-import { StrapiSEO } from '@/types/seo.type'
 import { MediaFormat } from '@/types/media.type'
+import { StrapiSEO } from '@/types/seo.type'
 
 export interface HomePageType {
   id: number

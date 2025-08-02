@@ -3,11 +3,11 @@
 import { useTranslations } from 'next-intl'
 import React from 'react'
 
+import BlogGrid from '@/components/blog/BlogGrid'
 import Pagination from '@/components/common/Pagination'
 import TitlePage from '@/components/common/TitlePage'
 import { PaginatedResponse } from '@/types/api.type'
 import { BlogPageType, BlogType } from '@/types/blog.type'
-import BlogGrid from '@/components/blog/BlogGrid'
 
 interface BlogPageClientProps {
   blogs: PaginatedResponse<BlogType>

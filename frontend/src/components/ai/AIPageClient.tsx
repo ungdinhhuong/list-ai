@@ -1,14 +1,14 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import React from 'react'
 
 import Pagination from '@/components/common/Pagination'
 import TitlePage from '@/components/common/TitlePage'
-import { PaginatedResponse } from '@/types/api.type'
-import { AIPageType } from '@/types/ai.type'
 import ToolCard from '@/components/tool/ToolCard'
+import { AIPageType } from '@/types/ai.type'
+import { PaginatedResponse } from '@/types/api.type'
 import { ToolType } from '@/types/tool.type'
-import { useTranslations } from 'next-intl'
 
 interface AIPageClientProps {
   tools: PaginatedResponse<ToolType>
