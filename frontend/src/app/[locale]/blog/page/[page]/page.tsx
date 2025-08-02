@@ -9,11 +9,12 @@ import { blogService } from '@/services/blog.service'
 import { singleTypeService } from '@/services/single-type.service'
 
 type Props = {
-  params: { page: string }
+  params: Promise<{ page: string, locale: string }>
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const pageNumber = parseInt(params.page, 10)
+  const paramsResolved = await params
+  const pageNumber = parseInt(paramsResolved.page, 10)
   if (pageNumber === 1) redirect(ROUTES.BLOG)
 
   const pageData = await singleTypeService.getBlogPage()
@@ -22,7 +23,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function BlogPaged({ params }: Props) {
-  const page = parseInt(params.page, 10)
+  const paramsResolved = await params
+  const page = parseInt(paramsResolved.page, 10)
   if (isNaN(page) || page < 1) notFound()
   if (page === 1) redirect(ROUTES.BLOG)
 

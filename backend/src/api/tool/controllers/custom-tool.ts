@@ -10,7 +10,7 @@ export default factories.createCoreController('api::tool.tool', ({ strapi }) => 
     const pageSizeNumber = parseInt(pageSize as string, 10);
     const start = (pageNumber - 1) * pageSizeNumber;
 
-    // 1. Lấy category cha theo slug
+    // 1. Lấy category cha theo slug nhes
     const [parent] = await strapi.entityService.findMany('api::category.category', {
       filters: { slug },
       fields: ['id'],
