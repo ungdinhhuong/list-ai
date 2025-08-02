@@ -1,0 +1,104 @@
+image: docker:24.0-cli
+
+stages:
+  - build
+  - deploy
+
+variables:
+  IMAGE_TAG_FE: $CI_REGISTRY_IMAGE/frontend:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHORT_SHA
+  WORKDIR: /home/deployer/app/ontoolaz
+
+before_script:
+  - apk add --no-cache curl openssh
+  - echo "$CI_JOB_TOKEN" | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
+  - mkdir -p ~/.ssh
+  - echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+  - chmod 600 ~/.ssh/id_rsa
+  - ssh-keyscan $SSH_HOST >> ~/.ssh/known_hosts
+
+build_fe:
+  stage: build
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "dev"'
+      changes: [frontend/**/*]
+    - if: '$CI_COMMIT_BRANCH == "master" && $FORCE_DEPLOY_FE == "true"'
+    - if: '$CI_COMMIT_BRANCH == "master"'
+      changes: [frontend/**/*]
+  script:
+    - echo "$ENV_FILE_FE_PRODUCTION" > .env.production
+    - docker build --build-arg NODE_ENV=production -t $IMAGE_TAG_FE ./frontend
+    - docker push $IMAGE_TAG_FE
+
+deploy_fe_dev:
+  stage: deploy
+  needs: [build_fe]
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "dev"'
+      changes: [frontend/**/*]
+  environment:
+    name: dev
+  script:
+    - |
+      ssh $SSH_USER@$SSH_HOST "
+        cd $WORKDIR/frontend &&
+        export IMAGE_TAG=$CI_COMMIT_SHORT_SHA &&
+        export NODE_ENV=development &&
+        docker compose pull &&
+        docker compose down &&
+        docker compose up -d
+      "
+      sh $CI_PROJECT_DIR/send_telegram.sh "[FE - DEV] ✅ DEPLOYED" "Image: \`$IMAGE_TAG_FE\`%0ABranch: \`$CI_COMMIT_REF_NAME\`..."
+
+deploy_fe_prod:
+  stage: deploy
+  needs: [build_fe]
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master" && $FORCE_DEPLOY_FE == "true"'
+    - if: '$CI_COMMIT_BRANCH == "master"'
+      changes: [frontend/**/*]
+  environment:
+    name: production
+  script:
+    - |
+      ssh $SSH_USER@$SSH_HOST "
+        echo $DEPLOY_REGISTRY_PASSWORD | docker login -u $DEPLOY_REGISTRY_USER --password-stdin registry.gitlab.com &&
+        cd $WORKDIR/frontend &&
+        export IMAGE_TAG=$CI_COMMIT_SHORT_SHA &&
+        export NODE_ENV=production &&
+        docker compose pull &&
+        docker compose down &&
+        docker compose up -d
+      "
+      sh $CI_PROJECT_DIR/send_telegram.sh "[FE - PROD] ✅ DEPLOYED" "..."
+
+  after_script:
+    - |
+      if [ "$CI_JOB_STATUS" != "success" ]; then
+        sh $CI_PROJECT_DIR/send_telegram.sh "[FE - PROD] ❌ FAILED" "..."
+      fi
+
+rollback_fe_prod:
+  stage: deploy
+  when: manual
+  environment:
+    name: production
+  variables:
+    ROLLBACK_TAG: ""
+  script:
+    - |
+      if [ -z "$ROLLBACK_TAG" ]; then
+        echo "❌ ROLLBACK_TAG is required"
+        exit 1
+      fi
+
+      ssh $SSH_USER@$SSH_HOST "
+        echo $DEPLOY_REGISTRY_PASSWORD | docker login -u $DEPLOY_REGISTRY_USER --password-stdin registry.gitlab.com &&
+        cd $WORKDIR/frontend &&
+        export IMAGE_TAG=$ROLLBACK_TAG &&
+        export NODE_ENV=production &&
+        docker compose pull &&
+        docker compose down &&
+        docker compose up -d
+      "
+
+      sh $CI_PROJECT_DIR/send_telegram.sh "[FE - PROD] ♻️ ROLLBACKED" "Tag: \`$ROLLBACK_TAG\`%0ABy: \`$GITLAB_USER_NAME\`"

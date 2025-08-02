@@ -1,0 +1,104 @@
+image: docker:24.0-cli
+
+stages:
+  - build
+  - deploy
+
+variables:
+  IMAGE_TAG_BE: $CI_REGISTRY_IMAGE/backend:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHORT_SHA
+  WORKDIR: /home/deployer/app/ontoolaz
+
+before_script:
+  - apk add --no-cache curl openssh
+  - echo "$CI_JOB_TOKEN" | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
+  - mkdir -p ~/.ssh
+  - echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+  - chmod 600 ~/.ssh/id_rsa
+  - ssh-keyscan $SSH_HOST >> ~/.ssh/known_hosts
+
+build_be:
+  stage: build
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "dev"'
+      changes: [backend/**/*]
+    - if: '$CI_COMMIT_BRANCH == "master" && $FORCE_DEPLOY_BE == "true"'
+    - if: '$CI_COMMIT_BRANCH == "master"'
+      changes: [backend/**/*]
+  script:
+    - docker build -t $IMAGE_TAG_BE ./backend
+    - docker push $IMAGE_TAG_BE
+
+deploy_be_dev:
+  stage: deploy
+  needs: [build_be]
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "dev"'
+      changes: [backend/**/*]
+  environment:
+    name: dev
+  script:
+    - |
+      ssh $SSH_USER@$SSH_HOST "
+        cd $WORKDIR/backend &&
+        export IMAGE_TAG=$CI_COMMIT_SHORT_SHA &&
+        export NODE_ENV=development &&
+        docker compose pull &&
+        docker compose down &&
+        docker compose up -d
+      "
+      sh $CI_PROJECT_DIR/send_telegram.sh "[BE - DEV] ✅ DEPLOYED" "..."
+
+deploy_be_prod:
+  stage: deploy
+  needs: [build_be]
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master" && $FORCE_DEPLOY_BE == "true"'
+    - if: '$CI_COMMIT_BRANCH == "master"'
+      changes: [backend/**/*]
+  environment:
+    name: production
+  script:
+    - |
+      ssh $SSH_USER@$SSH_HOST "
+        echo $DEPLOY_REGISTRY_PASSWORD | docker login -u $DEPLOY_REGISTRY_USER --password-stdin registry.gitlab.com &&
+        cd $WORKDIR/backend &&
+        export IMAGE_TAG=$CI_COMMIT_SHORT_SHA &&
+        export NODE_ENV=production &&
+        docker compose pull &&
+        docker compose down &&
+        docker compose up -d
+      "
+      sh $CI_PROJECT_DIR/send_telegram.sh "[BE - PROD] ✅ DEPLOYED" "..."
+
+  after_script:
+    - |
+      if [ "$CI_JOB_STATUS" != "success" ]; then
+        sh $CI_PROJECT_DIR/send_telegram.sh "[BE - PROD] ❌ FAILED" "..."
+      fi
+
+rollback_be_prod:
+  stage: deploy
+  when: manual
+  environment:
+    name: production
+  variables:
+    ROLLBACK_TAG: "" # Bạn truyền giá trị này khi run job thủ công
+  script:
+    - |
+      if [ -z "$ROLLBACK_TAG" ]; then
+        echo "❌ ROLLBACK_TAG is required. Example: dev-abc123"
+        exit 1
+      fi
+      echo "🚀 Rolling back to tag: $ROLLBACK_TAG"
+
+      ssh $SSH_USER@$SSH_HOST "
+        echo $DEPLOY_REGISTRY_PASSWORD | docker login -u $DEPLOY_REGISTRY_USER --password-stdin registry.gitlab.com &&
+        cd $WORKDIR/backend &&
+        export IMAGE_TAG=$ROLLBACK_TAG &&
+        export NODE_ENV=production &&
+        docker compose pull &&
+        docker compose down &&
+        docker compose up -d
+      "
+
+      sh $CI_PROJECT_DIR/send_telegram.sh "[BE - PROD] ♻️ ROLLBACKED" "Tag: \`$ROLLBACK_TAG\`%0ABy: \`$GITLAB_USER_NAME\`"
