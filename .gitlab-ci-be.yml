@@ -68,12 +68,12 @@ deploy_be_prod:
         docker compose down &&
         docker compose up -d
       "
-      sh $CI_PROJECT_DIR/send_telegram.sh "[BE - PROD] ✅ DEPLOYED" "..."
+      sh $CI_PROJECT_DIR/send_telegram.sh "[BE - PROD] ✅ DEPLOYED" "Image: \`$IMAGE_TAG_BE\`%0ABranch: \`$CI_COMMIT_REF_NAME\`%0ACommit: \`$CI_COMMIT_SHORT_SHA\`%0ABy: \`$GITLAB_USER_NAME\`%0ATime: \`$(date -u '+%Y-%m-%d %H:%M UTC')\`"
 
   after_script:
     - |
       if [ "$CI_JOB_STATUS" != "success" ]; then
-        sh $CI_PROJECT_DIR/send_telegram.sh "[BE - PROD] ❌ FAILED" "..."
+        sh $CI_PROJECT_DIR/send_telegram.sh "[BE - PROD] ❌ FAILED" "Job: \`$CI_JOB_NAME\`%0AStatus: \`$CI_JOB_STATUS\`%0ABranch: \`$CI_COMMIT_REF_NAME\`%0ACommit: \`$CI_COMMIT_SHORT_SHA\`%0ABy: \`$GITLAB_USER_NAME\`"
       fi
 
 redeploy_be_prod_manual:
