@@ -25,6 +25,7 @@ export default async function HomePage() {
   const initialTools = resAllTools || []
   const homePage = resHomePage?.data || null
 
+  console.log(homePage)
   if (!homePage) {
     return <NoTranslationMessage />
   }

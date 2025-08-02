@@ -13,11 +13,10 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function CategoryDetailPage() {
-  const [resCategories, resPage] = await Promise.all([
-    categoryService.getCategories(),
+  const [categories, resPage] = await Promise.all([
+    categoryService.getCategoryTree(),
     singleTypeService.getCategoryPage(),
   ])
-  const categories = resCategories?.data || []
   const page = resPage?.data || null
 
   return <CategoryPageClient categories={categories} page={page} />

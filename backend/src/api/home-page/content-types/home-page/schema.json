@@ -31,6 +31,16 @@
         }
       }
     },
+    "ads": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "common.ads",
+      "repeatable": true
+    },
     "seo": {
       "type": "component",
       "pluginOptions": {

@@ -20,6 +20,9 @@ class SingleTypeService {
               metaImage: true,
             },
           },
+          ads: {
+            populate: ['image'],
+          },
         },
       },
     })

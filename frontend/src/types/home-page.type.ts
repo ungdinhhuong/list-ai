@@ -1,4 +1,5 @@
-import type { StrapiSEO } from '@/types/seo.type'
+import { StrapiSEO } from '@/types/seo.type'
+import { MediaFormat } from '@/types/media.type'
 
 export interface HomePageType {
   id: number
@@ -9,5 +10,15 @@ export interface HomePageType {
   locale: string
   title: string
   description: string
-  seo: StrapiSEO
+  seo: StrapiSEO,
+  ads: Ads[]
+}
+
+export interface Ads {
+  id: number
+  title: string
+  description: string
+  link: string
+  imageLink: string
+  image?: MediaFormat
 }

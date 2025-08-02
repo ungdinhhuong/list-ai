@@ -1,5 +1,20 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface CommonAds extends Struct.ComponentSchema {
+  collectionName: 'components_common_ads';
+  info: {
+    displayName: 'ads';
+    icon: 'paperPlane';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    imageLink: Schema.Attribute.String;
+    link: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface CommonContact extends Struct.ComponentSchema {
   collectionName: 'components_common_contacts';
   info: {
@@ -105,6 +120,7 @@ export interface SharedSeo extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'common.ads': CommonAds;
       'common.contact': CommonContact;
       'common.link': CommonLink;
       'common.scripts': CommonScripts;
