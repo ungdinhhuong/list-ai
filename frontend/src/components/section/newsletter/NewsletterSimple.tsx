@@ -3,8 +3,7 @@
 import { ExternalLink } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useRef, useState } from 'react'
-// @ts-ignore
-import { ReCAPTCHA } from 'react-google-recaptcha'
+import ReCAPTCHA from 'react-google-recaptcha'
 
 import { RECAPTCHA_SITE_KEY } from '@/constants/env'
 import { isValidEmail } from '@/lib/utils'
@@ -16,9 +15,13 @@ export default function NewsletterSimple() {
   const [loading, setLoading] = useState(false)
   const [isSubscribed, setIsSubscribed] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null)
+  const [showCaptcha, setShowCaptcha] = useState(false)
   const recaptchaRef = useRef<ReCAPTCHA>(null)
 
   const handleSubmit = async () => {
+    setErrorMessage('')
+
     if (!emailSimple) {
       setErrorMessage(t('recaptcha.enter_email'))
       return
@@ -29,23 +32,23 @@ export default function NewsletterSimple() {
       return
     }
 
-    const token = await recaptchaRef.current?.executeAsync()
-    recaptchaRef.current?.reset()
-
-    if (!token) {
+    if (!captchaToken) {
+      setShowCaptcha(true)
       setErrorMessage(t('recaptcha.please_complete_recaptcha'))
       return
     }
 
     setLoading(true)
-    setErrorMessage('')
 
     try {
-      await subscriberService.subscribe(emailSimple, token)
+      await subscriberService.subscribe(emailSimple, captchaToken)
       setIsSubscribed(true)
       setEmailSimple('')
+      setCaptchaToken(null)
+      setShowCaptcha(false)
+      recaptchaRef.current?.reset()
     } catch (err: any) {
-      setErrorMessage(err.message)
+      setErrorMessage(err.message || 'Something went wrong')
     } finally {
       setLoading(false)
     }
@@ -83,8 +86,21 @@ export default function NewsletterSimple() {
                 {loading ? `${t('common.sending')}` : `${t('common.subscribe')}`}
                 <ExternalLink size={16} />
               </button>
-              <ReCAPTCHA sitekey={RECAPTCHA_SITE_KEY} size="invisible" ref={recaptchaRef} />
             </div>
+
+            {showCaptcha && (
+              <div className="flex justify-center mt-4">
+                <ReCAPTCHA
+                  sitekey={RECAPTCHA_SITE_KEY}
+                  ref={recaptchaRef}
+                  onChange={(token) => {
+                    setCaptchaToken(token)
+                    setErrorMessage('')
+                    handleSubmit() // tự submit lại sau khi tick
+                  }}
+                />
+              </div>
+            )}
 
             {errorMessage && <p className="text-red-500 text-sm mt-2">{errorMessage}</p>}
           </>

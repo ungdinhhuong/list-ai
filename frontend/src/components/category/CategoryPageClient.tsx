@@ -16,7 +16,6 @@ interface CategoryPageClientProps {
 
 export default function CategoryPageClient({ categories, page }: CategoryPageClientProps) {
   const t = useTranslations()
-  console.log('CategoryPageClient categories:', categories)
   return (
     <div className="container mx-auto lg:w-7xl space-y-8 relative">
       <TitlePage title={page?.title || ''} description={page?.description || ''} />

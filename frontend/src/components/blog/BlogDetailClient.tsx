@@ -34,7 +34,6 @@ export default function BlogDetailClient({blog}: BlogDetailClientProps) {
         }
 
         const json = await response.json()
-        console.log('Related blogs:', json)
         setRelatedBlogs(json?.data || [])
       } catch (err) {
         console.error('Failed to fetch related blogs:', err)

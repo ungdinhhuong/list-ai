@@ -85,6 +85,7 @@ export default function Header() {
                   src="/ontoolaz_logo.png"
                   alt="OnToolAZ"
                   fill
+                  sizes="true"
                   className="w-full h-full object-contain"
                 />
               </div>
