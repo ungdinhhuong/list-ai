@@ -1,13 +1,12 @@
 'use client'
-import { Calendar, User } from 'lucide-react'
+import {Calendar, User} from 'lucide-react'
 import Image from 'next/image'
-import { useTranslations } from 'next-intl'
-import React, { useEffect, useState } from 'react'
+import {useTranslations} from 'next-intl'
+import React, {useEffect, useState} from 'react'
 import NewsletterImage from '@/components/section/newsletter/NewsletterImage'
-import { Badge } from '@/components/ui/badge'
-import { Separator } from '@/components/ui/separator'
-import { BlogType } from '@/types/blog.type'
-import { renderUrlImage } from '@/utils/functions'
+import {Badge} from '@/components/ui/badge'
+import {BlogType} from '@/types/blog.type'
+import {renderUrlImage} from '@/utils/functions'
 import BlogGrid from '@/components/blog/BlogGrid'
 import ShareButtons from '@/components/blog/ShareButtons'
 
@@ -15,7 +14,7 @@ interface BlogDetailClientProps {
   blog: BlogType
 }
 
-export default function BlogDetailClient({ blog }: BlogDetailClientProps) {
+export default function BlogDetailClient({blog}: BlogDetailClientProps) {
   const t = useTranslations()
   const [relatedBlogs, setRelatedBlogs] = useState<BlogType[]>([])
   const [loadingRelated, setLoadingRelated] = useState(false)
@@ -74,12 +73,12 @@ export default function BlogDetailClient({ blog }: BlogDetailClientProps) {
           {/* Meta Information */}
           <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
-              <User className="h-4 w-4" />
+              <User className="h-4 w-4"/>
               <span>Admin</span>
             </div>
             {blog.publishedAt && (
               <div className="flex items-center gap-2">
-                <Calendar className="h-4 w-4" />
+                <Calendar className="h-4 w-4"/>
                 <time dateTime={blog.publishedAt}>
                   {new Date(blog.publishedAt).toLocaleDateString('vi-VN', {
                     year: 'numeric',
@@ -120,7 +119,7 @@ export default function BlogDetailClient({ blog }: BlogDetailClientProps) {
       {/* Content */}
       <article className="mb-12 lg:mb-16">
         <div
-          dangerouslySetInnerHTML={{ __html: blog.content || '' }}
+          dangerouslySetInnerHTML={{__html: blog.content || ''}}
           className="prose-ckeditor"
         />
       </article>
@@ -133,14 +132,14 @@ export default function BlogDetailClient({ blog }: BlogDetailClientProps) {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {relatedBlogs.map((item) => <BlogGrid post={item} key={item.id} />)}
+            {relatedBlogs.map((item) => <BlogGrid post={item} key={item.id}/>)}
           </div>
         </div>
       )}
 
       {/* Newsletter Section */}
       <div className="pt-8 lg:pt-12">
-        <NewsletterImage />
+        <NewsletterImage/>
       </div>
     </div>
   )
