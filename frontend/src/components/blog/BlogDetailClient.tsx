@@ -70,7 +70,7 @@ export default function BlogDetailClient({ blog }: BlogDetailClientProps) {
           {blog.description}
         </p>
 
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between flex-col md:flex-row gap-4 md:gap-0">
           {/* Meta Information */}
           <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
@@ -99,7 +99,6 @@ export default function BlogDetailClient({ blog }: BlogDetailClientProps) {
           <ShareButtons/>
         </div>
 
-        <Separator className="my-8" />
       </div>
 
       {/* Thumbnail Image */}

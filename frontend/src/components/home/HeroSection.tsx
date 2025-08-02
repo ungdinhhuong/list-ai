@@ -42,13 +42,21 @@ export default function HeroSection({ homePage }: HeroSectionProps) {
 
         <div
           className="flex justify-center lg:justify-start items-center flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
-          <button
+          {/*<button
             className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-full font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center space-x-2 w-full sm:w-auto justify-center">
             <Upload className="w-5 h-5 group-hover:rotate-12 transition-transform" />
             <span>{t('common.submitAITool')}</span>
-          </button>
-
+          </button>*/}
           <a
+            href={siteSetting.joinCommunity}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-full font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center space-x-2 w-full sm:w-auto justify-center">
+            <Users className="w-5 h-5 group-hover:scale-110 transition-transform" />
+            <span>{t('common.joinCommunity')}</span>
+          </a>
+
+          {/*<a
             href={siteSetting.joinCommunity}
             target="_blank"
             rel="noopener noreferrer"
@@ -56,7 +64,7 @@ export default function HeroSection({ homePage }: HeroSectionProps) {
           >
             <Users className="w-5 h-5 group-hover:scale-110 transition-transform" />
             <span>{t('common.joinCommunity')}</span>
-          </a>
+          </a>*/}
         </div>
       </div>
 
@@ -69,7 +77,7 @@ export default function HeroSection({ homePage }: HeroSectionProps) {
           >
             <div className="aspect-video overflow-hidden">
               <Image
-                src={ads[0]?.image?.url ? renderUrlImage(ads[0].image.url) : ads[0].imageLink}
+                src={ads[0]?.image?.url ? renderUrlImage(ads[0]?.image?.url as string) : ads[0].imageLink}
                 alt={ads[0].title}
                 width={600}
                 height={400}

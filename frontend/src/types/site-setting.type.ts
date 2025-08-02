@@ -70,6 +70,7 @@ export interface SiteSettingType {
   socialLinks: SocialLink[]
   footerLinks: FooterLink[]
   contactInfo: ContactInfo
+  joinCommunity: string
 }
 
 export interface SiteSettingResponse {
