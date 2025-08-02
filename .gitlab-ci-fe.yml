@@ -77,6 +77,33 @@ deploy_fe_prod:
         sh $CI_PROJECT_DIR/send_telegram.sh "[FE - PROD] ❌ FAILED" "..."
       fi
 
+redeploy_fe_prod_manual:
+  stage: deploy
+  when: manual
+  environment:
+    name: production
+  script:
+    - echo "🔧 Bắt đầu build FE"
+    - echo "$ENV_FILE_FE_PRODUCTION" > .env.production
+    - docker build --build-arg NODE_ENV=production -t $IMAGE_TAG_FE ./frontend
+    - docker push $IMAGE_TAG_FE
+
+    - echo "🚀 Deploy FE lên production"
+    - |
+      ssh $SSH_USER@$SSH_HOST "
+        echo $DEPLOY_REGISTRY_PASSWORD | docker login -u $DEPLOY_REGISTRY_USER --password-stdin registry.gitlab.com &&
+        cd $WORKDIR/frontend &&
+        export IMAGE_TAG=$CI_COMMIT_SHORT_SHA &&
+        export NODE_ENV=production &&
+        docker compose pull &&
+        docker compose down &&
+        docker compose up -d
+      "
+
+    - echo "📣 Gửi thông báo Telegram"
+    - |
+      sh $CI_PROJECT_DIR/send_telegram.sh "[FE - PROD] 🔁 REDEPLOYED" "Image: \`$IMAGE_TAG_FE\`%0ABranch: \`$CI_COMMIT_REF_NAME\`%0ACommit: \`$CI_COMMIT_SHORT_SHA\`%0ABy: \`$GITLAB_USER_NAME\`%0ATime: \`$(date -u '+%Y-%m-%d %H:%M UTC')\`"
+
 rollback_fe_prod:
   stage: deploy
   when: manual

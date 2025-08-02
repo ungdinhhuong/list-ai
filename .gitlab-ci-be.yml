@@ -76,6 +76,32 @@ deploy_be_prod:
         sh $CI_PROJECT_DIR/send_telegram.sh "[BE - PROD] ❌ FAILED" "..."
       fi
 
+redeploy_be_prod_manual:
+  stage: deploy
+  when: manual
+  environment:
+    name: production
+  script:
+    - echo "🔧 Bắt đầu build BE"
+    - docker build -t $IMAGE_TAG_BE ./backend
+    - docker push $IMAGE_TAG_BE
+
+    - echo "🚀 Deploy BE lên production"
+    - |
+      ssh $SSH_USER@$SSH_HOST "
+        echo $DEPLOY_REGISTRY_PASSWORD | docker login -u $DEPLOY_REGISTRY_USER --password-stdin registry.gitlab.com &&
+        cd $WORKDIR/backend &&
+        export IMAGE_TAG=$CI_COMMIT_SHORT_SHA &&
+        export NODE_ENV=production &&
+        docker compose pull &&
+        docker compose down &&
+        docker compose up -d
+      "
+
+    - echo "📣 Gửi thông báo Telegram"
+    - |
+      sh $CI_PROJECT_DIR/send_telegram.sh "[BE - PROD] 🔁 REDEPLOYED" "Image: \`$IMAGE_TAG_BE\`%0ABranch: \`$CI_COMMIT_REF_NAME\`%0ACommit: \`$CI_COMMIT_SHORT_SHA\`%0ABy: \`$GITLAB_USER_NAME\`%0ATime: \`$(date -u '+%Y-%m-%d %H:%M UTC')\`"
+
 rollback_be_prod:
   stage: deploy
   when: manual
