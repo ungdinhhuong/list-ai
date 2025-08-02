@@ -1099,7 +1099,7 @@ export interface ApiToolTool extends Struct.CollectionTypeSchema {
           localized: false;
         };
       }>;
-    type: Schema.Attribute.Enumeration<['Free', 'Paid']> &
+    type: Schema.Attribute.Enumeration<['ai', 'finance']> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: false;

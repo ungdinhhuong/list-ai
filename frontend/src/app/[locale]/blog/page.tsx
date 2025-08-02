@@ -9,7 +9,7 @@ import { singleTypeService } from '@/services/single-type.service'
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await singleTypeService.getBlogPage()
-  const seo = page?.data.seo || null
+  const seo = page?.data?.seo || null
   return seoMeta({ seo, path: ROUTES.BLOG })
 }
 

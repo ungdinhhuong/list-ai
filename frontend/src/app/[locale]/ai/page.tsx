@@ -1,15 +1,14 @@
 import { Metadata } from 'next'
 import React from 'react'
-
-import AIPageClient from '@/components/ai/AIPageClient'
 import { ROUTES } from '@/constants/routes'
 import { seoMeta } from '@/lib/seoMeta'
 import { singleTypeService } from '@/services/single-type.service'
 import { toolService } from '@/services/tool.service'
+import AIPageClient from '@/components/ai/AIPageClient'
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await singleTypeService.getAIPage()
-  const seo = page?.data.seo || null
+  const seo = page?.data?.seo || null
   return seoMeta({ seo, path: ROUTES.AI })
 }
 
