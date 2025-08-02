@@ -23,6 +23,7 @@
     "about": "Về chúng tôi",
     "categories": "Danh mục",
     "blogs": "Blog",
+    "aiTools": "Công cụ AI",
     "type": "Phân loại",
     "followUs": "Theo dõi",
     "visitWebsite": "Truy cập trang web",
@@ -36,7 +37,8 @@
     "searchTools": "Tìm kiếm công cụ",
     "searchResultTotal": "{count} kết quả được tìm thấy",
     "notFoundResult": "Không tìm thấy kết quả.",
-    "theme": "Giao diện"
+    "theme": "Giao diện",
+    "similarTools": "Công cụ tương tự"
   },
   "categoryPage": {
     "title": "Danh mục",

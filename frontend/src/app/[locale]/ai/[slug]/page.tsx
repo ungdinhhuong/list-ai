@@ -32,7 +32,7 @@ export default async function AIDetailPage({params}: AIDetailPageProps) {
   const categoryIds = tool.categories?.map((category: any) => category.id) || []
   let relatedTools: ToolType[] = []
   if (categoryIds.length > 0) {
-    const resToolsByCategory = await toolService.getToolsByCategory(categoryIds)
+    const resToolsByCategory = await toolService.getToolsByCategory(categoryIds, tool.id)
     relatedTools = resToolsByCategory.data || []
   }
 

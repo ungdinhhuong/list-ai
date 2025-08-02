@@ -23,6 +23,7 @@
     "about": "About",
     "categories": "Categories",
     "blogs": "Blogs",
+    "aiTools": "AI Tools",
     "type": "Type",
     "followUs": "Follow Us",
     "visitWebsite": "Visit Website",
@@ -36,7 +37,8 @@
     "searchTools": "Search Tools",
     "searchResultTotal": "Total {count} results found",
     "notFoundResult": "No results found.",
-    "theme": "Theme"
+    "theme": "Theme",
+    "similarTools": "Similar tools"
   },
   "categoryPage": {
     "title": "Categories",

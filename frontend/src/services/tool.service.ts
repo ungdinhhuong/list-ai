@@ -23,16 +23,20 @@ class ToolService {
     return res.data?.[0]
   }
 
-  async getToolsByCategory(categoryIds: string[]): Promise<PaginatedResponse<ToolType>> {
-    return await apiGet('/tools', {
-      params: {
-        'filters[categories][id][$in]': categoryIds,
-        sort: 'updatedAt:desc',
-        populate: 'avatar',
-        'pagination[page]': 1,
-        'pagination[pageSize]': 9,
-      },
-    })
+  async getToolsByCategory(categoryIds: string[], currentToolId?: number): Promise<PaginatedResponse<ToolType>> {
+    const params: Record<string, any> = {
+      'filters[categories][id][$in]': categoryIds,
+      sort: 'updatedAt:desc',
+      populate: 'avatar',
+      'pagination[page]': 1,
+      'pagination[pageSize]': 9,
+    }
+
+    if (currentToolId) {
+      params['filters[id][$ne]'] = currentToolId
+    }
+
+    return await apiGet('/tools', { params })
   }
 
   async getAllTools({
@@ -57,6 +61,36 @@ class ToolService {
 
     return await apiGet(`/tools`, { params })
   }
+
+  async getToolsByCategorySlug({
+                             slug,
+                             page,
+                             pageSize,
+                             q,
+                             categoryId,
+                           }: {
+    slug: string
+    page?: number
+    pageSize?: number
+    q?: string
+    categoryId?: number
+  }): Promise<PaginatedResponse<ToolType>> {
+    const params: Record<string, any> = {
+      page: page || 1,
+      pageSize: pageSize || 10,
+    }
+
+    if (q) {
+      params.q = q
+    }
+
+    if (categoryId) {
+      params.categoryId = categoryId
+    }
+
+    return await apiGet(`/tools/by-category/${slug}`, { params })
+  }
+
 }
 
 export const toolService = new ToolService()

@@ -434,13 +434,12 @@ export interface ApiAboutPageAboutPage extends Struct.SingleTypeSchema {
   };
 }
 
-export interface ApiBlogCategoryBlogCategory
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'blog_categories';
+export interface ApiAiPageAiPage extends Struct.SingleTypeSchema {
+  collectionName: 'ai_pages';
   info: {
-    displayName: 'BlogCategory';
-    pluralName: 'blog-categories';
-    singularName: 'blog-category';
+    displayName: 'ai-page';
+    pluralName: 'ai-pages';
+    singularName: 'ai-page';
   };
   options: {
     draftAndPublish: false;
@@ -451,7 +450,6 @@ export interface ApiBlogCategoryBlogCategory
     };
   };
   attributes: {
-    blogs: Schema.Attribute.Relation<'oneToMany', 'api::blog.blog'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -461,30 +459,11 @@ export interface ApiBlogCategoryBlogCategory
           localized: true;
         };
       }>;
-    icon: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::blog-category.blog-category'
+      'api::ai-page.ai-page'
     >;
-    name: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    order: Schema.Attribute.Integer &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }> &
-      Schema.Attribute.DefaultTo<0>;
     publishedAt: Schema.Attribute.DateTime;
     seo: Schema.Attribute.Component<'shared.seo', false> &
       Schema.Attribute.SetPluginOptions<{
@@ -492,8 +471,7 @@ export interface ApiBlogCategoryBlogCategory
           localized: true;
         };
       }>;
-    slug: Schema.Attribute.String &
-      Schema.Attribute.Unique &
+    title: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -570,10 +548,6 @@ export interface ApiBlogBlog extends Struct.CollectionTypeSchema {
     };
   };
   attributes: {
-    category: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::blog-category.blog-category'
-    >;
     content: Schema.Attribute.RichText &
       Schema.Attribute.CustomField<
         'plugin::ckeditor5.CKEditor',
@@ -683,7 +657,7 @@ export interface ApiCategoryPageCategoryPage extends Struct.SingleTypeSchema {
 export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   collectionName: 'categories';
   info: {
-    displayName: 'ToolCategory';
+    displayName: 'Category';
     pluralName: 'categories';
     singularName: 'category';
   };
@@ -696,6 +670,10 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
     };
   };
   attributes: {
+    categories: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::category.category'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -730,6 +708,7 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
         };
       }> &
       Schema.Attribute.DefaultTo<0>;
+    parent: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.String &
       Schema.Attribute.Unique &
@@ -1572,7 +1551,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::about-page.about-page': ApiAboutPageAboutPage;
-      'api::blog-category.blog-category': ApiBlogCategoryBlogCategory;
+      'api::ai-page.ai-page': ApiAiPageAiPage;
       'api::blog-page.blog-page': ApiBlogPageBlogPage;
       'api::blog.blog': ApiBlogBlog;
       'api::category-page.category-page': ApiCategoryPageCategoryPage;

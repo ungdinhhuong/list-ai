@@ -3,6 +3,7 @@
 import { CalendarDays, User } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 import React from 'react'
 
 import Pagination from '@/components/common/Pagination'
@@ -20,12 +21,13 @@ interface BlogPageClientProps {
 }
 
 export default function BlogPageClient({ blogs, page }: BlogPageClientProps) {
+  const t = useTranslations()
   return (
     <div className="container mx-auto lg:w-7xl space-y-8 relative">
       <TitlePage title={page?.title || ''} description={page?.description || ''} />
 
       {/* Blog Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {blogs.data ? (<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {blogs.data.map((post) => (
           <Card key={post.id}
                 className="group hover:shadow-lg transition-all duration-300 cursor-pointer overflow-hidden py-0 gap-4 shadow-none">
@@ -75,10 +77,12 @@ export default function BlogPageClient({ blogs, page }: BlogPageClientProps) {
             </CardFooter>
           </Card>
         ))}
-      </div>
+      </div>) : (<div>{t('common.noResults')}</div>)}
+
 
       {/* Load More Button */}
-      <Pagination meta={blogs.meta} />
+      {blogs.meta && blogs.meta.pagination.pageCount > 1 && (<Pagination meta={blogs.meta} />)}
+
     </div>
   )
 };

@@ -78,7 +78,8 @@ export default function AIDetailClient({ tool, relatedTools }: AIDetailClientPro
       />
 
       {/* Danh sách tool AI */}
-      <AllToolsSection title="Similar tools" tools={relatedTools} lengthItems={3} />
+      {relatedTools.length > 0 && (<AllToolsSection title={`${t('common.similarTools')}`} tools={relatedTools} lengthItems={3} />)}
+
 
       <NewsletterImage />
     </div>

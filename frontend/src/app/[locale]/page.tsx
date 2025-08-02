@@ -17,7 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function HomePage() {
   const [resToolsByBadge, resAllTools, resHomePage] = await Promise.all([
     toolService.getToolsByBadge(BADGE.FEATURED),
-    toolService.getAllTools({ page: 1, pageSize: PAGE_SIZE }),
+    toolService.getAllTools({ page: 1, pageSize: 12 }),
     singleTypeService.getHomePage(),
   ])
 

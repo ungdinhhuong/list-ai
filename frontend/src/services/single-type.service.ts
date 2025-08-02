@@ -5,6 +5,7 @@ import { CategoryPageResponse } from '@/types/category.type'
 import { HomePageType } from '@/types/home-page.type'
 import { SiteSettingResponse } from '@/types/site-setting.type'
 import { StaticPageType } from '@/types/static-page.type'
+import { AIPageType } from '@/types/ai.type'
 
 class SingleTypeService {
   async getHomePage(): Promise<SingleTypeResponse<HomePageType>> {
@@ -43,6 +44,23 @@ class SingleTypeService {
 
   async getBlogPage(): Promise<SingleTypeResponse<BlogPageType>> {
     return await apiGet('/blog-page', {
+      params: {
+        populate: {
+          seo: {
+            populate: {
+              openGraph: {
+                populate: ['ogImage'],
+              },
+              metaImage: true,
+            },
+          },
+        },
+      },
+    })
+  }
+
+  async getAIPage(): Promise<SingleTypeResponse<AIPageType>> {
+    return await apiGet('/ai-page', {
       params: {
         populate: {
           seo: {

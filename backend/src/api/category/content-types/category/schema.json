@@ -4,7 +4,7 @@
   "info": {
     "singularName": "category",
     "pluralName": "categories",
-    "displayName": "ToolCategory"
+    "displayName": "Category"
   },
   "options": {
     "draftAndPublish": false
@@ -58,6 +58,18 @@
         }
       },
       "default": 0
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::category.category",
+      "mappedBy": "parent"
+    },
+    "parent": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "categories"
     },
     "tools": {
       "type": "relation",

@@ -3,7 +3,6 @@ import { notFound, redirect } from 'next/navigation'
 import React from 'react'
 
 import BlogPageClient from '@/components/blog/BlogPageClient'
-import { PAGE_SIZE } from '@/constants/constants'
 import { ROUTES } from '@/constants/routes'
 import { seoMeta } from '@/lib/seoMeta'
 import { blogService } from '@/services/blog.service'

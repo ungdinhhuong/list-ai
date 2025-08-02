@@ -15,6 +15,8 @@ import { useFetchApiData } from '@/lib/fetchApiData'
 import { PaginatedResponse } from '@/types/api.type'
 import { HomePageType } from '@/types/home-page.type'
 import { ToolType } from '@/types/tool.type'
+import Link from 'next/link'
+import { ROUTES } from '@/constants/routes'
 
 interface HomePageClientProps {
   featuredTools: PaginatedResponse<ToolType>
@@ -27,12 +29,13 @@ export default function HomePageClient({
   initialTools,
   homePage,
 }: HomePageClientProps) {
-  const [pagination, setPagination] = useState(initialTools.meta.pagination)
+  const t = useTranslations()
+
   const [tools, setTools] = useState(initialTools.data)
+/*  const [pagination, setPagination] = useState(initialTools.meta.pagination)
   const [loading, setLoading] = useState(false)
   const [hasMore, setHasMore] = useState(pagination.page < pagination.pageCount)
 
-  const t = useTranslations()
   const fetchApiData = useFetchApiData() // ✅ gọi hook ở cấp component
 
   const loadMore = async () => {
@@ -51,12 +54,12 @@ export default function HomePageClient({
     } finally {
       setLoading(false)
     }
-  }
+  }*/
 
   return (
     <div className="container mx-auto lg:max-w-7xl space-y-8 text-foreground">
       <HeroSection homePage={homePage} />
-      <SearchBar />
+      {/*<SearchBar />*/}
       <FeaturedToolsSection tools={featuredTools.data} />
 
       {/* Newsletter hình ảnh */}
@@ -66,8 +69,13 @@ export default function HomePageClient({
 
       {/* Danh sách tool AI */}
       <AllToolsSection tools={tools} />
+      <div className="text-center xl:mb-16">
+        <Button className="px-8 py-2" variant="secondary">
+          <Link href={ROUTES.AI}>{t('common.loadMore')}</Link>
+        </Button>
+      </div>
 
-      {hasMore && (
+      {/*{hasMore && (
         <div className="text-center xl:mb-16">
           <Button onClick={loadMore} disabled={loading} className="px-8 py-2" variant="secondary">
             {loading ? (
@@ -80,7 +88,7 @@ export default function HomePageClient({
             )}
           </Button>
         </div>
-      )}
+      )}*/}
 
       <NewsletterSimple />
     </div>
