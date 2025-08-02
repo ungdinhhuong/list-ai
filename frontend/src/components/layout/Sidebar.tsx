@@ -29,6 +29,7 @@ export default function Sidebar({ categories }: SidebarProps) {
     setSidebarOpen(false)
     router.push(ROUTES.CATEGORY_DETAIL(category.slug))
   }
+  console.log('Sidebar categories:', categories)
 
   return (
     <>
@@ -79,10 +80,10 @@ export default function Sidebar({ categories }: SidebarProps) {
                 className={`
                   flex items-center space-x-3 px-3 py-2 rounded cursor-pointer transition-colors
                   ${
-                    isActive
-                      ? 'bg-muted text-foreground'
-                      : 'text-muted-foreground hover:bg-accent hover:text-foreground'
-                  }
+                  isActive
+                    ? 'bg-muted text-foreground'
+                    : 'text-muted-foreground hover:bg-accent hover:text-foreground'
+                }
                 `}
                 onClick={() => handleClick(category)}
               >

@@ -7,8 +7,7 @@ import { SidebarProvider } from '@/contexts/SidebarProvider'
 import { categoryService } from '@/services/category.service'
 
 export default async function MainLayout({ children }: { children: React.ReactNode }) {
-  const res = await categoryService.getCategories()
-  const categories = res?.data || []
+  const categories = await categoryService.getCategoryTree()
 
   return (
     <SidebarProvider>

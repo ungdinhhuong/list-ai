@@ -15,6 +15,8 @@ export interface CategoryType {
   locale: string
   order: number
   tools: ToolType[]
+  parent?: CategoryType
+  categories?: CategoryType[]
 }
 
 export interface CategoryPageType {
@@ -32,4 +34,11 @@ export interface CategoryPageType {
 export interface CategoryPageResponse {
   data: CategoryPageType
   meta: Record<string, unknown>
+}
+
+export type CategoryTree = {
+  id: number
+  name: string
+  parent?: { id: number } | null
+  categories?: CategoryTree[] // các category con (nếu populate)
 }
