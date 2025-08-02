@@ -66,6 +66,10 @@
   "category": {
     "noTools": "No tools found in this category."
   },
+  "blog": {
+    "relatedArticles": "Related Articles",
+    "shareThisPost": "Share this post"
+  },
   "mode": {
     "toggle": "Toggle Theme",
     "light": "Light Mode",

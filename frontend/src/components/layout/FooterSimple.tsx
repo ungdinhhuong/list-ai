@@ -3,47 +3,60 @@ import { useTranslations } from 'next-intl'
 import React from 'react'
 
 import ReCaptchaPolicy from '@/components/section/newsletter/ReCaptchaPolicy'
-import { SOCIALS } from '@/constants/constants'
+import { SOCIAL_ICONS } from '@/constants/constants'
 import { APP_NAME } from '@/constants/env'
 import { ROUTES } from '@/constants/routes'
+import { SiteSettingType } from '@/types/site-setting.type'
 
-const FooterSimple = () => {
+interface FooterSimpleProps {
+  siteSetting: SiteSettingType
+}
+
+const FooterSimple = ({ siteSetting }: FooterSimpleProps) => {
   const t = useTranslations()
-
   return (
-    <footer className="bg-background text-foreground border-t border-border">
+    <footer
+      className="bg-background text-foreground border-t border-border"
+      role="contentinfo"
+      itemScope
+      itemType="http://schema.org/WPFooter"
+    >
       <div className="w-full mx-auto px-4 py-4 text-center lg:text-left">
-        <div className="flex flex-col-reverse gap-4 flex-d lg:flex-row justify-between items-center">
+        <div className="flex flex-col-reverse gap-4 lg:flex-row justify-between items-center">
           <div>
             <p className="text-muted-foreground text-sm mb-1">
-              © 2025 {APP_NAME}. All rights reserved.
+              © 2025 <span className="font-semibold">{APP_NAME}</span>. All rights reserved.
             </p>
             <ReCaptchaPolicy />
           </div>
 
-          <div className="flex items-center space-x-6 sm:mt-0  text-sm">
-            <Link
-              href={ROUTES.POLICY}
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              {t('common.policy')}
-            </Link>
-            <Link
-              href={ROUTES.ABOUT}
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              {t('common.about')}
-            </Link>
-            <span className="text-muted-foreground"> {t('common.followUs')}:</span>
+          <div className="flex items-center space-x-6 text-sm">
+            <nav aria-label="Footer Navigation" className="flex space-x-6">
+              <Link
+                href={ROUTES.POLICY}
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {t('common.policy')}
+              </Link>
+              <Link
+                href={ROUTES.ABOUT}
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {t('common.about')}
+              </Link>
+            </nav>
+            <span className="text-muted-foreground">{t('common.followUs')}:</span>
             <div className="flex space-x-3">
-              {Object.values(SOCIALS).map(social => {
-                const Icon = social.icon
+              {siteSetting.socialLinks.map(social => {
+                const Icon = SOCIAL_ICONS[social.platform.toLowerCase() as keyof typeof SOCIAL_ICONS]
                 return (
                   <a
-                    key={social.name}
+                    key={social.id}
                     href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-muted-foreground hover:text-foreground transition-colors duration-200"
-                    aria-label={social.name}
+                    aria-label={`Follow us on ${social.platform}`}
                   >
                     <Icon size={18} />
                   </a>

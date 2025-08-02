@@ -7,6 +7,11 @@ interface GetBlogsParams {
   page?: number
   pageSize?: number
 }
+interface GetBlogsRelatedParams {
+  categoryId: number
+  excludeId: number
+  limit: number
+}
 class BlogService {
   async getBlogs({ page, pageSize }: GetBlogsParams): Promise<PaginatedResponse<BlogType>> {
     return await apiGet('/blogs', {
@@ -34,10 +39,29 @@ class BlogService {
     const res = await apiGet(`/blogs`, {
       params: {
         'filters[slug][$eq]': slug,
-        populate: 'thumbnail',
+        populate: {
+          thumbnail: true,
+          category: true,
+          seo: true,
+        },
       },
     })
     return res.data?.[0]
+  }
+
+  async getBlogsRelated({ categoryId, excludeId, limit }: GetBlogsRelatedParams): Promise<PaginatedResponse<BlogType>> {
+    return await apiGet('/blogs', {
+      params: {
+        sort: 'updatedAt:desc',
+        populate: {
+          thumbnail: true,
+          category: true,
+        },
+        'filters[category][id][$eq]': categoryId,
+        'filters[id][$ne]': excludeId,
+        'pagination[pageSize]': limit,
+      },
+    })
   }
 }
 

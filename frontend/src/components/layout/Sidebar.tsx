@@ -79,7 +79,6 @@ export default function Sidebar({ categories }: SidebarProps) {
       )
     })
   }
-  console.log('Sidebar categories:', categories)
 
   return (
     <>

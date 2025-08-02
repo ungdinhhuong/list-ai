@@ -5,9 +5,12 @@ import Header from '@/components/layout/Header'
 import Sidebar from '@/components/layout/Sidebar'
 import { SidebarProvider } from '@/contexts/SidebarProvider'
 import { categoryService } from '@/services/category.service'
+import { singleTypeService } from '@/services/single-type.service'
 
 export default async function MainLayout({ children }: { children: React.ReactNode }) {
   const categories = await categoryService.getCategoryTree()
+  const resSiteSetting = await singleTypeService.getSiteSetting()
+  const siteSetting = resSiteSetting?.data || []
 
   return (
     <SidebarProvider>
@@ -17,7 +20,7 @@ export default async function MainLayout({ children }: { children: React.ReactNo
 
         <main className="flex-1 px-4 py-4 py-6 xl:py-8">{children}</main>
 
-        <FooterSimple />
+        <FooterSimple siteSetting={siteSetting}/>
       </div>
     </SidebarProvider>
   )

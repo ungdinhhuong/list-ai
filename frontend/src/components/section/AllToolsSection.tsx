@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl'
 
-import ToolCard from '@/components/ToolCard'
+import ToolCard from '@/components/tool/ToolCard'
 import { ToolType } from '@/types/tool.type'
 
 interface AllToolsSectionProps {

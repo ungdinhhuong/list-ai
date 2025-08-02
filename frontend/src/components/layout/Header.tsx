@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl'
 import { useEffect, useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 
-import LanguageSwitcher from '@/components/LanguageSwitcher'
+import LanguageSwitcher from '@/components/common/LanguageSwitcher'
 import ModeToggle from '@/components/shared/mode-toggle'
 import {
   DropdownMenu,

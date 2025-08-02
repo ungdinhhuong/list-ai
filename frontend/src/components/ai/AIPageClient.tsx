@@ -6,7 +6,7 @@ import Pagination from '@/components/common/Pagination'
 import TitlePage from '@/components/common/TitlePage'
 import { PaginatedResponse } from '@/types/api.type'
 import { AIPageType } from '@/types/ai.type'
-import ToolCard from '@/components/ToolCard'
+import ToolCard from '@/components/tool/ToolCard'
 import { ToolType } from '@/types/tool.type'
 import { useTranslations } from 'next-intl'
 

@@ -66,6 +66,10 @@
   "category": {
     "noTools": "Không tìm thấy công cụ nào trong danh mục này."
   },
+  "blog": {
+    "relatedPosts": "Bài viết liên quan",
+    "shareThisPost": "Chia sẻ bài viết này"
+  },
   "mode": {
     "toggle": "Chuyển đổi",
     "light": "Sáng",

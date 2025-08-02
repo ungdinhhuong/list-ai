@@ -68,3 +68,11 @@ export const SOCIALS = {
     icon: FaInstagram,
   },
 }
+
+export const SOCIAL_ICONS = {
+  facebook: FaFacebook,
+  x: FaTwitter,
+  youtube: FaYoutube,
+  tiktok: FaTiktok,
+  instagram: FaInstagram,
+}
