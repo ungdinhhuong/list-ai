@@ -17,6 +17,7 @@ export interface CategoryType {
   tools: ToolType[]
   parent?: CategoryType
   categories?: CategoryType[]
+  children?: CategoryType[]
 }
 
 export interface CategoryPageType {

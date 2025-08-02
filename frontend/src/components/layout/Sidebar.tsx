@@ -1,7 +1,8 @@
 'use client'
 
+import { ChevronDown, ChevronRight } from 'lucide-react'
 import { usePathname, useRouter } from 'next/navigation'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 import { ROUTES } from '@/constants/routes'
 import { useSidebar } from '@/contexts/SidebarProvider'
@@ -16,6 +17,8 @@ export default function Sidebar({ categories }: SidebarProps) {
   const pathname = usePathname()
   const router = useRouter()
 
+  const [openIds, setOpenIds] = useState<Set<number>>(new Set([categories[0]?.id || 0]))
+
   useEffect(() => {
     if (sidebarOpen) {
       document.body.classList.add('overflow-hidden')
@@ -25,9 +28,56 @@ export default function Sidebar({ categories }: SidebarProps) {
     return () => document.body.classList.remove('overflow-hidden')
   }, [sidebarOpen])
 
-  const handleClick = (category: CategoryType) => {
-    setSidebarOpen(false)
-    router.push(ROUTES.CATEGORY_DETAIL(category.slug))
+  const toggleOpen = (id: number) => {
+    setOpenIds(prev => {
+      const newSet = new Set(prev)
+      newSet.has(id) ? newSet.delete(id) : newSet.add(id)
+      return newSet
+    })
+  }
+
+  const renderCategories = (categories: CategoryType[], level = 0) => {
+    return categories.map(category => {
+      const hasChildren = category.children && category.children.length > 0
+      const isOpen = openIds.has(category.id)
+
+      const handleClick = () => {
+        if (hasChildren) {
+          toggleOpen(category.id)
+        } else {
+          setSidebarOpen(false)
+          router.push(ROUTES.CATEGORY_DETAIL(category.slug))
+        }
+      }
+
+      return (
+        <div key={category.id}>
+          <div
+            className={`flex items-center justify-between px-3 py-2 rounded cursor-pointer transition-colors ${
+              pathname === ROUTES.CATEGORY_DETAIL(category.slug)
+                ? 'bg-muted text-foreground'
+                : 'text-muted-foreground hover:bg-accent hover:text-foreground'
+            }`}
+            style={{ paddingLeft: `${level * 16 + 12}px` }}
+            onClick={handleClick}
+          >
+            <div className="flex items-center space-x-2">
+              <span className="text-lg">{category.icon}</span>
+              <span className="text-sm">{category.name}</span>
+            </div>
+            {hasChildren && (
+              <span className="text-xs">{isOpen ? <ChevronDown size={16} /> : <ChevronRight size={16} />}</span>
+            )}
+          </div>
+
+          {hasChildren && isOpen && (
+            <div className="space-y-1">
+              {renderCategories(category.children ?? [], level + 1)}
+            </div>
+          )}
+        </div>
+      )
+    })
   }
   console.log('Sidebar categories:', categories)
 
@@ -71,27 +121,7 @@ export default function Sidebar({ categories }: SidebarProps) {
 
         {/* Category list */}
         <div className="p-4 space-y-1">
-          {categories.map((category, index) => {
-            const isActive = pathname === ROUTES.CATEGORY_DETAIL(category.slug)
-
-            return (
-              <div
-                key={index}
-                className={`
-                  flex items-center space-x-3 px-3 py-2 rounded cursor-pointer transition-colors
-                  ${
-                  isActive
-                    ? 'bg-muted text-foreground'
-                    : 'text-muted-foreground hover:bg-accent hover:text-foreground'
-                }
-                `}
-                onClick={() => handleClick(category)}
-              >
-                <span className="text-lg">{category.icon}</span>
-                <span className="text-sm">{category.name}</span>
-              </div>
-            )
-          })}
+          {renderCategories(categories)}
         </div>
       </aside>
     </>

@@ -39,8 +39,8 @@ export default function Header() {
       ),
     },
     {
-      label: t('common.blogs'),
-      href: ROUTES.BLOG,
+      label: t('common.aiTools'),
+      href: ROUTES.AI,
       icon: (
         <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
@@ -53,8 +53,8 @@ export default function Header() {
       ),
     },
     {
-      label: t('common.aiTools'),
-      href: ROUTES.AI,
+      label: t('common.blogs'),
+      href: ROUTES.BLOG,
       icon: (
         <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
