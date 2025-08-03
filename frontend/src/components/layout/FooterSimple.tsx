@@ -47,7 +47,7 @@ const FooterSimple = ({ siteSetting }: FooterSimpleProps) => {
             </nav>
             <span className="text-muted-foreground">{t('common.followUs')}:</span>
             <div className="flex space-x-3">
-              {siteSetting.socialLinks.map(social => {
+              {(siteSetting.socialLinks || []).map(social => {
                 const Icon = SOCIAL_ICONS[social.platform.toLowerCase() as keyof typeof SOCIAL_ICONS]
                 return (
                   <a
