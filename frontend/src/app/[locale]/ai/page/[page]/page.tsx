@@ -9,11 +9,12 @@ import {singleTypeService} from '@/services/single-type.service'
 import {toolService} from '@/services/tool.service'
 
 type Props = {
-  params: { page: string }
+  params: Promise<{ page: string }>
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const pageNumber = parseInt(params.page, 10)
+  const paramsResolved = await params
+  const pageNumber = parseInt(paramsResolved.page, 10)
   if (pageNumber === 1) redirect(ROUTES.AI)
 
   const pageData = await singleTypeService.getAIPage()
@@ -27,7 +28,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function AIPagedPage({ params }: Props) {
-  const page = parseInt(params.page, 10)
+  const paramsResolved = await params
+  const page = parseInt(paramsResolved.page, 10)
   if (isNaN(page) || page < 1) notFound()
   if (page === 1) redirect(ROUTES.AI)
 

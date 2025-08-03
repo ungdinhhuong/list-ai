@@ -5,7 +5,6 @@ import { useTranslations } from 'next-intl'
 import { SetStateAction, useRef, useState} from 'react'
 import ReCAPTCHA from 'react-google-recaptcha'
 
-import {RECAPTCHA_SITE_KEY} from '@/constants/env'
 import {isValidEmail} from '@/lib/utils'
 import {subscriberService} from '@/services/subscriber.service'
 
@@ -91,7 +90,7 @@ export default function NewsletterSimple() {
             {showCaptcha && (
               <div className="flex justify-center mt-4">
                 <ReCAPTCHA
-                  sitekey='6LcFjJgrAAAAAAEP19swpG6v4a7wIyc1cAsuXkt-'
+                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''}
                   ref={recaptchaRef}
                   onChange={(token: SetStateAction<string | null>) => {
                     setCaptchaToken(token)

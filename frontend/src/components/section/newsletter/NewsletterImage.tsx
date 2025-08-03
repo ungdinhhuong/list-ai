@@ -7,7 +7,6 @@ import ReCAPTCHA from 'react-google-recaptcha'
 
 import {Button} from '@/components/ui/button'
 import {Input} from '@/components/ui/input'
-import {RECAPTCHA_SITE_KEY} from '@/constants/env'
 import {isValidEmail} from '@/lib/utils'
 import {subscriberService} from '@/services/subscriber.service'
 
@@ -116,7 +115,7 @@ export default function NewsletterImage() {
 
                   {showCaptcha && (
                     <ReCAPTCHA
-                      sitekey='6LcFjJgrAAAAAAEP19swpG6v4a7wIyc1cAsuXkt-'
+                      sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''}
                       ref={recaptchaRef}
                       onChange={(token: React.SetStateAction<string | null>) => {
                         setCaptchaToken(token)

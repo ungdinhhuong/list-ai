@@ -11,7 +11,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { usePathname, useRouter } from '@/i18n/navigation'
-import { cn } from '@/lib/utils' // Nếu bạn đã có hàm cn để merge class, nếu không có thì bỏ
+import { cn } from '@/lib/utils'
 
 const LANGUAGES = [
   { value: 'en', label: 'English' },
@@ -24,9 +24,18 @@ export default function LanguageSwitcher() {
   const router = useRouter()
   const pathname = usePathname()
 
+  // const handleLocaleChange = (newLocale: string) => {
+  //   if (newLocale !== locale) {
+  //     router.replace(pathname, { locale: newLocale })
+  //   }
+  // }
+
+  // Redirect to home if changing locale from home
   const handleLocaleChange = (newLocale: string) => {
     if (newLocale !== locale) {
-      router.replace(pathname, { locale: newLocale })
+      const isHome = pathname === '/' || pathname === `/${locale}`
+      const targetPath = isHome ? '/' : '/'
+      router.replace(targetPath, { locale: newLocale })
     }
   }
 
