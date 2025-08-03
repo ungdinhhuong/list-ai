@@ -71,7 +71,7 @@ export const SOCIALS = {
 
 export const SOCIAL_ICONS = {
   facebook: FaFacebook,
-  x: FaTwitter,
+  twitter: FaTwitter,
   youtube: FaYoutube,
   tiktok: FaTiktok,
   instagram: FaInstagram,
