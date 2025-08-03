@@ -2,12 +2,12 @@
 
 import { ExternalLink } from 'lucide-react'
 import { useTranslations } from 'next-intl'
-import { useRef, useState } from 'react'
+import { SetStateAction, useRef, useState} from 'react'
 import ReCAPTCHA from 'react-google-recaptcha'
 
-import { RECAPTCHA_SITE_KEY } from '@/constants/env'
-import { isValidEmail } from '@/lib/utils'
-import { subscriberService } from '@/services/subscriber.service'
+import {RECAPTCHA_SITE_KEY} from '@/constants/env'
+import {isValidEmail} from '@/lib/utils'
+import {subscriberService} from '@/services/subscriber.service'
 
 export default function NewsletterSimple() {
   const t = useTranslations()
@@ -84,7 +84,7 @@ export default function NewsletterSimple() {
                 className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
               >
                 {loading ? `${t('common.sending')}` : `${t('common.subscribe')}`}
-                <ExternalLink size={16} />
+                <ExternalLink size={16}/>
               </button>
             </div>
 
@@ -93,7 +93,7 @@ export default function NewsletterSimple() {
                 <ReCAPTCHA
                   sitekey={RECAPTCHA_SITE_KEY}
                   ref={recaptchaRef}
-                  onChange={(token) => {
+                  onChange={(token: SetStateAction<string | null>) => {
                     setCaptchaToken(token)
                     setErrorMessage('')
                     handleSubmit() // tự submit lại sau khi tick

@@ -24,7 +24,7 @@ instance.interceptors.response.use(
     return response && response.data ? response.data : response
   },
   function (error: any) {
-    console.log(error.response)
+    console.log(error)
     return error && error.response && error.response.data
       ? error.response.data
       : Promise.reject(error)

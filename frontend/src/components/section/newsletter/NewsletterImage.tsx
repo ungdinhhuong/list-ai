@@ -118,7 +118,7 @@ export default function NewsletterImage() {
                     <ReCAPTCHA
                       sitekey={RECAPTCHA_SITE_KEY}
                       ref={recaptchaRef}
-                      onChange={token => {
+                      onChange={(token: React.SetStateAction<string | null>) => {
                         setCaptchaToken(token)
                         setErrorMessage('')
                         handleSubmit()
