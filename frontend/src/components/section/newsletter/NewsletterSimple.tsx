@@ -91,7 +91,7 @@ export default function NewsletterSimple() {
             {showCaptcha && (
               <div className="flex justify-center mt-4">
                 <ReCAPTCHA
-                  sitekey={RECAPTCHA_SITE_KEY}
+                  sitekey='6LcFjJgrAAAAAAEP19swpG6v4a7wIyc1cAsuXkt-'
                   ref={recaptchaRef}
                   onChange={(token: SetStateAction<string | null>) => {
                     setCaptchaToken(token)
