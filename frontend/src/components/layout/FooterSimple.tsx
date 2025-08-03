@@ -48,7 +48,9 @@ const FooterSimple = ({ siteSetting }: FooterSimpleProps) => {
             <span className="text-muted-foreground">{t('common.followUs')}:</span>
             <div className="flex space-x-3">
               {(siteSetting.socialLinks || []).map(social => {
-                const Icon = SOCIAL_ICONS[social.platform.toLowerCase() as keyof typeof SOCIAL_ICONS]
+                const key = social.platform.toLowerCase() as keyof typeof SOCIAL_ICONS
+                const Icon = SOCIAL_ICONS[key]
+                if (!Icon) return null
                 return (
                   <a
                     key={social.id}
@@ -58,7 +60,7 @@ const FooterSimple = ({ siteSetting }: FooterSimpleProps) => {
                     className="text-muted-foreground hover:text-foreground transition-colors duration-200"
                     aria-label={`Follow us on ${social.platform}`}
                   >
-                    <Icon size={18} />
+                    <Icon size={18}/>
                   </a>
                 )
               })}

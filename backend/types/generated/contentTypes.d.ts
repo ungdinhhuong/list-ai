@@ -928,7 +928,7 @@ export interface ApiSiteSettingSiteSetting extends Struct.SingleTypeSchema {
     socialLinks: Schema.Attribute.Component<'common.social-link', true> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }>;
     updatedAt: Schema.Attribute.DateTime;
