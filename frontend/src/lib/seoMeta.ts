@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { OgType, StrapiImage, StrapiSeoToMetadataOpts, validOgTypes } from '@/types/seo.type'
 
 type SeoMetaOptions = Omit<StrapiSeoToMetadataOpts, 'defaultSeo'> & {
-  // Đã bỏ pageNumber và totalPages vì không còn dùng
+  title?: string
 }
 
 export function getValidOgType(type?: string): OgType {
@@ -17,27 +17,23 @@ export function seoMeta({
                           seo,
                           siteUrl,
                           path = '/',
+                          title,
                         }: SeoMetaOptions): Metadata {
   const _siteUrl = siteUrl || process.env.NEXT_PUBLIC_SITE_URL || 'https://ontoolaz.com'
 
   const defaultTitle = 'Ontoolaz - Discover the best AI tools'
   const defaultDesc = 'Explore the latest and best AI tools for your business and creativity at Ontoolaz.'
-  const defaultImage = `${_siteUrl}/og-image.png`
+  const defaultImage = `${_siteUrl}/images/og-image.png`
   const defaultKeywords = ['AI', 'AI tools', 'Ontoolaz']
   const defaultRobots = { index: false, follow: false }
 
   const url = _siteUrl + path
 
-  // Keywords: xử lý từ chuỗi thành array
   let keywords: string[] = defaultKeywords
   if (seo?.keywords) {
-    keywords = seo.keywords
-      .split(',')
-      .map(kw => kw.trim())
-      .filter(Boolean)
+    keywords = seo.keywords.split(',').map(kw => kw.trim()).filter(Boolean)
   }
 
-  // Robots
   let robots = defaultRobots
   if (seo?.metaRobots) {
     const robotStr = seo.metaRobots.toLowerCase()
@@ -47,7 +43,6 @@ export function seoMeta({
     }
   }
 
-  // Hàm xử lý ảnh
   const getImageUrl = (img?: StrapiImage) => {
     if (!img?.url) return defaultImage
     return img.url.startsWith('http') ? img.url : _siteUrl + img.url
@@ -56,16 +51,15 @@ export function seoMeta({
   const metaImage = seo?.metaImage || seo?.openGraph?.ogImage
   const openGraphImage = getImageUrl(metaImage)
 
-  const ogTitle = seo?.openGraph?.ogTitle || seo?.metaTitle || defaultTitle
+  const fullTitle = title || seo?.metaTitle || defaultTitle
+  const ogTitle = title || seo?.openGraph?.ogTitle || seo?.metaTitle || defaultTitle
   const ogDesc = seo?.openGraph?.ogDescription || seo?.metaDescription || defaultDesc
   const canonical = seo?.canonicalURL || url
 
-  // Chỉ dùng canonical, bỏ prev/next
   const alternates: Metadata['alternates'] = {
     canonical,
   }
 
-  // Structured Data
   let structuredData: string | undefined
   if (seo?.structuredData) {
     structuredData = typeof seo.structuredData === 'string'
@@ -74,7 +68,7 @@ export function seoMeta({
   }
 
   return {
-    title: seo?.metaTitle || defaultTitle,
+    title: fullTitle,
     description: seo?.metaDescription || defaultDesc,
     keywords,
     openGraph: {
