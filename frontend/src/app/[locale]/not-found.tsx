@@ -1,12 +1,13 @@
 "use client";
 
-import React, {useEffect, useState} from 'react';
-import {Button} from '@/components/ui/button';
 import {AlertTriangle, ArrowLeft, Bot, Home, Search, Zap} from 'lucide-react';
-import {useTranslations} from "next-intl";
-import {ROUTES} from "@/constants/routes";
-import {FaBlog, FaRobot, FaThLarge} from "react-icons/fa";
 import {useRouter} from "next/navigation";
+import {useTranslations} from "next-intl";
+import React, {useEffect, useState} from 'react';
+import {FaBlog, FaRobot, FaThLarge} from "react-icons/fa";
+
+import {Button} from '@/components/ui/button';
+import {ROUTES} from "@/constants/routes";
 
 interface FloatingElement {
   id: number;
@@ -206,14 +207,14 @@ const Content404Page: React.FC = () => {
 
       {/* Custom Animations */}
       <style jsx>{`
-        @keyframes float {
-          0%, 100% {
-            transform: translateY(0px) rotate(0deg);
+          @keyframes float {
+              0%, 100% {
+                  transform: translateY(0px) rotate(0deg);
+              }
+              50% {
+                  transform: translateY(-20px) rotate(10deg);
+              }
           }
-          50% {
-            transform: translateY(-20px) rotate(10deg);
-          }
-        }
       `}</style>
     </div>
   );
