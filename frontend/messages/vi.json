@@ -75,5 +75,13 @@
     "light": "Sáng",
     "dark": "Tối",
     "system": "Theo hệ thống"
+  },
+  "404": {
+    "title": "Không tìm thấy trang",
+    "subtitle1": "Rất tiếc, trang bạn đang tìm kiếm không tồn tại hoặc đã được di chuyển.",
+    "subtitle2": "Hãy kiểm tra lại URL hoặc sử dụng các tùy chọn bên dưới để tiếp tục khám phá.",
+    "backHome": "Về trang chủ",
+    "goBack": "Quay lại",
+    "orChoice": "Hoặc thử các liên kết hữu ích"
   }
 }
