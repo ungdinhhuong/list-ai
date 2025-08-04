@@ -47,10 +47,14 @@ const FooterSimple = ({ siteSetting }: FooterSimpleProps) => {
             </nav>
             <span className="text-muted-foreground">{t('common.followUs')}:</span>
             <div className="flex space-x-3">
-              {(siteSetting.socialLinks || []).map(social => {
-                const key = social.platform.toLowerCase() as keyof typeof SOCIAL_ICONS
-                const Icon = SOCIAL_ICONS[key]
-                if (!Icon) return null
+              {(siteSetting.socialLinks || []).map((social) => {
+                const platform = (social.platform || '').toLowerCase().trim()
+                const Icon = SOCIAL_ICONS[platform as keyof typeof SOCIAL_ICONS]
+                if (!Icon) {
+                  console.warn(`No icon found for platform: ${platform}`)
+                  return null
+                }
+
                 return (
                   <a
                     key={social.id}
@@ -60,7 +64,7 @@ const FooterSimple = ({ siteSetting }: FooterSimpleProps) => {
                     className="text-muted-foreground hover:text-foreground transition-colors duration-200"
                     aria-label={`Follow us on ${social.platform}`}
                   >
-                    <Icon size={18}/>
+                    <Icon size={18} />
                   </a>
                 )
               })}
