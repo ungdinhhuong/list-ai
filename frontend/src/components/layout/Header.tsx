@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { useEffect, useState } from 'react'
-import { FaBlog, FaRobot, FaThLarge } from 'react-icons/fa'
+import {FaBlog, FaEllipsisV, FaGlobe, FaMoon, FaRobot, FaThLarge} from 'react-icons/fa'
 
 import LanguageSwitcher from '@/components/common/LanguageSwitcher'
 import ModeToggle from '@/components/shared/mode-toggle'
@@ -71,6 +71,7 @@ export default function Header() {
         <div className="flex items-center justify-between px-4 py-3 fixed w-full z-10 top-0 left-0 xl:static bg-background text-foreground transition-colors">
           <div className="flex items-center space-x-4">
             <button
+              aria-label="Toggle sidebar"
               className="xl:hidden text-foreground p-1"
               onClick={() => setSidebarOpen(!sidebarOpen)}
             >
@@ -111,15 +112,12 @@ export default function Header() {
           <div className="md:hidden relative">
             <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
               <DropdownMenuTrigger asChild>
-                <button className="text-foreground p-1 hover:bg-accent hover:text-accent-foreground rounded-md transition-colors">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zM12 13a1 1 0 110-2 1 1 0 010 2zM12 20a1 1 0 110-2 1 1 0 010 2z"
-                    />
-                  </svg>
+                <button
+                  className="text-foreground p-1 hover:bg-accent hover:text-accent-foreground rounded-md transition-colors"
+                  aria-label="Open menu"
+                  type="button"
+                >
+                  <FaEllipsisV className="w-5 h-5"/>
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-56 relative z-50">
@@ -142,46 +140,16 @@ export default function Header() {
                   className="flex items-center justify-between"
                   onSelect={e => e.preventDefault()}
                 >
-                  <span className="flex items-center">
-                    <svg
-                      className="w-4 h-4 mr-2"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
-                      />
-                    </svg>
-                    {t('languageSwitcher.chooseLanguage')}
-                  </span>
-                  <LanguageSwitcher />
+                  <span className="flex items-center"><FaGlobe className="w-4 h-4 mr-2"/>{t('languageSwitcher.chooseLanguage')}</span>
+                  <LanguageSwitcher/>
                 </DropdownMenuItem>
 
                 <DropdownMenuItem
                   className="flex items-center justify-between"
                   onSelect={e => e.preventDefault()}
                 >
-                  <span className="flex items-center">
-                    <svg
-                      className="w-4 h-4 mr-2"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                      />
-                    </svg>
-                    {t('common.theme')}
-                  </span>
-                  <ModeToggle />
+                  <span className="flex items-center"><FaMoon className="w-4 h-4 mr-2"/>{t('common.theme')}</span>
+                  <ModeToggle/>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

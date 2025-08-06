@@ -58,21 +58,27 @@ export default function HomePageClient({
 
   return (
     <div className="container mx-auto lg:max-w-7xl space-y-8 text-foreground">
-      <HeroSection homePage={homePage} />
+      <HeroSection homePage={homePage}/>
       {/*<SearchBar />*/}
-      <FeaturedToolsSection tools={featuredTools.data} />
+      <FeaturedToolsSection tools={featuredTools.data}/>
 
       {/* Newsletter hình ảnh */}
       <section className="mb-8 lg:mb-12">
-        <NewsletterImage />
+        <NewsletterImage/>
       </section>
 
       {/* Danh sách tool AI */}
-      <AllToolsSection tools={tools} />
+      <AllToolsSection tools={tools}/>
       <div className="text-center xl:mb-16">
-        <Button className="px-8 py-2" variant="secondary">
-          <Link href={ROUTES.AI}>{t('common.loadMore')}</Link>
-        </Button>
+        <Link href={ROUTES.AI} passHref>
+          <Button
+            className="px-6 py-3 min-h-[48px] cursor-pointer"
+            variant="secondary"
+            aria-label="Load more AI tools"
+          >
+            {t('common.loadMore')}
+          </Button>
+        </Link>
       </div>
 
       {/*{hasMore && (
@@ -90,7 +96,7 @@ export default function HomePageClient({
         </div>
       )}*/}
 
-      <NewsletterSimple />
+      <NewsletterSimple/>
     </div>
   )
 }

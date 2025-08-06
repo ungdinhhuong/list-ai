@@ -9,26 +9,26 @@ export function cn(...inputs: ClassValue[]) {
 export const getBadgeColor = (badge?: string | null) => {
   switch (badge) {
     case 'Featured':
-      return 'bg-orange-500 text-white hover:bg-orange-600'
+      return 'bg-amber-600 text-white hover:bg-amber-700'
     case 'Popular':
-      return 'bg-green-500 text-white hover:bg-green-600'
+      return 'bg-emerald-600 text-white hover:bg-emerald-700'
     case 'New':
-      return 'bg-blue-500 text-white hover:bg-blue-600'
+      return 'bg-sky-600 text-white hover:bg-sky-700'
     default:
-      return 'bg-gray-500 text-white hover:bg-gray-600'
+      return 'bg-zinc-600 text-white hover:bg-zinc-700'
   }
 }
 
 export const getBadgeOutlineColor = (badge?: string | null) => {
   switch (badge) {
     case 'Featured':
-      return 'border-orange-500 text-orange-400 hover:bg-orange-500/10'
+      return 'border-amber-600 text-amber-600 hover:bg-amber-600/10'
     case 'Popular':
-      return 'border-green-500 text-green-400 hover:bg-green-500/10'
+      return 'border-emerald-600 text-emerald-600 hover:bg-emerald-600/10'
     case 'New':
-      return 'border-blue-500 text-blue-400 hover:bg-blue-500/10'
+      return 'border-sky-600 text-sky-600 hover:bg-sky-600/10'
     default:
-      return 'border-gray-500 text-gray-400 hover:bg-gray-500/10'
+      return 'border-zinc-600 text-zinc-600 hover:bg-zinc-600/10'
   }
 }
 
