@@ -26,8 +26,19 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
     ],
+    formats: ['image/webp'],
+    minimumCacheTTL: 60,
+  },
+
+  compress: true,
+  reactStrictMode: true,
+
+  compiler: {
+    // Tùy chọn thêm cho production
+    removeConsole: process.env.NODE_ENV === 'production',
   },
 }
 
 const withNextIntl = createNextIntlPlugin()
+
 export default withNextIntl(nextConfig)

@@ -19,8 +19,8 @@ before_script:
 build_be:
   stage: build
   rules:
-    - if: '$CI_COMMIT_BRANCH == "dev"'
-      changes: [backend/**/*]
+#    - if: '$CI_COMMIT_BRANCH == "dev"'
+#      changes: [backend/**/*]
     - if: '$CI_COMMIT_BRANCH == "master" && $FORCE_DEPLOY_BE == "true"'
     - if: '$CI_COMMIT_BRANCH == "master"'
       changes: [backend/**/*]
@@ -28,25 +28,25 @@ build_be:
     - docker build -t $IMAGE_TAG_BE ./backend
     - docker push $IMAGE_TAG_BE
 
-deploy_be_dev:
-  stage: deploy
-  needs: [build_be]
-  rules:
-    - if: '$CI_COMMIT_BRANCH == "dev"'
-      changes: [backend/**/*]
-  environment:
-    name: dev
-  script:
-    - |
-      ssh $SSH_USER@$SSH_HOST "
-        cd $WORKDIR/backend &&
-        export IMAGE_TAG=$CI_COMMIT_SHORT_SHA &&
-        export NODE_ENV=development &&
-        docker compose pull &&
-        docker compose down &&
-        docker compose up -d
-      "
-      sh $CI_PROJECT_DIR/send_telegram.sh "[BE - DEV] ✅ DEPLOYED" "..."
+#deploy_be_dev:
+#  stage: deploy
+#  needs: [build_be]
+#  rules:
+#    - if: '$CI_COMMIT_BRANCH == "dev"'
+#      changes: [backend/**/*]
+#  environment:
+#    name: dev
+#  script:
+#    - |
+#      ssh $SSH_USER@$SSH_HOST "
+#        cd $WORKDIR/backend &&
+#        export IMAGE_TAG=$CI_COMMIT_SHORT_SHA &&
+#        export NODE_ENV=development &&
+#        docker compose pull &&
+#        docker compose down &&
+#        docker compose up -d
+#      "
+#      sh $CI_PROJECT_DIR/send_telegram.sh "[BE - DEV] ✅ DEPLOYED" "..."
 
 deploy_be_prod:
   stage: deploy

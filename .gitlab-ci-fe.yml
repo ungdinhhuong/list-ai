@@ -19,8 +19,8 @@ before_script:
 build_fe:
   stage: build
   rules:
-    - if: '$CI_COMMIT_BRANCH == "dev"'
-      changes: [frontend/**/*]
+#    - if: '$CI_COMMIT_BRANCH == "dev"'
+#      changes: [frontend/**/*]
     - if: '$CI_COMMIT_BRANCH == "master" && $FORCE_DEPLOY_FE == "true"'
     - if: '$CI_COMMIT_BRANCH == "master"'
       changes: [frontend/**/*]
@@ -29,25 +29,25 @@ build_fe:
     - docker build --build-arg NODE_ENV=production -t $IMAGE_TAG_FE ./frontend
     - docker push $IMAGE_TAG_FE
 
-deploy_fe_dev:
-  stage: deploy
-  needs: [build_fe]
-  rules:
-    - if: '$CI_COMMIT_BRANCH == "dev"'
-      changes: [frontend/**/*]
-  environment:
-    name: dev
-  script:
-    - |
-      ssh $SSH_USER@$SSH_HOST "
-        cd $WORKDIR/frontend &&
-        export IMAGE_TAG=$CI_COMMIT_SHORT_SHA &&
-        export NODE_ENV=development &&
-        docker compose pull &&
-        docker compose down &&
-        docker compose up -d
-      "
-      sh $CI_PROJECT_DIR/send_telegram.sh "[FE - DEV] ✅ DEPLOYED" "Image: \`$IMAGE_TAG_FE\`%0ABranch: \`$CI_COMMIT_REF_NAME\`..."
+#deploy_fe_dev:
+#  stage: deploy
+#  needs: [build_fe]
+#  rules:
+#    - if: '$CI_COMMIT_BRANCH == "dev"'
+#      changes: [frontend/**/*]
+#  environment:
+#    name: dev
+#  script:
+#    - |
+#      ssh $SSH_USER@$SSH_HOST "
+#        cd $WORKDIR/frontend &&
+#        export IMAGE_TAG=$CI_COMMIT_SHORT_SHA &&
+#        export NODE_ENV=development &&
+#        docker compose pull &&
+#        docker compose down &&
+#        docker compose up -d
+#      "
+#      sh $CI_PROJECT_DIR/send_telegram.sh "[FE - DEV] ✅ DEPLOYED" "Image: \`$IMAGE_TAG_FE\`%0ABranch: \`$CI_COMMIT_REF_NAME\`..."
 
 deploy_fe_prod:
   stage: deploy

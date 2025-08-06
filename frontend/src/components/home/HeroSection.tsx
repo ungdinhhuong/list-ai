@@ -77,10 +77,16 @@ export default function HeroSection({ homePage }: HeroSectionProps) {
           >
             <div className="aspect-video overflow-hidden">
               <Image
-                src={ads[0]?.image?.url ? renderUrlImage(ads[0]?.image?.url as string) : ads[0].imageLink}
+                src={
+                  ads[0]?.image?.url
+                    ? renderUrlImage(ads[0]?.image?.url as string)
+                    : ads[0].imageLink as string
+                }
                 alt={ads[0].title}
                 width={600}
                 height={400}
+                priority
+                fetchPriority="high"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
             </div>
