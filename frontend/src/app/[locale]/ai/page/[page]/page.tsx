@@ -1,12 +1,13 @@
-import {Metadata} from 'next'
-import {notFound, redirect} from "next/navigation";
+import { Metadata } from 'next'
+import { notFound, redirect } from "next/navigation";
 import React from 'react'
 
 import AIPageClient from '@/components/ai/AIPageClient'
-import {ROUTES} from '@/constants/routes'
-import {seoMeta} from '@/lib/seoMeta'
-import {singleTypeService} from '@/services/single-type.service'
-import {toolService} from '@/services/tool.service'
+import { StructuredData } from "@/components/common/StructuredData";
+import { ROUTES } from '@/constants/routes'
+import { seoMeta } from '@/lib/seoMeta'
+import { singleTypeService } from '@/services/single-type.service'
+import { toolService } from '@/services/tool.service'
 
 type Props = {
   params: Promise<{ page: string }>
@@ -38,5 +39,9 @@ export default async function AIPagedPage({ params }: Props) {
     singleTypeService.getAIPage(),
   ])
 
-  return <AIPageClient tools={resData} page={resPage?.data} />
+  return (
+    <>
+      <AIPageClient tools={resData} page={resPage?.data} />
+    </>
+  )
 }

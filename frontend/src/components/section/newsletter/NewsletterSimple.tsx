@@ -2,11 +2,11 @@
 
 import { ExternalLink } from 'lucide-react'
 import { useTranslations } from 'next-intl'
-import { SetStateAction, useRef, useState} from 'react'
+import { SetStateAction, useRef, useState } from 'react'
 import ReCAPTCHA from 'react-google-recaptcha'
 
-import {isValidEmail} from '@/lib/utils'
-import {subscriberService} from '@/services/subscriber.service'
+import { isValidEmail } from '@/lib/utils'
+import { subscriberService } from '@/services/subscriber.service'
 
 export default function NewsletterSimple() {
   const t = useTranslations()

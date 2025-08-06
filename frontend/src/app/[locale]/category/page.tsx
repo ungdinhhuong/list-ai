@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import React from 'react'
 
 import CategoryPageClient from '@/components/category/CategoryPageClient'
+import {StructuredData} from "@/components/common/StructuredData";
 import { seoMeta } from '@/lib/seoMeta'
 import { categoryService } from '@/services/category.service'
 import { singleTypeService } from '@/services/single-type.service'
@@ -19,5 +20,10 @@ export default async function CategoryDetailPage() {
   ])
   const page = resPage?.data || null
 
-  return <CategoryPageClient categories={categories} page={page} />
+  return (
+    <>
+      <CategoryPageClient categories={categories} page={page} />
+      <StructuredData jsonLd={page?.seo?.structuredData} />
+    </>
+  )
 }

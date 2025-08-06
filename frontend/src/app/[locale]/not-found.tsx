@@ -1,13 +1,13 @@
 "use client";
 
-import {AlertTriangle, ArrowLeft, Bot, Home, Search, Zap} from 'lucide-react';
-import {useRouter} from "next/navigation";
-import {useTranslations} from "next-intl";
-import React, {useEffect, useState} from 'react';
-import {FaBlog, FaRobot, FaThLarge} from "react-icons/fa";
+import { AlertTriangle, ArrowLeft, Bot, Home, Search, Zap } from 'lucide-react';
+import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
+import React, { useEffect, useState } from 'react';
+import { FaBlog, FaRobot, FaThLarge } from "react-icons/fa";
 
-import {Button} from '@/components/ui/button';
-import {ROUTES} from "@/constants/routes";
+import { Button } from '@/components/ui/button';
+import { ROUTES } from "@/constants/routes";
 
 interface FloatingElement {
   id: number;
@@ -43,7 +43,7 @@ const Content404Page: React.FC = () => {
 
   useEffect(() => {
     // Generate random floating elements
-    const elements: FloatingElement[] = Array.from({length: 6}, (_, i) => ({
+    const elements: FloatingElement[] = Array.from({ length: 6 }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
@@ -185,9 +185,9 @@ const Content404Page: React.FC = () => {
           {/* Fun Statistics */}
           <div className="mt-8 grid grid-cols-3 gap-4 max-w-md mx-auto">
             {[
-              {label: 'Tools Available', value: '100+', color: 'text-blue-600 dark:text-blue-400'},
-              {label: 'Users Helped', value: '50K+', color: 'text-green-600 dark:text-green-400'},
-              {label: 'AI Models', value: '24/7', color: 'text-purple-600 dark:text-purple-400'}
+              { label: 'Tools Available', value: '100+', color: 'text-blue-600 dark:text-blue-400' },
+              { label: 'Users Helped', value: '50K+', color: 'text-green-600 dark:text-green-400' },
+              { label: 'AI Models', value: '24/7', color: 'text-purple-600 dark:text-purple-400' }
             ].map((stat, index) => (
               <div
                 key={index}

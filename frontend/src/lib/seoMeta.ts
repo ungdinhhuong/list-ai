@@ -60,13 +60,6 @@ export function seoMeta({
     canonical,
   }
 
-  let structuredData: string | undefined
-  if (seo?.structuredData) {
-    structuredData = typeof seo.structuredData === 'string'
-      ? seo.structuredData
-      : JSON.stringify(seo.structuredData)
-  }
-
   return {
     title: fullTitle,
     description: seo?.metaDescription || defaultDesc,
@@ -87,10 +80,5 @@ export function seoMeta({
     },
     robots,
     alternates,
-    ...(structuredData && {
-      other: {
-        structuredData,
-      },
-    }),
   }
 }

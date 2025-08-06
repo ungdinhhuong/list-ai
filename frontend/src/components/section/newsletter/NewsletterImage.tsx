@@ -1,14 +1,14 @@
 'use client'
 
 import Image from 'next/image'
-import {useTranslations} from 'next-intl'
-import React, {useRef, useState} from 'react'
+import { useTranslations } from 'next-intl'
+import React, { useRef, useState } from 'react'
 import ReCAPTCHA from 'react-google-recaptcha'
 
-import {Button} from '@/components/ui/button'
-import {Input} from '@/components/ui/input'
-import {isValidEmail} from '@/lib/utils'
-import {subscriberService} from '@/services/subscriber.service'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { isValidEmail } from '@/lib/utils'
+import { subscriberService } from '@/services/subscriber.service'
 
 export default function NewsletterImage() {
   const t = useTranslations()
@@ -143,11 +143,11 @@ export default function NewsletterImage() {
         {/* Floating dots */}
         <div
           className="absolute top-6 right-20 w-3 h-3 bg-blue-400 rounded-full animate-bounce"
-          style={{animationDelay: '0.5s'}}
+          style={{ animationDelay: '0.5s' }}
         />
         <div
           className="absolute bottom-8 left-1/4 w-2 h-2 bg-purple-400 rounded-full animate-bounce"
-          style={{animationDelay: '1s'}}
+          style={{ animationDelay: '1s' }}
         />
         <div className="absolute top-1/3 right-8 w-4 h-4 bg-pink-400 rounded-full animate-pulse"/>
       </div>

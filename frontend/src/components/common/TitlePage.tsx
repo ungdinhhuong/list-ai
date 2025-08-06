@@ -5,7 +5,7 @@ interface TitlePageProps {
   description: string;
 }
 
-export default function TitlePage({title, description}: TitlePageProps) {
+export default function TitlePage({ title, description }: TitlePageProps) {
   return (
     <div className="space-y-4 mb-8">
       <h1 className="text-3xl md:text-4xl font-bold text-foreground">

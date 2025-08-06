@@ -1,4 +1,4 @@
-import {STRAPI_URL} from "@/constants/env";
+import { STRAPI_URL } from "@/constants/env";
 
 export const renderUrlImage = (url: string) => {
   if (!url) return '';

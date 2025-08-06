@@ -1,12 +1,17 @@
-export function StructuredData({ jsonLd }: { jsonLd: string }) {
-  if (!jsonLd) return null
+"use client";
+
+export function StructuredData({ jsonLd }: { jsonLd: string | object | undefined | null }) {
+  if (!jsonLd) {
+    return null
+  }
+  const structuredData = typeof jsonLd === 'string'
+    ? jsonLd
+    : JSON.stringify(jsonLd)
   return (
-    <head>
-      <script
-        type="application/ld+json"
-        suppressHydrationWarning
-        dangerouslySetInnerHTML={{ __html: jsonLd }}
-      />
-    </head>
+    <script
+      type="application/ld+json"
+      suppressHydrationWarning
+      dangerouslySetInnerHTML={{ __html: structuredData }}
+    />
   )
 }

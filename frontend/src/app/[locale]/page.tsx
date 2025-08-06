@@ -1,9 +1,9 @@
 import { Metadata } from 'next'
 
 import NoTranslationMessage from '@/components/common/NoTranslationMessage'
-import { StructuredData } from '@/components/common/StructuredData'
+import { StructuredData } from "@/components/common/StructuredData";
 import HomePageClient from '@/components/home/HomePageClient'
-import { BADGE, PAGE_SIZE } from '@/constants/constants'
+import { BADGE } from '@/constants/constants'
 import { seoMeta } from '@/lib/seoMeta'
 import { singleTypeService } from '@/services/single-type.service'
 import { toolService } from '@/services/tool.service'
@@ -26,30 +26,17 @@ export default async function HomePage() {
   const homePage = resHomePage?.data || null
 
   if (!homePage) {
-    return <NoTranslationMessage />
-  }
-
-  let structuredData: string | null = null
-  if (homePage?.seo?.structuredData) {
-    try {
-      structuredData =
-        typeof homePage.seo.structuredData === 'string'
-          ? homePage.seo.structuredData
-          : JSON.stringify(homePage.seo.structuredData)
-    } catch (error) {
-      console.error('Error processing structured data:', error)
-      structuredData = null
-    }
+    return <NoTranslationMessage/>
   }
 
   return (
     <>
-      {structuredData && <StructuredData jsonLd={structuredData} />}
       <HomePageClient
         featuredTools={featuredTools}
         initialTools={initialTools}
         homePage={homePage}
       />
+      <StructuredData jsonLd={homePage?.seo?.structuredData}/>
     </>
   )
 }

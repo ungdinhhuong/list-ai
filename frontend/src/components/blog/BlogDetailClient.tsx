@@ -1,21 +1,21 @@
 'use client'
-import {Calendar, User} from 'lucide-react'
+import { Calendar, User } from 'lucide-react'
 import Image from 'next/image'
-import {useTranslations} from 'next-intl'
-import React, {useEffect, useState} from 'react'
+import { useTranslations } from 'next-intl'
+import React, { useEffect, useState } from 'react'
 
 import BlogGrid from '@/components/blog/BlogGrid'
 import ShareButtons from '@/components/blog/ShareButtons'
 import NewsletterImage from '@/components/section/newsletter/NewsletterImage'
-import {Badge} from '@/components/ui/badge'
-import {BlogType} from '@/types/blog.type'
-import {renderUrlImage} from '@/utils/functions'
+import { Badge } from '@/components/ui/badge'
+import { BlogType } from '@/types/blog.type'
+import { renderUrlImage } from '@/utils/functions'
 
 interface BlogDetailClientProps {
   blog: BlogType
 }
 
-export default function BlogDetailClient({blog}: BlogDetailClientProps) {
+export default function BlogDetailClient({ blog }: BlogDetailClientProps) {
   const t = useTranslations()
   const [relatedBlogs, setRelatedBlogs] = useState<BlogType[]>([])
   const [loadingRelated, setLoadingRelated] = useState(false)
@@ -119,7 +119,7 @@ export default function BlogDetailClient({blog}: BlogDetailClientProps) {
       {/* Content */}
       <article className="mb-12 lg:mb-16">
         <div
-          dangerouslySetInnerHTML={{__html: blog.content || ''}}
+          dangerouslySetInnerHTML={{ __html: blog.content || '' }}
           className="prose-ckeditor"
         />
       </article>
