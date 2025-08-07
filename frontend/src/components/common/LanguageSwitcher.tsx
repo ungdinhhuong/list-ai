@@ -33,9 +33,7 @@ export default function LanguageSwitcher() {
   // Redirect to home if changing locale from home
   const handleLocaleChange = (newLocale: string) => {
     if (newLocale !== locale) {
-      const isHome = pathname === '/' || pathname === `/${locale}`;
-      const targetPath = isHome ? '/' : '/';
-      router.replace(targetPath, { locale: newLocale });
+      router.push(pathname, { locale: newLocale });
     }
   };
 
