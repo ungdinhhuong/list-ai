@@ -1,46 +1,46 @@
-'use client'
+'use client';
 
-import { Loader2, Search, X } from 'lucide-react'
-import Image from 'next/image'
-import { useTranslations } from 'next-intl'
-import { useEffect, useRef, useState } from 'react'
+import { Loader2, Search, X } from 'lucide-react';
+import Image from 'next/image';
+import { useTranslations } from 'next-intl';
+import { useEffect, useRef, useState } from 'react';
 
-import BadgeCustom from '@/components/common/BadgeCustom'
-import { Input } from '@/components/ui/input'
-import { STRAPI_URL } from '@/constants/env'
+import BadgeCustom from '@/components/common/BadgeCustom';
+import { Input } from '@/components/ui/input';
+import { STRAPI_URL } from '@/constants/env';
 
 export default function SearchBar() {
-  const t = useTranslations()
-  const [searchQuery, setSearchQuery] = useState('')
-  const [isOpen, setIsOpen] = useState(false)
-  const [results, setResults] = useState<any[]>([])
-  const [isLoading, setIsLoading] = useState(false)
-  const [highlightedIndex, setHighlightedIndex] = useState(-1)
-  const searchRef = useRef<HTMLDivElement>(null)
-  const inputRef = useRef<HTMLInputElement>(null)
+  const t = useTranslations();
+  const [searchQuery, setSearchQuery] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
+  const [results, setResults] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [highlightedIndex, setHighlightedIndex] = useState(-1);
+  const searchRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       if (searchQuery.length > 0) {
-        performSearch(searchQuery)
+        performSearch(searchQuery);
       } else {
-        setResults([])
-        setIsOpen(false)
+        setResults([]);
+        setIsOpen(false);
       }
-    }, 300)
-    return () => clearTimeout(timeoutId)
-  }, [searchQuery])
+    }, 300);
+    return () => clearTimeout(timeoutId);
+  }, [searchQuery]);
 
   const performSearch = async (query: string) => {
-    setIsLoading(true)
+    setIsLoading(true);
     try {
-      const response = await fetch(`/api/tools?page=1&pageSize=10&q=${encodeURIComponent(query)}`)
-      const data = await response.json()
-      const rawResults = data.data || []
+      const response = await fetch(`/api/tools?page=1&pageSize=10&q=${encodeURIComponent(query)}`);
+      const data = await response.json();
+      const rawResults = data.data || [];
 
       const formatted = rawResults.map((item: any) => {
-        const avatarUrl = item.avatar?.formats?.thumbnail?.url || item.avatar?.url || ''
-        const label = (item.badge || '').toLowerCase()
+        const avatarUrl = item.avatar?.formats?.thumbnail?.url || item.avatar?.url || '';
+        const label = (item.badge || '').toLowerCase();
 
         return {
           id: item.id,
@@ -48,77 +48,75 @@ export default function SearchBar() {
           description: item.description,
           label,
           avatar: avatarUrl,
-        }
-      })
+        };
+      });
 
-      setResults(formatted)
-      setIsOpen(true)
+      setResults(formatted);
+      setIsOpen(true);
     } catch (error) {
-      console.error('Search error:', error)
-      setResults([])
-      setIsOpen(true)
+      console.error('Search error:', error);
+      setResults([]);
+      setIsOpen(true);
     } finally {
-      setIsLoading(false)
-      setHighlightedIndex(-1)
+      setIsLoading(false);
+      setHighlightedIndex(-1);
     }
-  }
+  };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
-        setIsOpen(false)
-        setHighlightedIndex(-1)
+        setIsOpen(false);
+        setHighlightedIndex(-1);
       }
-    }
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
-  }, [])
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (!isOpen || results.length === 0) return
+    if (!isOpen || results.length === 0) return;
     switch (e.key) {
       case 'ArrowDown':
-        e.preventDefault()
-        setHighlightedIndex(prev => (prev < results.length - 1 ? prev + 1 : 0))
-        break
+        e.preventDefault();
+        setHighlightedIndex(prev => (prev < results.length - 1 ? prev + 1 : 0));
+        break;
       case 'ArrowUp':
-        e.preventDefault()
-        setHighlightedIndex(prev => (prev > 0 ? prev - 1 : results.length - 1))
-        break
+        e.preventDefault();
+        setHighlightedIndex(prev => (prev > 0 ? prev - 1 : results.length - 1));
+        break;
       case 'Enter':
-        e.preventDefault()
+        e.preventDefault();
         if (highlightedIndex >= 0) {
-          handleResultSelect(results[highlightedIndex])
+          handleResultSelect(results[highlightedIndex]);
         }
-        break
+        break;
       case 'Escape':
-        setIsOpen(false)
-        setHighlightedIndex(-1)
-        inputRef.current?.blur()
-        break
+        setIsOpen(false);
+        setHighlightedIndex(-1);
+        inputRef.current?.blur();
+        break;
     }
-  }
+  };
 
   const handleResultSelect = (result: any) => {
-    setSearchQuery(result.name)
-    setIsOpen(false)
-    setHighlightedIndex(-1)
-  }
+    setSearchQuery(result.name);
+    setIsOpen(false);
+    setHighlightedIndex(-1);
+  };
 
   const clearSearch = () => {
-    setSearchQuery('')
-    setResults([])
-    setIsOpen(false)
-    setHighlightedIndex(-1)
-    inputRef.current?.focus()
-  }
+    setSearchQuery('');
+    setResults([]);
+    setIsOpen(false);
+    setHighlightedIndex(-1);
+    inputRef.current?.focus();
+  };
 
   return (
     <>
       {/* Hiển thị backdrop blur khi dropdown đang mở */}
-      {isOpen && (
-        <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-4 transition-all duration-300" />
-      )}
+      {isOpen && <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-4 transition-all duration-300" />}
 
       <div className="max-w-2xl mx-auto mb-8 lg:mb-12 relative z-5">
         <div className="relative" ref={searchRef}>
@@ -132,13 +130,11 @@ export default function SearchBar() {
               onKeyDown={handleKeyDown}
               onFocus={() => {
                 if (results.length > 0) {
-                  setIsOpen(true)
+                  setIsOpen(true);
                 }
               }}
               className={`w-full pl-12 pr-12 py-3 bg-background text-foreground placeholder-muted-foreground transition-all duration-200 ${
-                isOpen
-                  ? 'border-border/30 shadow-sm'
-                  : 'border-border hover:border-border/70 focus:border-border'
+                isOpen ? 'border-border/30 shadow-sm' : 'border-border hover:border-border/70 focus:border-border'
               }`}
             />
             {searchQuery && (
@@ -167,40 +163,28 @@ export default function SearchBar() {
                       key={result.id}
                       onClick={() => handleResultSelect(result)}
                       className={`px-4 py-3 cursor-pointer border-b border-border last:border-b-0 transition-colors ${
-                        index === highlightedIndex
-                          ? 'bg-muted text-foreground'
-                          : 'hover:bg-muted/50'
+                        index === highlightedIndex ? 'bg-muted text-foreground' : 'hover:bg-muted/50'
                       }`}
                     >
                       <div className="flex items-center gap-3">
                         <div className="w-10 h-10 rounded-lg flex items-center justify-center overflow-hidden bg-gray-200 flex-shrink-0">
                           {result.avatar ? (
                             <Image
-                              src={
-                                result.avatar.startsWith('/')
-                                  ? STRAPI_URL + result.avatar
-                                  : result.avatar
-                              }
+                              src={result.avatar.startsWith('/') ? STRAPI_URL + result.avatar : result.avatar}
                               alt={result.name}
                               className="w-full h-full object-cover"
                             />
                           ) : (
-                            <span className="text-white font-bold">
-                              {result.name?.charAt(0)?.toUpperCase()}
-                            </span>
+                            <span className="text-white font-bold">{result.name?.charAt(0)?.toUpperCase()}</span>
                           )}
                         </div>
 
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 mb-1">
-                            <h3 className="font-semibold text-foreground truncate">
-                              {result.name}
-                            </h3>
+                            <h3 className="font-semibold text-foreground truncate">{result.name}</h3>
                             {result.label && <BadgeCustom badge={result.label} />}
                           </div>
-                          <p className="text-sm text-muted-foreground truncate">
-                            {result.description}
-                          </p>
+                          <p className="text-sm text-muted-foreground truncate">{result.description}</p>
                         </div>
                       </div>
                     </div>
@@ -223,5 +207,5 @@ export default function SearchBar() {
         </div>
       </div>
     </>
-  )
+  );
 }

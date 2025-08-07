@@ -1,35 +1,35 @@
-'use client'
+'use client';
 
-import Image from 'next/image'
-import Link from 'next/link'
-import { useTranslations } from 'next-intl'
-import { useEffect, useState } from 'react'
-import {FaBlog, FaEllipsisV, FaGlobe, FaMoon, FaRobot, FaThLarge} from 'react-icons/fa'
+import Image from 'next/image';
+import Link from 'next/link';
+import { useTranslations } from 'next-intl';
+import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
+import { FaBlog, FaEllipsisV, FaGlobe, FaMoon, FaRobot, FaThLarge } from 'react-icons/fa';
 
-import LanguageSwitcher from '@/components/common/LanguageSwitcher'
-import ModeToggle from '@/components/shared/mode-toggle'
+import LanguageSwitcher from '@/components/common/LanguageSwitcher';
+import ModeToggle from '@/components/shared/mode-toggle';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import { ROUTES } from '@/constants/routes'
-import { useSidebar } from '@/contexts/SidebarProvider'
-import {SiteSettingType} from "@/types/site-setting.type";
-import {useTheme} from "next-themes";
-import {renderUrlImage} from "@/utils/functions";
+} from '@/components/ui/dropdown-menu';
+import { ROUTES } from '@/constants/routes';
+import { useSidebar } from '@/contexts/SidebarProvider';
+import { SiteSettingType } from '@/types/site-setting.type';
+import { renderUrlImage } from '@/utils/functions';
 
 interface HeaderProps {
-    siteSetting: SiteSettingType
+  siteSetting: SiteSettingType;
 }
 
-export default function Header({siteSetting}: HeaderProps) {
-  const { sidebarOpen, setSidebarOpen } = useSidebar()
-  const { theme, systemTheme } = useTheme()
-  const t = useTranslations()
-  const [dropdownOpen, setDropdownOpen] = useState(false)
+export default function Header({ siteSetting }: HeaderProps) {
+  const { sidebarOpen, setSidebarOpen } = useSidebar();
+  const { theme, systemTheme } = useTheme();
+  const t = useTranslations();
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const navItems = [
     {
@@ -47,33 +47,31 @@ export default function Header({siteSetting}: HeaderProps) {
       href: ROUTES.BLOG,
       icon: <FaBlog className="w-4 h-4 mr-2" />,
     },
-  ]
+  ];
 
-  const closeDropdown = () => setDropdownOpen(false)
+  const closeDropdown = () => setDropdownOpen(false);
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') closeDropdown()
-    }
+      if (e.key === 'Escape') closeDropdown();
+    };
 
     if (dropdownOpen) {
-      document.addEventListener('keydown', handleEscape)
-      document.body.style.overflow = 'hidden'
+      document.addEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = 'unset'
+      document.body.style.overflow = 'unset';
     }
 
     return () => {
-      document.removeEventListener('keydown', handleEscape)
-      document.body.style.overflow = 'unset'
-    }
-  }, [dropdownOpen])
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'unset';
+    };
+  }, [dropdownOpen]);
 
   return (
     <>
-      {dropdownOpen && (
-        <div className="fixed inset-0 bg-black/50 z-40 md:hidden" onClick={closeDropdown} />
-      )}
+      {dropdownOpen && <div className="fixed inset-0 bg-black/50 z-40 md:hidden" onClick={closeDropdown} />}
 
       <header className="bg-background border-b border-border">
         <div className="flex items-center justify-between px-4 py-3 fixed w-full z-10 top-0 left-0 xl:static bg-background text-foreground transition-colors">
@@ -91,7 +89,7 @@ export default function Header({siteSetting}: HeaderProps) {
             <Link href={ROUTES.HOME} className="flex items-center space-x-2">
               <div className="w-26 h-8 relative">
                 <Image
-                  src={renderUrlImage(theme === 'dark' ? siteSetting?.logo.url : siteSetting?.logoLight.url)}
+                  src={renderUrlImage(theme === 'dark' ? siteSetting?.logo?.url : (siteSetting?.logoLight?.url ?? ''))}
                   alt="OnToolAZ"
                   fill
                   sizes="true"
@@ -125,17 +123,13 @@ export default function Header({siteSetting}: HeaderProps) {
                   aria-label="Open menu"
                   type="button"
                 >
-                  <FaEllipsisV className="w-5 h-5"/>
+                  <FaEllipsisV className="w-5 h-5" />
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-56 relative z-50">
                 {navItems.map(item => (
                   <DropdownMenuItem asChild key={item.href}>
-                    <Link
-                      href={item.href}
-                      className="flex items-center !gap-0"
-                      onClick={closeDropdown}
-                    >
+                    <Link href={item.href} className="flex items-center !gap-0" onClick={closeDropdown}>
                       {item.icon}
                       {item.label}
                     </Link>
@@ -144,20 +138,20 @@ export default function Header({siteSetting}: HeaderProps) {
 
                 <DropdownMenuSeparator />
 
-                <DropdownMenuItem
-                  className="flex items-center justify-between"
-                  onSelect={e => e.preventDefault()}
-                >
-                  <span className="flex items-center"><FaGlobe className="w-4 h-4 mr-2"/>{t('languageSwitcher.chooseLanguage')}</span>
-                  <LanguageSwitcher/>
+                <DropdownMenuItem className="flex items-center justify-between" onSelect={e => e.preventDefault()}>
+                  <span className="flex items-center">
+                    <FaGlobe className="w-4 h-4 mr-2" />
+                    {t('languageSwitcher.chooseLanguage')}
+                  </span>
+                  <LanguageSwitcher />
                 </DropdownMenuItem>
 
-                <DropdownMenuItem
-                  className="flex items-center justify-between"
-                  onSelect={e => e.preventDefault()}
-                >
-                  <span className="flex items-center"><FaMoon className="w-4 h-4 mr-2"/>{t('common.theme')}</span>
-                  <ModeToggle/>
+                <DropdownMenuItem className="flex items-center justify-between" onSelect={e => e.preventDefault()}>
+                  <span className="flex items-center">
+                    <FaMoon className="w-4 h-4 mr-2" />
+                    {t('common.theme')}
+                  </span>
+                  <ModeToggle />
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -165,5 +159,5 @@ export default function Header({siteSetting}: HeaderProps) {
         </div>
       </header>
     </>
-  )
+  );
 }

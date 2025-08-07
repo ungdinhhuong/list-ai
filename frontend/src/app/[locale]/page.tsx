@@ -1,17 +1,17 @@
-import { Metadata } from 'next'
+import { Metadata } from 'next';
 
-import NoTranslationMessage from '@/components/common/NoTranslationMessage'
-import { StructuredData } from "@/components/common/StructuredData";
-import HomePageClient from '@/components/home/HomePageClient'
-import { BADGE } from '@/constants/constants'
-import { seoMeta } from '@/lib/seoMeta'
-import { singleTypeService } from '@/services/single-type.service'
-import { toolService } from '@/services/tool.service'
+import NoTranslationMessage from '@/components/common/NoTranslationMessage';
+import { StructuredData } from '@/components/common/StructuredData';
+import HomePageClient from '@/components/home/HomePageClient';
+import { BADGE } from '@/constants/constants';
+import { seoMeta } from '@/lib/seoMeta';
+import { singleTypeService } from '@/services/single-type.service';
+import { toolService } from '@/services/tool.service';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const page = await singleTypeService.getHomePage()
-  const seo = page?.data?.seo || null
-  return seoMeta({ seo })
+  const page = await singleTypeService.getHomePage();
+  const seo = page?.data?.seo || null;
+  return seoMeta({ seo });
 }
 
 export default async function HomePage() {
@@ -19,24 +19,20 @@ export default async function HomePage() {
     toolService.getToolsByBadge(BADGE.FEATURED),
     toolService.getAllTools({ page: 1, pageSize: 12 }),
     singleTypeService.getHomePage(),
-  ])
+  ]);
 
-  const featuredTools = resToolsByBadge || []
-  const initialTools = resAllTools || []
-  const homePage = resHomePage?.data || null
+  const featuredTools = resToolsByBadge || [];
+  const initialTools = resAllTools || [];
+  const homePage = resHomePage?.data || null;
 
   if (!homePage) {
-    return <NoTranslationMessage/>
+    return <NoTranslationMessage />;
   }
 
   return (
     <>
-      <HomePageClient
-        featuredTools={featuredTools}
-        initialTools={initialTools}
-        homePage={homePage}
-      />
-      <StructuredData jsonLd={homePage?.seo?.structuredData}/>
+      <HomePageClient featuredTools={featuredTools} initialTools={initialTools} homePage={homePage} />
+      <StructuredData jsonLd={homePage?.seo?.structuredData} />
     </>
-  )
+  );
 }

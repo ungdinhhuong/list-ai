@@ -1,17 +1,17 @@
-import { CalendarDays, User } from 'lucide-react'
-import Image from 'next/image'
-import Link from 'next/link'
-import React from 'react'
+import { CalendarDays, User } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
 
-import { Badge } from '@/components/ui/badge'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
-import { ROUTES } from '@/constants/routes'
-import { BlogType } from '@/types/blog.type'
-import { fromNow } from '@/utils/date'
-import { renderUrlImage } from '@/utils/functions'
+import { Badge } from '@/components/ui/badge';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { ROUTES } from '@/constants/routes';
+import { BlogType } from '@/types/blog.type';
+import { fromNow } from '@/utils/date';
+import { renderUrlImage } from '@/utils/functions';
 
 interface BlogGridProps {
-  post: BlogType
+  post: BlogType;
 }
 
 export default function BlogGrid({ post }: BlogGridProps) {
@@ -47,9 +47,7 @@ export default function BlogGrid({ post }: BlogGridProps) {
 
       {/* Description */}
       <CardContent className="flex-1">
-        <CardDescription className="line-clamp-3 text-md">
-          {post.description}
-        </CardDescription>
+        <CardDescription className="line-clamp-3 text-md">{post.description}</CardDescription>
       </CardContent>
 
       {/* Footer: Admin + Date */}
@@ -66,5 +64,5 @@ export default function BlogGrid({ post }: BlogGridProps) {
         </div>
       </CardFooter>
     </Card>
-  )
+  );
 }

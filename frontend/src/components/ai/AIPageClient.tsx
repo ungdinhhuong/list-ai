@@ -1,22 +1,22 @@
-'use client'
+'use client';
 
-import { useTranslations } from 'next-intl'
-import React from 'react'
+import { useTranslations } from 'next-intl';
+import React from 'react';
 
-import Pagination from '@/components/common/Pagination'
-import TitlePage from '@/components/common/TitlePage'
-import ToolCard from '@/components/tool/ToolCard'
-import { AIPageType } from '@/types/ai.type'
-import { PaginatedResponse } from '@/types/api.type'
-import { ToolType } from '@/types/tool.type'
+import Pagination from '@/components/common/Pagination';
+import TitlePage from '@/components/common/TitlePage';
+import ToolCard from '@/components/tool/ToolCard';
+import { AIPageType } from '@/types/ai.type';
+import { PaginatedResponse } from '@/types/api.type';
+import { ToolType } from '@/types/tool.type';
 
 interface AIPageClientProps {
-  tools: PaginatedResponse<ToolType>
-  page?: AIPageType
+  tools: PaginatedResponse<ToolType>;
+  page?: AIPageType;
 }
 
 export default function AIPageClient({ tools, page }: AIPageClientProps) {
-  const t = useTranslations()
+  const t = useTranslations();
 
   return (
     <div className="container mx-auto lg:w-7xl space-y-8 relative">
@@ -33,8 +33,7 @@ export default function AIPageClient({ tools, page }: AIPageClientProps) {
       )}
 
       {/* Load More Button */}
-      {tools.meta && tools.meta.pagination.pageCount > 1 && (<Pagination meta={tools.meta} />)}
+      {tools.meta && tools.meta.pagination.pageCount > 1 && <Pagination meta={tools.meta} />}
     </div>
-  )
-};
-
+  );
+}

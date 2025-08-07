@@ -1,23 +1,20 @@
-import { dirname } from 'path'
-import { fileURLToPath } from 'url'
-import { FlatCompat } from '@eslint/eslintrc'
-import simpleImportSort from 'eslint-plugin-simple-import-sort'
-import importPlugin from 'eslint-plugin-import'
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+import { FlatCompat } from '@eslint/eslintrc';
+import simpleImportSort from 'eslint-plugin-simple-import-sort';
+import importPlugin from 'eslint-plugin-import';
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const compat = new FlatCompat({
   baseDirectory: __dirname,
-})
+});
 
 // Main config export
 export default [
   // Kế thừa Next.js config chuẩn
-  ...compat.extends(
-    'next/core-web-vitals',
-    'next'
-  ),
+  ...compat.extends('next/core-web-vitals', 'next'),
 
   // Custom rules
   {
@@ -40,12 +37,10 @@ export default [
           project: './tsconfig.json',
         },
         alias: {
-          map: [
-            ['@', './src'],
-          ],
+          map: [['@', './src']],
           extensions: ['.ts', '.tsx', '.js', '.jsx'],
         },
       },
     },
   },
-]
+];

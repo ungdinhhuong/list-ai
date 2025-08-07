@@ -1,24 +1,24 @@
-'use client'
-import { ExternalLink } from 'lucide-react'
-import { useTranslations } from 'next-intl'
-import React from 'react'
+'use client';
+import { ExternalLink } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import React from 'react';
 
-import AvatarLogo from '@/components/common/AvatarLogo'
-import BadgeCustom from '@/components/common/BadgeCustom'
-import AllToolsSection from '@/components/section/AllToolsSection'
-import NewsletterImage from '@/components/section/newsletter/NewsletterImage'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
-import { ToolType } from '@/types/tool.type'
+import AvatarLogo from '@/components/common/AvatarLogo';
+import BadgeCustom from '@/components/common/BadgeCustom';
+import AllToolsSection from '@/components/section/AllToolsSection';
+import NewsletterImage from '@/components/section/newsletter/NewsletterImage';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { ToolType } from '@/types/tool.type';
 
 interface AIDetailClientProps {
-  tool: ToolType
-  relatedTools: ToolType[]
+  tool: ToolType;
+  relatedTools: ToolType[];
 }
 
 export default function AIDetailClient({ tool, relatedTools }: AIDetailClientProps) {
-  const t = useTranslations()
+  const t = useTranslations();
   return (
     <div className="container mx-auto lg:max-w-4xl space-y-6 xl:space-y-8">
       {!!tool.badge && <BadgeCustom badge={tool.badge} />}
@@ -28,12 +28,7 @@ export default function AIDetailClient({ tool, relatedTools }: AIDetailClientPro
           <AvatarLogo text={tool.name} img={tool?.avatar?.url || ''} />
           <h1 className="text-3xl md:text-4xl font-bold">{tool.name}</h1>
         </div>
-        <a
-          href={tool.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={'inline-flex items-center gap-2'}
-        >
+        <a href={tool.link} target="_blank" rel="noopener noreferrer" className={'inline-flex items-center gap-2'}>
           <Button className="text-white bg-primary hover:bg-primary/90 transition-colors">
             {t('common.visitWebsite')}
             <ExternalLink className="ml-2 w-4 h-4" />
@@ -47,17 +42,10 @@ export default function AIDetailClient({ tool, relatedTools }: AIDetailClientPro
         <CardContent className="px-4">
           <div className="grid grid-cols-1 grid-rows-2 gap-4">
             <div className="flex items-center gap-2">
-              <h3 className="text-sm font-medium text-muted-foreground">
-                {t('common.categories')}:
-              </h3>
+              <h3 className="text-sm font-medium text-muted-foreground">{t('common.categories')}:</h3>
               <div className="flex flex-wrap gap-2">
                 {tool.categories?.map((category, index) => (
-                  <BadgeCustom
-                    key={index + category.name}
-                    badge="New"
-                    title={category.name}
-                    type="outline"
-                  />
+                  <BadgeCustom key={index + category.name} badge="New" title={category.name} type="outline" />
                 ))}
               </div>
             </div>
@@ -72,16 +60,14 @@ export default function AIDetailClient({ tool, relatedTools }: AIDetailClientPro
       </Card>
 
       {/* Nội dung */}
-      <div
-        dangerouslySetInnerHTML={{ __html: tool.content || '' }}
-        className="prose-ckeditor"
-      />
+      <div dangerouslySetInnerHTML={{ __html: tool.content || '' }} className="prose-ckeditor" />
 
       {/* Danh sách tool AI */}
-      {relatedTools.length > 0 && (<AllToolsSection title={`${t('common.similarTools')}`} tools={relatedTools} lengthItems={3} />)}
-
+      {relatedTools.length > 0 && (
+        <AllToolsSection title={`${t('common.similarTools')}`} tools={relatedTools} lengthItems={3} />
+      )}
 
       <NewsletterImage />
     </div>
-  )
+  );
 }

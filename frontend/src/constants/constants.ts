@@ -1,4 +1,4 @@
-import { FaFacebook, FaInstagram, FaTiktok, FaTwitter, FaYoutube } from 'react-icons/fa'
+import { FaFacebook, FaInstagram, FaTiktok, FaTwitter, FaYoutube } from 'react-icons/fa';
 
 export const BADGE = {
   FEATURED: 'Featured',
@@ -8,7 +8,7 @@ export const BADGE = {
   BEST: 'Best',
   TOP: 'Top',
   PRO: 'Pro',
-}
+};
 
 export const char2BgColor: Record<string, string> = {
   A: 'bg-red-500',
@@ -37,9 +37,9 @@ export const char2BgColor: Record<string, string> = {
   X: 'bg-orange-800',
   Y: 'bg-amber-800',
   Z: 'bg-yellow-800',
-}
+};
 
-export const PAGE_SIZE = 10
+export const PAGE_SIZE = 10;
 
 export const SOCIALS = {
   FACEBOOK: {
@@ -67,7 +67,7 @@ export const SOCIALS = {
     url: 'https://instagram.com/ontoolaz',
     icon: FaInstagram,
   },
-}
+};
 
 export const SOCIAL_ICONS = {
   facebook: FaFacebook,
@@ -75,4 +75,4 @@ export const SOCIAL_ICONS = {
   youtube: FaYoutube,
   tiktok: FaTiktok,
   instagram: FaInstagram,
-}
+};

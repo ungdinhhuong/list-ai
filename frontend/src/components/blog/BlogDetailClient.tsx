@@ -1,49 +1,49 @@
-'use client'
-import { Calendar, User } from 'lucide-react'
-import Image from 'next/image'
-import { useTranslations } from 'next-intl'
-import React, { useEffect, useState } from 'react'
+'use client';
+import { Calendar, User } from 'lucide-react';
+import Image from 'next/image';
+import { useTranslations } from 'next-intl';
+import React, { useEffect, useState } from 'react';
 
-import BlogGrid from '@/components/blog/BlogGrid'
-import ShareButtons from '@/components/blog/ShareButtons'
-import NewsletterImage from '@/components/section/newsletter/NewsletterImage'
-import { Badge } from '@/components/ui/badge'
-import { BlogType } from '@/types/blog.type'
-import { renderUrlImage } from '@/utils/functions'
+import BlogGrid from '@/components/blog/BlogGrid';
+import ShareButtons from '@/components/blog/ShareButtons';
+import NewsletterImage from '@/components/section/newsletter/NewsletterImage';
+import { Badge } from '@/components/ui/badge';
+import { BlogType } from '@/types/blog.type';
+import { renderUrlImage } from '@/utils/functions';
 
 interface BlogDetailClientProps {
-  blog: BlogType
+  blog: BlogType;
 }
 
 export default function BlogDetailClient({ blog }: BlogDetailClientProps) {
-  const t = useTranslations()
-  const [relatedBlogs, setRelatedBlogs] = useState<BlogType[]>([])
-  const [loadingRelated, setLoadingRelated] = useState(false)
+  const t = useTranslations();
+  const [relatedBlogs, setRelatedBlogs] = useState<BlogType[]>([]);
+  const [loadingRelated, setLoadingRelated] = useState(false);
 
   useEffect(() => {
-    if (!blog.category?.id || !blog.id) return
+    if (!blog.category?.id || !blog.id) return;
 
     const fetchRelatedBlogs = async () => {
       try {
-        setLoadingRelated(true)
-        const url = `/api/blogs/related?categoryId=${blog?.category?.id}&excludeId=${blog.id}&limit=4`
-        const response = await fetch(url)
+        setLoadingRelated(true);
+        const url = `/api/blogs/related?categoryId=${blog?.category?.id}&excludeId=${blog.id}&limit=4`;
+        const response = await fetch(url);
 
         if (!response.ok) {
-          throw new Error(`Failed to fetch: ${response.status}`)
+          throw new Error(`Failed to fetch: ${response.status}`);
         }
 
-        const json = await response.json()
-        setRelatedBlogs(json?.data || [])
+        const json = await response.json();
+        setRelatedBlogs(json?.data || []);
       } catch (err) {
-        console.error('Failed to fetch related blogs:', err)
+        console.error('Failed to fetch related blogs:', err);
       } finally {
-        setLoadingRelated(false)
+        setLoadingRelated(false);
       }
-    }
+    };
 
-    fetchRelatedBlogs()
-  }, [blog.category?.id, blog.id])
+    fetchRelatedBlogs();
+  }, [blog.category?.id, blog.id]);
 
   return (
     <div className="container mx-auto lg:w-4xl space-y-8 relative">
@@ -65,20 +65,18 @@ export default function BlogDetailClient({ blog }: BlogDetailClientProps) {
         </h1>
 
         {/* Description */}
-        <p className="text-muted-foreground text-lg md:text-xl leading-relaxed max-w-3xl">
-          {blog.description}
-        </p>
+        <p className="text-muted-foreground text-lg md:text-xl leading-relaxed max-w-3xl">{blog.description}</p>
 
         <div className="flex items-center justify-between flex-col md:flex-row gap-4 md:gap-0">
           {/* Meta Information */}
           <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
-              <User className="h-4 w-4"/>
+              <User className="h-4 w-4" />
               <span>Admin</span>
             </div>
             {blog.publishedAt && (
               <div className="flex items-center gap-2">
-                <Calendar className="h-4 w-4"/>
+                <Calendar className="h-4 w-4" />
                 <time dateTime={blog.publishedAt}>
                   {new Date(blog.publishedAt).toLocaleDateString('vi-VN', {
                     year: 'numeric',
@@ -95,9 +93,8 @@ export default function BlogDetailClient({ blog }: BlogDetailClientProps) {
             {/*  </div>*/}
             {/*)}*/}
           </div>
-          <ShareButtons/>
+          <ShareButtons />
         </div>
-
       </div>
 
       {/* Thumbnail Image */}
@@ -118,29 +115,26 @@ export default function BlogDetailClient({ blog }: BlogDetailClientProps) {
 
       {/* Content */}
       <article className="mb-12 lg:mb-16">
-        <div
-          dangerouslySetInnerHTML={{ __html: blog.content || '' }}
-          className="prose-ckeditor"
-        />
+        <div dangerouslySetInnerHTML={{ __html: blog.content || '' }} className="prose-ckeditor" />
       </article>
 
       {/* Related Articles Section */}
       {!loadingRelated && relatedBlogs.length > 0 && (
         <div className="space-y-6">
-          <h2 className="text-2xl font-semibold text-foreground">
-            {t('blog.relatedArticles')}
-          </h2>
+          <h2 className="text-2xl font-semibold text-foreground">{t('blog.relatedArticles')}</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {relatedBlogs.map((item) => <BlogGrid post={item} key={item.id}/>)}
+            {relatedBlogs.map(item => (
+              <BlogGrid post={item} key={item.id} />
+            ))}
           </div>
         </div>
       )}
 
       {/* Newsletter Section */}
       <div className="pt-8 lg:pt-12">
-        <NewsletterImage/>
+        <NewsletterImage />
       </div>
     </div>
-  )
+  );
 }

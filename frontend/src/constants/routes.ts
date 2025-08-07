@@ -7,4 +7,4 @@ export const ROUTES = {
   CATEGORY: '/category',
   BLOG: '/blog',
   CATEGORY_DETAIL: (slug: string) => `/category/${slug}`,
-}
+};

@@ -1,33 +1,33 @@
 export type StrapiImage = {
-  url: string
-  alternativeText?: string
-  width?: number
-  height?: number
-}
+  url: string;
+  alternativeText?: string;
+  width?: number;
+  height?: number;
+};
 
 export type StrapiSEO = {
-  metaTitle?: string
-  metaDescription?: string
-  keywords?: string
-  metaRobots?: string
-  canonicalURL?: string
-  structuredData?: string | object
-  metaImage?: StrapiImage
+  metaTitle?: string;
+  metaDescription?: string;
+  keywords?: string;
+  metaRobots?: string;
+  canonicalURL?: string;
+  structuredData?: string | object;
+  metaImage?: StrapiImage;
   openGraph?: {
-    ogTitle?: string
-    ogDescription?: string
-    ogUrl?: string
-    ogType?: string
-    ogImage?: StrapiImage
-  }
-}
+    ogTitle?: string;
+    ogDescription?: string;
+    ogUrl?: string;
+    ogType?: string;
+    ogImage?: StrapiImage;
+  };
+};
 
 export type StrapiSeoToMetadataOpts = {
-  seo?: StrapiSEO | null
-  defaultSeo?: StrapiSEO | null
-  siteUrl?: string
-  path?: string
-}
+  seo?: StrapiSEO | null;
+  defaultSeo?: StrapiSEO | null;
+  siteUrl?: string;
+  path?: string;
+};
 
 export const validOgTypes = [
   'website',
@@ -42,6 +42,6 @@ export const validOgTypes = [
   'video.episode',
   'video.tv_show',
   'video.other',
-] as const
+] as const;
 
-export type OgType = (typeof validOgTypes)[number]
+export type OgType = (typeof validOgTypes)[number];

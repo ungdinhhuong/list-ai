@@ -1,54 +1,54 @@
-'use client'
+'use client';
 
-import { ChevronDown, ChevronRight } from 'lucide-react'
-import { usePathname, useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { ChevronDown, ChevronRight } from 'lucide-react';
+import { usePathname, useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
-import { ROUTES } from '@/constants/routes'
-import { useSidebar } from '@/contexts/SidebarProvider'
-import { CategoryType } from '@/types/category.type'
+import { ROUTES } from '@/constants/routes';
+import { useSidebar } from '@/contexts/SidebarProvider';
+import { CategoryType } from '@/types/category.type';
 
 interface SidebarProps {
-  categories: CategoryType[]
+  categories: CategoryType[];
 }
 
 export default function Sidebar({ categories }: SidebarProps) {
-  const { sidebarOpen, setSidebarOpen } = useSidebar()
-  const pathname = usePathname()
-  const router = useRouter()
+  const { sidebarOpen, setSidebarOpen } = useSidebar();
+  const pathname = usePathname();
+  const router = useRouter();
 
-  const [openIds, setOpenIds] = useState<Set<number>>(new Set([categories[0]?.id || 0]))
+  const [openIds, setOpenIds] = useState<Set<number>>(new Set([categories[0]?.id || 0]));
 
   useEffect(() => {
     if (sidebarOpen) {
-      document.body.classList.add('overflow-hidden')
+      document.body.classList.add('overflow-hidden');
     } else {
-      document.body.classList.remove('overflow-hidden')
+      document.body.classList.remove('overflow-hidden');
     }
-    return () => document.body.classList.remove('overflow-hidden')
-  }, [sidebarOpen])
+    return () => document.body.classList.remove('overflow-hidden');
+  }, [sidebarOpen]);
 
   const toggleOpen = (id: number) => {
     setOpenIds(prev => {
-      const newSet = new Set(prev)
-      newSet.has(id) ? newSet.delete(id) : newSet.add(id)
-      return newSet
-    })
-  }
+      const newSet = new Set(prev);
+      newSet.has(id) ? newSet.delete(id) : newSet.add(id);
+      return newSet;
+    });
+  };
 
   const renderCategories = (categories: CategoryType[], level = 0) => {
     return categories.map(category => {
-      const hasChildren = category.children && category.children.length > 0
-      const isOpen = openIds.has(category.id)
+      const hasChildren = category.children && category.children.length > 0;
+      const isOpen = openIds.has(category.id);
 
       const handleClick = () => {
         if (hasChildren) {
-          toggleOpen(category.id)
+          toggleOpen(category.id);
         } else {
-          setSidebarOpen(false)
-          router.push(ROUTES.CATEGORY_DETAIL(category.slug))
+          setSidebarOpen(false);
+          router.push(ROUTES.CATEGORY_DETAIL(category.slug));
         }
-      }
+      };
 
       return (
         <div key={category.id}>
@@ -71,23 +71,18 @@ export default function Sidebar({ categories }: SidebarProps) {
           </div>
 
           {hasChildren && isOpen && (
-            <div className="space-y-1">
-              {renderCategories(category.children ?? [], level + 1)}
-            </div>
+            <div className="space-y-1">{renderCategories(category.children ?? [], level + 1)}</div>
           )}
         </div>
-      )
-    })
-  }
+      );
+    });
+  };
 
   return (
     <>
       {/* Mobile Overlay */}
       {sidebarOpen && (
-        <div
-          className="fixed inset-0 bg-black/50 z-11 md:hidden"
-          onClick={() => setSidebarOpen(false)}
-        />
+        <div className="fixed inset-0 bg-black/50 z-11 md:hidden" onClick={() => setSidebarOpen(false)} />
       )}
 
       {/* Sidebar */}
@@ -109,21 +104,14 @@ export default function Sidebar({ categories }: SidebarProps) {
             aria-label="Close sidebar"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         </div>
 
         {/* Category list */}
-        <div className="p-4 space-y-1">
-          {renderCategories(categories)}
-        </div>
+        <div className="p-4 space-y-1">{renderCategories(categories)}</div>
       </aside>
     </>
-  )
+  );
 }

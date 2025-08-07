@@ -1,38 +1,34 @@
-'use client'
+'use client';
 
-import { Loader2 } from 'lucide-react'
-import Link from 'next/link'
-import { useTranslations } from 'next-intl'
-import { useState } from 'react'
+import { Loader2 } from 'lucide-react';
+import Link from 'next/link';
+import { useTranslations } from 'next-intl';
+import { useState } from 'react';
 
-import HeroSection from '@/components/home/HeroSection'
-import SearchBar from '@/components/home/SearchBar'
-import AllToolsSection from '@/components/section/AllToolsSection'
-import FeaturedToolsSection from '@/components/section/FeaturedToolsSection'
-import NewsletterImage from '@/components/section/newsletter/NewsletterImage'
-import NewsletterSimple from '@/components/section/newsletter/NewsletterSimple'
-import { Button } from '@/components/ui/button'
-import { ROUTES } from '@/constants/routes'
-import { useFetchApiData } from '@/lib/fetchApiData'
-import { PaginatedResponse } from '@/types/api.type'
-import { HomePageType } from '@/types/home-page.type'
-import { ToolType } from '@/types/tool.type'
+import HeroSection from '@/components/home/HeroSection';
+import SearchBar from '@/components/home/SearchBar';
+import AllToolsSection from '@/components/section/AllToolsSection';
+import FeaturedToolsSection from '@/components/section/FeaturedToolsSection';
+import NewsletterImage from '@/components/section/newsletter/NewsletterImage';
+import NewsletterSimple from '@/components/section/newsletter/NewsletterSimple';
+import { Button } from '@/components/ui/button';
+import { ROUTES } from '@/constants/routes';
+import { useFetchApiData } from '@/lib/fetchApiData';
+import { PaginatedResponse } from '@/types/api.type';
+import { HomePageType } from '@/types/home-page.type';
+import { ToolType } from '@/types/tool.type';
 
 interface HomePageClientProps {
-  featuredTools: PaginatedResponse<ToolType>
-  initialTools: PaginatedResponse<ToolType>
-  homePage: HomePageType
+  featuredTools: PaginatedResponse<ToolType>;
+  initialTools: PaginatedResponse<ToolType>;
+  homePage: HomePageType;
 }
 
-export default function HomePageClient({
-  featuredTools,
-  initialTools,
-  homePage,
-}: HomePageClientProps) {
-  const t = useTranslations()
+export default function HomePageClient({ featuredTools, initialTools, homePage }: HomePageClientProps) {
+  const t = useTranslations();
 
-  const [tools, setTools] = useState(initialTools.data)
-/*  const [pagination, setPagination] = useState(initialTools.meta.pagination)
+  const [tools, setTools] = useState(initialTools.data);
+  /*  const [pagination, setPagination] = useState(initialTools.meta.pagination)
   const [loading, setLoading] = useState(false)
   const [hasMore, setHasMore] = useState(pagination.page < pagination.pageCount)
 
@@ -58,24 +54,20 @@ export default function HomePageClient({
 
   return (
     <div className="container mx-auto lg:max-w-7xl space-y-8 text-foreground">
-      <HeroSection homePage={homePage}/>
+      <HeroSection homePage={homePage} />
       {/*<SearchBar />*/}
-      <FeaturedToolsSection tools={featuredTools.data}/>
+      <FeaturedToolsSection tools={featuredTools.data} />
 
       {/* Newsletter hình ảnh */}
       <section className="mb-8 lg:mb-12">
-        <NewsletterImage/>
+        <NewsletterImage />
       </section>
 
       {/* Danh sách tool AI */}
-      <AllToolsSection tools={tools}/>
+      <AllToolsSection tools={tools} />
       <div className="text-center xl:mb-16">
         <Link href={ROUTES.AI} passHref>
-          <Button
-            className="px-6 py-3 min-h-[48px] cursor-pointer"
-            variant="secondary"
-            aria-label="Load more AI tools"
-          >
+          <Button className="px-6 py-3 min-h-[48px] cursor-pointer" variant="secondary" aria-label="Load more AI tools">
             {t('common.loadMore')}
           </Button>
         </Link>
@@ -96,7 +88,7 @@ export default function HomePageClient({
         </div>
       )}*/}
 
-      <NewsletterSimple/>
+      <NewsletterSimple />
     </div>
-  )
+  );
 }

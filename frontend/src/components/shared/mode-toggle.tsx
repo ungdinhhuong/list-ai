@@ -1,21 +1,21 @@
-'use client'
+'use client';
 
-import { Moon, Sun } from 'lucide-react'
-import { useTranslations } from 'next-intl'
-import { useTheme } from 'next-themes'
-import * as React from 'react'
+import { Moon, Sun } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import { useTheme } from 'next-themes';
+import * as React from 'react';
 
-import { Button } from '@/components/ui/button'
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
+} from '@/components/ui/dropdown-menu';
 
 export default function ModeToggle() {
-  const { setTheme } = useTheme()
-  const t = useTranslations()
+  const { setTheme } = useTheme();
+  const t = useTranslations();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -31,5 +31,5 @@ export default function ModeToggle() {
         <DropdownMenuItem onClick={() => setTheme('system')}>{t('mode.system')}</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }

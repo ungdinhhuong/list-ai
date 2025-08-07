@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
 import { AlertTriangle, ArrowLeft, Bot, Home, Search, Zap } from 'lucide-react';
-import { useRouter } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import React, { useEffect, useState } from 'react';
-import { FaBlog, FaRobot, FaThLarge } from "react-icons/fa";
+import { FaBlog, FaRobot, FaThLarge } from 'react-icons/fa';
 
 import { Button } from '@/components/ui/button';
-import { ROUTES } from "@/constants/routes";
+import { ROUTES } from '@/constants/routes';
 
 interface FloatingElement {
   id: number;
@@ -26,20 +26,19 @@ const Content404Page: React.FC = () => {
     {
       label: t('common.categories'),
       href: ROUTES.CATEGORY,
-      icon: <FaThLarge className="w-4 h-4 mr-2"/>,
+      icon: <FaThLarge className="w-4 h-4 mr-2" />,
     },
     {
       label: t('common.aiTools'),
       href: ROUTES.AI,
-      icon: <FaRobot className="w-4 h-4 mr-2"/>,
+      icon: <FaRobot className="w-4 h-4 mr-2" />,
     },
     {
       label: t('common.blogs'),
       href: ROUTES.BLOG,
-      icon: <FaBlog className="w-4 h-4 mr-2"/>,
+      icon: <FaBlog className="w-4 h-4 mr-2" />,
     },
-  ]
-
+  ];
 
   useEffect(() => {
     // Generate random floating elements
@@ -48,7 +47,7 @@ const Content404Page: React.FC = () => {
       x: Math.random() * 100,
       y: Math.random() * 100,
       delay: Math.random() * 2,
-      duration: 3 + Math.random() * 2
+      duration: 3 + Math.random() * 2,
     }));
     setFloatingElements(elements);
   }, []);
@@ -62,22 +61,16 @@ const Content404Page: React.FC = () => {
     window.history.back();
   };
 
-
   return (
-    <div
-      id="404-container"
-      className="relative w-full h-full"
-    >
+    <div id="404-container" className="relative w-full h-full">
       {/* Animated Background */}
       <div className="absolute inset-0">
         {/* Static gradient overlays */}
-        <div
-          className="absolute w-48 h-48 lg:w-96 lg:h-96 rounded-full opacity-5 dark:opacity-10 bg-gradient-to-r from-blue-500 to-purple-500 blur-3xl top-1/4 left-1/4"/>
-        <div
-          className="absolute w-32 h-32 lg:w-64 lg:h-64 rounded-full opacity-5 dark:opacity-10 bg-gradient-to-r from-purple-500 to-pink-500 blur-3xl bottom-1/4 right-1/4"/>
+        <div className="absolute w-48 h-48 lg:w-96 lg:h-96 rounded-full opacity-5 dark:opacity-10 bg-gradient-to-r from-blue-500 to-purple-500 blur-3xl top-1/4 left-1/4" />
+        <div className="absolute w-32 h-32 lg:w-64 lg:h-64 rounded-full opacity-5 dark:opacity-10 bg-gradient-to-r from-purple-500 to-pink-500 blur-3xl bottom-1/4 right-1/4" />
 
         {/* Floating Elements */}
-        {floatingElements.map((element) => (
+        {floatingElements.map(element => (
           <div
             key={element.id}
             className="absolute opacity-5 dark:opacity-10 text-gray-600 dark:text-gray-400"
@@ -85,12 +78,12 @@ const Content404Page: React.FC = () => {
               left: `${element.x}%`,
               top: `${element.y}%`,
               animation: `float ${element.duration}s ease-in-out infinite`,
-              animationDelay: `${element.delay}s`
+              animationDelay: `${element.delay}s`,
             }}
           >
-            {element.id % 3 === 0 && <Search size={24}/>}
-            {element.id % 3 === 1 && <Zap size={24}/>}
-            {element.id % 3 === 2 && <Bot size={24}/>}
+            {element.id % 3 === 0 && <Search size={24} />}
+            {element.id % 3 === 1 && <Zap size={24} />}
+            {element.id % 3 === 2 && <Bot size={24} />}
           </div>
         ))}
 
@@ -103,7 +96,7 @@ const Content404Page: React.FC = () => {
                 linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px)
               `,
-              backgroundSize: '50px 50px'
+              backgroundSize: '50px 50px',
             }}
           />
         </div>
@@ -114,8 +107,7 @@ const Content404Page: React.FC = () => {
         <div className="text-center max-w-2xl w-full">
           {/* 404 Number */}
           <div className="relative mb-8">
-            <h1
-              className="text-7xl md:text-8xl lg:text-9xl font-black mb-4 text-transparent bg-clip-text bg-gradient-to-r from-gray-400 via-gray-600 to-gray-800 dark:from-gray-300 dark:via-gray-100 dark:to-gray-300 select-none">
+            <h1 className="text-7xl md:text-8xl lg:text-9xl font-black mb-4 text-transparent bg-clip-text bg-gradient-to-r from-gray-400 via-gray-600 to-gray-800 dark:from-gray-300 dark:via-gray-100 dark:to-gray-300 select-none">
               404
             </h1>
           </div>
@@ -125,7 +117,7 @@ const Content404Page: React.FC = () => {
             {/* Error Icon & Title */}
             <div className="flex items-center justify-center mb-6">
               <div className="p-3 rounded-full bg-red-100 dark:bg-red-900/30 mr-4">
-                <AlertTriangle className="h-8 w-8 text-red-600 dark:text-red-400"/>
+                <AlertTriangle className="h-8 w-8 text-red-600 dark:text-red-400" />
               </div>
               <div>
                 <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
@@ -146,7 +138,7 @@ const Content404Page: React.FC = () => {
                 onClick={() => router.push(ROUTES.HOME)}
                 className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
               >
-                <Home className="h-5 w-5 mr-1/2"/>
+                <Home className="h-5 w-5 mr-1/2" />
                 {t('404.backHome')}
               </Button>
 
@@ -155,16 +147,14 @@ const Content404Page: React.FC = () => {
                 onClick={handleGoBack}
                 className="flex-1 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105"
               >
-                <ArrowLeft className="h-5 w-5 mr-1/2"/>
+                <ArrowLeft className="h-5 w-5 mr-1/2" />
                 {t('404.goBack')}
               </Button>
             </div>
 
             {/* Quick Links */}
             <div className="pt-6">
-              <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
-                {t('404.orChoice')}
-              </p>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">{t('404.orChoice')}</p>
               <div className="flex flex-wrap gap-2 justify-center">
                 {navItems.map((link, index) => (
                   <button
@@ -187,18 +177,14 @@ const Content404Page: React.FC = () => {
             {[
               { label: 'Tools Available', value: '100+', color: 'text-blue-600 dark:text-blue-400' },
               { label: 'Users Helped', value: '50K+', color: 'text-green-600 dark:text-green-400' },
-              { label: 'AI Models', value: '24/7', color: 'text-purple-600 dark:text-purple-400' }
+              { label: 'AI Models', value: '24/7', color: 'text-purple-600 dark:text-purple-400' },
             ].map((stat, index) => (
               <div
                 key={index}
                 className="text-center p-3 rounded-lg bg-gray-50 dark:bg-gray-800/50 backdrop-blur-sm transition-all duration-300 hover:scale-105"
               >
-                <div className={`text-xl font-bold ${stat.color}`}>
-                  {stat.value}
-                </div>
-                <div className="text-xs text-gray-600 dark:text-gray-400">
-                  {stat.label}
-                </div>
+                <div className={`text-xl font-bold ${stat.color}`}>{stat.value}</div>
+                <div className="text-xs text-gray-600 dark:text-gray-400">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -207,14 +193,15 @@ const Content404Page: React.FC = () => {
 
       {/* Custom Animations */}
       <style jsx>{`
-          @keyframes float {
-              0%, 100% {
-                  transform: translateY(0px) rotate(0deg);
-              }
-              50% {
-                  transform: translateY(-20px) rotate(10deg);
-              }
+        @keyframes float {
+          0%,
+          100% {
+            transform: translateY(0px) rotate(0deg);
           }
+          50% {
+            transform: translateY(-20px) rotate(10deg);
+          }
+        }
       `}</style>
     </div>
   );

@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
-import { useTranslations } from 'next-intl'
+import { useTranslations } from 'next-intl';
 
 export default function NoTranslationMessage() {
-  const t = useTranslations()
+  const t = useTranslations();
 
   return (
     <div className="flex justify-center mt-10">
@@ -18,5 +18,5 @@ export default function NoTranslationMessage() {
         <div className="text-base">{t('common.noTranslationDesc')}</div>
       </div>
     </div>
-  )
+  );
 }

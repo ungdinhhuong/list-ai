@@ -1,26 +1,26 @@
-'use client'
-import { usePathname } from 'next/navigation'
-import { useTranslations } from 'next-intl'
-import { useEffect, useState } from 'react'
-import { FaFacebook, FaTwitter } from 'react-icons/fa'
+'use client';
+import { usePathname } from 'next/navigation';
+import { useTranslations } from 'next-intl';
+import { useEffect, useState } from 'react';
+import { FaFacebook, FaTwitter } from 'react-icons/fa';
 
 interface ShareButtonsProps {
-  title?: string
+  title?: string;
 }
 
 export default function ShareButtons({ title }: ShareButtonsProps) {
-  const pathname = usePathname()
-  const [fullUrl, setFullUrl] = useState('')
-  const t = useTranslations()
+  const pathname = usePathname();
+  const [fullUrl, setFullUrl] = useState('');
+  const t = useTranslations();
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      setFullUrl(`${window.location.origin}${pathname}`)
+      setFullUrl(`${window.location.origin}${pathname}`);
     }
-  }, [pathname])
+  }, [pathname]);
 
-  const encodedUrl = encodeURIComponent(fullUrl)
-  const encodedTitle = encodeURIComponent(title || '')
+  const encodedUrl = encodeURIComponent(fullUrl);
+  const encodedTitle = encodeURIComponent(title || '');
 
   return (
     <div className="flex items-center gap-3">
@@ -43,5 +43,5 @@ export default function ShareButtons({ title }: ShareButtonsProps) {
         <FaTwitter size={16} />
       </a>
     </div>
-  )
+  );
 }

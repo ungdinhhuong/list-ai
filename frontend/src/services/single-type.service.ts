@@ -1,11 +1,11 @@
-import { apiGet } from '@/lib/apiRequest'
-import { AIPageType } from '@/types/ai.type'
-import { SingleTypeResponse } from '@/types/api.type'
-import { BlogPageType } from '@/types/blog.type'
-import { CategoryPageResponse } from '@/types/category.type'
-import { HomePageType } from '@/types/home-page.type'
-import { SiteSettingResponse } from '@/types/site-setting.type'
-import { StaticPageType } from '@/types/static-page.type'
+import { apiGet } from '@/lib/apiRequest';
+import { AIPageType } from '@/types/ai.type';
+import { SingleTypeResponse } from '@/types/api.type';
+import { BlogPageType } from '@/types/blog.type';
+import { CategoryPageResponse } from '@/types/category.type';
+import { HomePageType } from '@/types/home-page.type';
+import { SiteSettingResponse } from '@/types/site-setting.type';
+import { StaticPageType } from '@/types/static-page.type';
 
 class SingleTypeService {
   async getHomePage(): Promise<SingleTypeResponse<HomePageType>> {
@@ -25,7 +25,7 @@ class SingleTypeService {
           },
         },
       },
-    })
+    });
   }
 
   async getCategoryPage(): Promise<CategoryPageResponse> {
@@ -42,7 +42,7 @@ class SingleTypeService {
           },
         },
       },
-    })
+    });
   }
 
   async getBlogPage(): Promise<SingleTypeResponse<BlogPageType>> {
@@ -59,7 +59,7 @@ class SingleTypeService {
           },
         },
       },
-    })
+    });
   }
 
   async getAIPage(): Promise<SingleTypeResponse<AIPageType>> {
@@ -76,7 +76,7 @@ class SingleTypeService {
           },
         },
       },
-    })
+    });
   }
 
   async getPolicyPage(): Promise<StaticPageType> {
@@ -93,7 +93,7 @@ class SingleTypeService {
           },
         },
       },
-    }).then(res => res.data)
+    }).then(res => res.data);
   }
 
   async getAboutPage(): Promise<StaticPageType> {
@@ -110,7 +110,7 @@ class SingleTypeService {
           },
         },
       },
-    }).then(res => res.data)
+    }).then(res => res.data);
   }
 
   async getSiteSetting(): Promise<SiteSettingResponse> {
@@ -132,8 +132,8 @@ class SingleTypeService {
           contactInfo: '*',
         },
       },
-    })
+    });
   }
 }
 
-export const singleTypeService = new SingleTypeService()
+export const singleTypeService = new SingleTypeService();

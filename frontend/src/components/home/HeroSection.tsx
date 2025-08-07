@@ -1,23 +1,23 @@
-'use client'
+'use client';
 
-import { Upload, Users } from 'lucide-react'
-import Image from 'next/image'
-import { useTranslations } from 'next-intl'
-import React from 'react'
+import { Upload, Users } from 'lucide-react';
+import Image from 'next/image';
+import { useTranslations } from 'next-intl';
+import React from 'react';
 
-import { useGlobalData } from '@/contexts/GlobalProvider'
-import { HomePageType } from '@/types/home-page.type'
-import { renderUrlImage } from '@/utils/functions'
+import { useGlobalData } from '@/contexts/GlobalProvider';
+import { HomePageType } from '@/types/home-page.type';
+import { renderUrlImage } from '@/utils/functions';
 
 interface HeroSectionProps {
-  homePage: HomePageType
+  homePage: HomePageType;
 }
 
 export default function HeroSection({ homePage }: HeroSectionProps) {
-  const t = useTranslations()
-  const { siteSetting } = useGlobalData()
+  const t = useTranslations();
+  const { siteSetting } = useGlobalData();
 
-  const ads = homePage.ads || []
+  const ads = homePage.ads || [];
 
   // @ts-ignore
   return (
@@ -30,8 +30,7 @@ export default function HeroSection({ homePage }: HeroSectionProps) {
           </div>
         </div>*/}
 
-        <h1
-          className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent leading-tight">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent leading-tight">
           {homePage.title || 'Discover the Best AI Tools'}
         </h1>
 
@@ -40,8 +39,7 @@ export default function HeroSection({ homePage }: HeroSectionProps) {
             'Explore the latest and most innovative AI tools to enhance your productivity and creativity. Join our community of AI enthusiasts and discover tools that can transform your workflow.'}
         </p>
 
-        <div
-          className="flex justify-center lg:justify-start items-center flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
+        <div className="flex justify-center lg:justify-start items-center flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
           {/*<button
             className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-full font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center space-x-2 w-full sm:w-auto justify-center">
             <Upload className="w-5 h-5 group-hover:rotate-12 transition-transform" />
@@ -51,7 +49,8 @@ export default function HeroSection({ homePage }: HeroSectionProps) {
             href={siteSetting.joinCommunity}
             target="_blank"
             rel="noopener noreferrer"
-            className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-full font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center space-x-2 w-full sm:w-auto justify-center">
+            className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-full font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center space-x-2 w-full sm:w-auto justify-center"
+          >
             <Users className="w-5 h-5 group-hover:scale-110 transition-transform" />
             <span>{t('common.joinCommunity')}</span>
           </a>
@@ -77,11 +76,7 @@ export default function HeroSection({ homePage }: HeroSectionProps) {
           >
             <div className="aspect-video overflow-hidden">
               <Image
-                src={
-                  ads[0]?.image?.url
-                    ? renderUrlImage(ads[0]?.image?.url as string)
-                    : ads[0].imageLink as string
-                }
+                src={ads[0]?.image?.url ? renderUrlImage(ads[0]?.image?.url as string) : (ads[0].imageLink as string)}
                 alt={ads[0].title}
                 width={600}
                 height={400}
@@ -92,18 +87,15 @@ export default function HeroSection({ homePage }: HeroSectionProps) {
             </div>
 
             {/* Overlay with ad info */}
-            <div
-              className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent dark:from-black/70 dark:via-black/20 dark:to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <div
-                className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent dark:from-black/70 dark:via-black/20 dark:to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                 <h3 className="text-2xl font-bold mb-2">{ads[0].title}</h3>
                 <p className="text-sm opacity-90 leading-relaxed">{ads[0].description}</p>
               </div>
             </div>
 
             {/* Ad badge */}
-            <div
-              className="absolute top-4 right-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xs px-3 py-1 rounded-full font-semibold shadow-lg">
+            <div className="absolute top-4 right-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xs px-3 py-1 rounded-full font-semibold shadow-lg">
               {t('common.ads')}
             </div>
 
@@ -111,14 +103,16 @@ export default function HeroSection({ homePage }: HeroSectionProps) {
             <div className="absolute top-4 left-4 w-3 h-3 bg-white/30 rounded-full"></div>
             <div className="absolute top-4 left-10 w-2 h-2 bg-white/20 rounded-full"></div>
           </div>
-        ) : (<Image
-          src="/images/ads-blank.png"
-          alt="Advertisement"
-          width={600}
-          height={300}
-          className="w-full h-80 object-contain"
-        />)}
+        ) : (
+          <Image
+            src="/images/ads-blank.png"
+            alt="Advertisement"
+            width={600}
+            height={300}
+            className="w-full h-80 object-contain"
+          />
+        )}
       </div>
     </div>
-  )
+  );
 }

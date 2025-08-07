@@ -1,28 +1,28 @@
-'use client'
+'use client';
 
-import { Check, Globe2 } from 'lucide-react'
-import { useLocale, useTranslations } from 'next-intl'
+import { Check, Globe2 } from 'lucide-react';
+import { useLocale, useTranslations } from 'next-intl';
 
-import { Button } from '@/components/ui/button'
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import { usePathname, useRouter } from '@/i18n/navigation'
-import { cn } from '@/lib/utils'
+} from '@/components/ui/dropdown-menu';
+import { usePathname, useRouter } from '@/i18n/navigation';
+import { cn } from '@/lib/utils';
 
 const LANGUAGES = [
   { value: 'en', label: 'English' },
   { value: 'vi', label: 'Tiếng Việt' },
-]
+];
 
 export default function LanguageSwitcher() {
-  const t = useTranslations()
-  const locale = useLocale()
-  const router = useRouter()
-  const pathname = usePathname()
+  const t = useTranslations();
+  const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
 
   // const handleLocaleChange = (newLocale: string) => {
   //   if (newLocale !== locale) {
@@ -33,22 +33,18 @@ export default function LanguageSwitcher() {
   // Redirect to home if changing locale from home
   const handleLocaleChange = (newLocale: string) => {
     if (newLocale !== locale) {
-      const isHome = pathname === '/' || pathname === `/${locale}`
-      const targetPath = isHome ? '/' : '/'
-      router.replace(targetPath, { locale: newLocale })
+      const isHome = pathname === '/' || pathname === `/${locale}`;
+      const targetPath = isHome ? '/' : '/';
+      router.replace(targetPath, { locale: newLocale });
     }
-  }
+  };
 
-  const current = LANGUAGES.find(l => l.value === locale)
+  const current = LANGUAGES.find(l => l.value === locale);
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button
-          variant="outline"
-          className="w-auto justify-between"
-          aria-label={t('languageSwitcher.chooseLanguage')}
-        >
+        <Button variant="outline" className="w-auto justify-between" aria-label={t('languageSwitcher.chooseLanguage')}>
           <Globe2 size={18} className="mr-1" />
           <span>{current?.label}</span>
         </Button>
@@ -57,10 +53,7 @@ export default function LanguageSwitcher() {
         {LANGUAGES.map(lang => (
           <DropdownMenuItem
             key={lang.value}
-            className={cn(
-              'flex items-center justify-between',
-              lang.value === locale && 'font-semibold'
-            )}
+            className={cn('flex items-center justify-between', lang.value === locale && 'font-semibold')}
             onClick={() => handleLocaleChange(lang.value)}
           >
             <span>{lang.label}</span>
@@ -69,5 +62,5 @@ export default function LanguageSwitcher() {
         ))}
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }

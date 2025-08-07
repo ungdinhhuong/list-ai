@@ -1,21 +1,21 @@
-'use client'
-import Link from 'next/link'
-import { useTranslations } from 'next-intl'
-import React from 'react'
+'use client';
+import Link from 'next/link';
+import { useTranslations } from 'next-intl';
+import React from 'react';
 
-import TitlePage from '@/components/common/TitlePage'
-import NewsletterImage from '@/components/section/newsletter/NewsletterImage'
-import { Card, CardContent } from '@/components/ui/card'
-import { ROUTES } from '@/constants/routes'
-import { CategoryPageType, CategoryType } from '@/types/category.type'
+import TitlePage from '@/components/common/TitlePage';
+import NewsletterImage from '@/components/section/newsletter/NewsletterImage';
+import { Card, CardContent } from '@/components/ui/card';
+import { ROUTES } from '@/constants/routes';
+import { CategoryPageType, CategoryType } from '@/types/category.type';
 
 interface CategoryPageClientProps {
-  categories: CategoryType[]
-  page?: CategoryPageType
+  categories: CategoryType[];
+  page?: CategoryPageType;
 }
 
 export default function CategoryPageClient({ categories, page }: CategoryPageClientProps) {
-  const t = useTranslations()
+  const t = useTranslations();
   return (
     <div className="container mx-auto lg:w-7xl space-y-8 relative">
       <TitlePage title={page?.title || ''} description={page?.description || ''} />
@@ -42,12 +42,10 @@ export default function CategoryPageClient({ categories, page }: CategoryPageCli
 
                       {/* Title + Subtitle */}
                       <div className="flex-1 min-w-0">
-                        <h3
-                          className="text-foreground font-semibold text-lg mb-2 group-hover:text-primary transition-colors duration-300">
+                        <h3 className="text-foreground font-semibold text-lg mb-2 group-hover:text-primary transition-colors duration-300">
                           {category.name}
                         </h3>
-                        <p
-                          className="text-muted-foreground text-sm leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
+                        <p className="text-muted-foreground text-sm leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
                           {category.description}
                         </p>
                       </div>
@@ -59,8 +57,7 @@ export default function CategoryPageClient({ categories, page }: CategoryPageCli
                     ></div>
 
                     {/* Animated border shimmer */}
-                    <div
-                      className="absolute inset-0 rounded-lg bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 -rotate-45 translate-x-[-100%] group-hover:translate-x-[100%] group-hover:transition-transform group-hover:duration-1000"></div>
+                    <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 -rotate-45 translate-x-[-100%] group-hover:translate-x-[100%] group-hover:transition-transform group-hover:duration-1000"></div>
                   </Link>
                 </CardContent>
               </Card>
@@ -69,9 +66,8 @@ export default function CategoryPageClient({ categories, page }: CategoryPageCli
         </div>
       ))}
 
-
       {/* Newsletter */}
       <NewsletterImage />
     </div>
-  )
+  );
 }

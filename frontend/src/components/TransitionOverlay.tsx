@@ -1,32 +1,32 @@
-'use client'
-import { AnimatePresence, motion } from 'framer-motion'
-import { usePathname } from 'next/navigation'
-import { useEffect, useState } from 'react'
+'use client';
+import { AnimatePresence, motion } from 'framer-motion';
+import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 export default function TransitionOverlay() {
-  const pathname = usePathname()
-  const [visible, setVisible] = useState(false)
-  const [shouldRender, setShouldRender] = useState(false)
+  const pathname = usePathname();
+  const [visible, setVisible] = useState(false);
+  const [shouldRender, setShouldRender] = useState(false);
 
   useEffect(() => {
-    setShouldRender(true)
-    setVisible(true)
+    setShouldRender(true);
+    setVisible(true);
 
     const timer = setTimeout(() => {
-      setVisible(false)
-    }, 400) // độ dài hiệu ứng
+      setVisible(false);
+    }, 400); // độ dài hiệu ứng
 
     const cleanup = setTimeout(() => {
-      setShouldRender(false)
-    }, 800) // đợi hiệu ứng exit xong mới xóa hoàn toàn
+      setShouldRender(false);
+    }, 800); // đợi hiệu ứng exit xong mới xóa hoàn toàn
 
     return () => {
-      clearTimeout(timer)
-      clearTimeout(cleanup)
-    }
-  }, [pathname])
+      clearTimeout(timer);
+      clearTimeout(cleanup);
+    };
+  }, [pathname]);
 
-  if (!shouldRender) return null
+  if (!shouldRender) return null;
 
   return (
     <AnimatePresence mode="wait">
@@ -44,5 +44,5 @@ export default function TransitionOverlay() {
         />
       )}
     </AnimatePresence>
-  )
+  );
 }
