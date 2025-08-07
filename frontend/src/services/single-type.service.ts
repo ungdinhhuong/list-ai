@@ -118,6 +118,7 @@ class SingleTypeService {
       params: {
         populate: {
           logo: true,
+          logoLight: true,
           defaultSeo: {
             populate: {
               openGraph: {

@@ -106,6 +106,7 @@ export default function Sidebar({ categories }: SidebarProps) {
           <button
             onClick={() => setSidebarOpen(false)}
             className="text-muted-foreground hover:text-foreground"
+            aria-label="Close sidebar"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path

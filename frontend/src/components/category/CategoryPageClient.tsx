@@ -28,7 +28,7 @@ export default function CategoryPageClient({ categories, page }: CategoryPageCli
             {(parent.children || []).map(category => (
               <Card
                 key={category.id}
-                className="group relative overflow-hidden border border-border hover:border-foreground/20 transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer backdrop-blur-sm"
+                className="group relative overflow-hidden border border-border hover:border-foreground/20 transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer backdrop-blur-sm shadow-none"
               >
                 <CardContent>
                   <Link href={ROUTES.CATEGORY_DETAIL(category.slug)} className="block">

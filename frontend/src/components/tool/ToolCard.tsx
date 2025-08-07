@@ -13,7 +13,7 @@ interface ToolCardProps {
 export default function ToolCard({ tool }: ToolCardProps) {
   return (
     <Link href={ROUTES.AI_DETAIL(tool.slug)} className="block">
-      <Card className="bg-background border-border hover:border-accent transition-colors p-2 h-full">
+      <Card className="bg-background border-border hover:border-accent transition-colors p-2 h-full shadow-none">
         <CardContent className="p-0">
           <div className="flex items-start space-x-3">
             <AvatarLogo text={tool.name} img={tool?.avatar?.url || ''} />

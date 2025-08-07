@@ -66,6 +66,7 @@ export interface SiteSettingType {
   publishedAt: string
   locale: string
   logo: StrapiMedia
+  logoLight: StrapiMedia
   defaultSeo: StrapiSEO
   socialLinks: SocialLink[]
   footerLinks: FooterLink[]

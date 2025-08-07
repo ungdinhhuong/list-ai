@@ -43,7 +43,7 @@ export default function AIDetailClient({ tool, relatedTools }: AIDetailClientPro
       <p className="text-muted-foreground text-lg max-w-2xl">{tool.description}</p>
 
       {/* Info Card */}
-      <Card className="bg-muted border-border py-4">
+      <Card className="bg-muted border-border py-4 shadow-none">
         <CardContent className="px-4">
           <div className="grid grid-cols-1 grid-rows-2 gap-4">
             <div className="flex items-center gap-2">

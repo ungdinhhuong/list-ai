@@ -17,9 +17,17 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { ROUTES } from '@/constants/routes'
 import { useSidebar } from '@/contexts/SidebarProvider'
+import {SiteSettingType} from "@/types/site-setting.type";
+import {useTheme} from "next-themes";
+import {renderUrlImage} from "@/utils/functions";
 
-export default function Header() {
+interface HeaderProps {
+    siteSetting: SiteSettingType
+}
+
+export default function Header({siteSetting}: HeaderProps) {
   const { sidebarOpen, setSidebarOpen } = useSidebar()
+  const { theme, systemTheme } = useTheme()
   const t = useTranslations()
   const [dropdownOpen, setDropdownOpen] = useState(false)
 
@@ -83,7 +91,7 @@ export default function Header() {
             <Link href={ROUTES.HOME} className="flex items-center space-x-2">
               <div className="w-26 h-8 relative">
                 <Image
-                  src="/ontoolaz_logo.png"
+                  src={renderUrlImage(theme === 'dark' ? siteSetting?.logo.url : siteSetting?.logoLight.url)}
                   alt="OnToolAZ"
                   fill
                   sizes="true"

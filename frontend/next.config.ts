@@ -37,6 +37,7 @@ const nextConfig: NextConfig = {
     // Tùy chọn thêm cho production
     removeConsole: process.env.NODE_ENV === 'production',
   },
+  transpilePackages: [], // nếu có
 }
 
 const withNextIntl = createNextIntlPlugin()

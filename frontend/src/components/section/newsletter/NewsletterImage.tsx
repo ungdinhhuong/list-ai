@@ -56,7 +56,7 @@ export default function NewsletterImage() {
   }
 
   return (
-    <div className="w-full mx-auto bg-background rounded-2xl overflow-hidden shadow-2xl border border-border">
+    <div className="w-full mx-auto bg-background rounded-2xl overflow-hidden border border-border">
       <div className="relative flex flex-col lg:flex-row items-center justify-between p-4 lg:p-8 gap-4 lg:gap-8">
         {/* Background Blurs */}
         <div className="absolute inset-0 opacity-10 pointer-events-none">
