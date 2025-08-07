@@ -34,12 +34,11 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
 
   compiler: {
-    // Tùy chọn thêm cho production
     removeConsole: process.env.NODE_ENV === 'production',
   },
+
   transpilePackages: [], // nếu có
 }
 
 const withNextIntl = createNextIntlPlugin()
-
 export default withNextIntl(nextConfig)

@@ -11,6 +11,7 @@ import {GlobalDataProvider} from '@/contexts/GlobalProvider'
 import {routing} from '@/i18n/routing'
 import {getValidOgType} from '@/lib/seoMeta'
 import {singleTypeService} from '@/services/single-type.service'
+import NextTopLoader from 'nextjs-toploader';
 
 const geistSans = Geist({variable: '--font-geist-sans', subsets: ['latin']})
 const geistMono = Geist_Mono({variable: '--font-geist-mono', subsets: ['latin']})
@@ -101,7 +102,12 @@ export default async function LocaleLayout({
     <NextIntlClientProvider>
       <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
         <GlobalDataProvider value={{siteSetting}}>
-          <MainLayout>{children}</MainLayout>
+          <MainLayout>
+            <NextTopLoader
+              showSpinner={false}
+            />
+            {children}
+          </MainLayout>
         </GlobalDataProvider>
       </ThemeProvider>
     </NextIntlClientProvider>
