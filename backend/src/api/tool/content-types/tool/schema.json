@@ -87,8 +87,8 @@
         }
       },
       "enum": [
-        "ai",
-        "finance"
+        "AI",
+        "Finance"
       ]
     },
     "categories": {
