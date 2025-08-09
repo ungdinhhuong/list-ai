@@ -18,6 +18,7 @@ export interface CategoryType {
   parent?: CategoryType;
   categories?: CategoryType[];
   children?: CategoryType[];
+  seo?: StrapiSEO;
 }
 
 export interface CategoryPageType {
