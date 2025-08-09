@@ -25,7 +25,9 @@ class CategoryService {
         populate: {
           tools: {
             fields: TOOL_FIELDS,
-            populate: ['avatar'],
+            populate: {
+              avatar: true,
+            },
           },
         },
       },
@@ -40,9 +42,13 @@ class CategoryService {
           tools: {
             populate: ['avatar'],
           },
+          // localizations: {
+          //   fields: ['id', 'name', 'slug'],
+          // }
         },
       },
     });
+    console.log(res.data);
     return res.data?.[0];
   }
 

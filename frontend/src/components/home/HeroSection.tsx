@@ -21,7 +21,7 @@ export default function HeroSection({ homePage }: HeroSectionProps) {
 
   // @ts-ignore
   return (
-    <div className="flex flex-col lg:flex-row gap-4 items-center max-w-7xl mx-auto">
+    <div className="flex flex-col lg:flex-row gap-16 items-center max-w-7xl mx-auto">
       {/* Left Content */}
       <div className="w-full lg:w-1/2 text-center lg:text-left">
         {/*<div className="flex justify-center lg:justify-start mb-6">
@@ -68,7 +68,7 @@ export default function HeroSection({ homePage }: HeroSectionProps) {
       </div>
 
       {/* Right Advertisement */}
-      <div className="w-full lg:w-1/2">
+      <div className="w-full lg:w-1/2 rounded-2xl bg-[#fffdf4]">
         {ads.length > 0 && false ? (
           <div
             className="group relative overflow-hidden rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 cursor-pointer transform hover:scale-105"

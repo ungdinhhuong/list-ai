@@ -23,7 +23,9 @@ class ToolService {
       params: {
         'filters[badge][$eq]': `${badge}`,
         sort: 'updatedAt:desc',
-        populate: 'avatar',
+        populate: {
+          avatar: true,
+        },
         'fields[]': TOOL_FIELDS,
       },
     });
@@ -33,7 +35,11 @@ class ToolService {
     const res = await apiGet(`/tools`, {
       params: {
         'filters[slug][$eq]': slug,
-        populate: ['avatar', 'categories', 'seo'],
+        populate: {
+          avatar: true,
+          categories: true,
+          seo: true,
+        },
       },
     });
     return res.data?.[0];
@@ -43,7 +49,9 @@ class ToolService {
     const params: Record<string, any> = {
       'filters[categories][id][$in]': categoryIds,
       sort: 'updatedAt:desc',
-      populate: 'avatar',
+      populate: {
+        avatar: true,
+      },
       'pagination[page]': 1,
       'pagination[pageSize]': 9,
       'fields[]': TOOL_FIELDS,
@@ -67,7 +75,9 @@ class ToolService {
   }): Promise<PaginatedResponse<ToolType>> {
     const params: any = {
       sort: 'updatedAt:desc',
-      populate: 'avatar',
+      populate: {
+        avatar: true,
+      },
       'pagination[page]': page || 1,
       'pagination[pageSize]': pageSize || 10,
       'fields[]': TOOL_FIELDS,

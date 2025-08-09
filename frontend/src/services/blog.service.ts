@@ -57,6 +57,9 @@ class BlogService {
           thumbnail: true,
           category: true,
           seo: true,
+          // localizations: {
+          //   fields: ['id', 'title', 'slug'],
+          // }
         },
       },
     });

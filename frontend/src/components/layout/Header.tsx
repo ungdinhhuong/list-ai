@@ -141,7 +141,7 @@ export default function Header({ siteSetting }: HeaderProps) {
                 <DropdownMenuItem className="flex items-center justify-between" onSelect={e => e.preventDefault()}>
                   <span className="flex items-center">
                     <FaGlobe className="w-4 h-4 mr-2" />
-                    {t('languageSwitcher.chooseLanguage')}
+                    {/*{t('languageSwitcher.chooseLanguage')}*/}
                   </span>
                   <LanguageSwitcher />
                 </DropdownMenuItem>
