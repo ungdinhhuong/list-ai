@@ -875,7 +875,7 @@ export interface ApiSiteSettingSiteSetting extends Struct.SingleTypeSchema {
     contactInfo: Schema.Attribute.Component<'common.contact', false> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }>;
     createdAt: Schema.Attribute.DateTime;
@@ -890,7 +890,7 @@ export interface ApiSiteSettingSiteSetting extends Struct.SingleTypeSchema {
     footerLinks: Schema.Attribute.Component<'common.link', true> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }>;
     joinCommunity: Schema.Attribute.String &
@@ -922,7 +922,7 @@ export interface ApiSiteSettingSiteSetting extends Struct.SingleTypeSchema {
     scripts: Schema.Attribute.Component<'common.scripts', false> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }>;
     siteName: Schema.Attribute.String &

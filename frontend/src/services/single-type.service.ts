@@ -130,6 +130,7 @@ class SingleTypeService {
           socialLinks: '*',
           footerLinks: '*',
           contactInfo: '*',
+          scripts: '*',
         },
       },
     });

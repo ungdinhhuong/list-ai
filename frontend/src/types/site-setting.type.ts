@@ -71,6 +71,10 @@ export interface SiteSettingType {
   socialLinks: SocialLink[];
   footerLinks: FooterLink[];
   contactInfo: ContactInfo;
+  scripts?: {
+    headScripts: string;
+    bodyScripts: string;
+  }
   joinCommunity: string;
 }
 

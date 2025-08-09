@@ -1,10 +1,10 @@
+import {Metadata} from "next";
 import {notFound} from 'next/navigation';
 import React from 'react';
 
 import CategoryDetailClient from '@/components/category/CategoryDetailClient';
-import {categoryService} from '@/services/category.service';
-import {Metadata} from "next";
 import {seoMeta} from "@/lib/seoMeta";
+import {categoryService} from '@/services/category.service';
 
 export async function generateMetadata({params}: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const {slug} = await params;
