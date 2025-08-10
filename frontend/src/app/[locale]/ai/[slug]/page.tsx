@@ -10,11 +10,12 @@ import { ToolType } from '@/types/tool.type';
 
 export async function generateMetadata({ params }: AIDetailPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const tool = await toolService.findBySlug(slug);
-  if (!tool) {
+  const tools = await toolService.findBySlug(slug);
+  if (!tools) {
     notFound();
   }
 
+  const tool: ToolType = tools[0] || null;
   const seo = tool?.seo || null;
   return seoMeta({ seo });
 }
@@ -25,10 +26,11 @@ interface AIDetailPageProps {
 
 export default async function AIDetailPage({ params }: AIDetailPageProps) {
   const { slug } = await params;
-  const tool = await toolService.findBySlug(slug);
-  if (!tool) {
+  const tools = await toolService.findBySlug(slug);
+  if (!tools) {
     notFound();
   }
+  const tool: ToolType = tools[0] || null;
 
   const categoryIds = tool.categories?.map((category: any) => category.id) || [];
   let relatedTools: ToolType[] = [];

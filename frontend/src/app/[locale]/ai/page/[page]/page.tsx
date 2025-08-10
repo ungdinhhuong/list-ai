@@ -3,7 +3,6 @@ import { notFound, redirect } from 'next/navigation';
 import React from 'react';
 
 import AIPageClient from '@/components/ai/AIPageClient';
-import { StructuredData } from '@/components/common/StructuredData';
 import { ROUTES } from '@/constants/routes';
 import { seoMeta } from '@/lib/seoMeta';
 import { singleTypeService } from '@/services/single-type.service';

@@ -31,7 +31,7 @@ class ToolService {
     });
   }
 
-  async findBySlug(slug: string): Promise<ToolType | null> {
+  async findBySlug(slug: string): Promise<ToolType[]> {
     const res = await apiGet(`/tools`, {
       params: {
         'filters[slug][$eq]': slug,
@@ -42,7 +42,7 @@ class ToolService {
         },
       },
     });
-    return res.data?.[0];
+    return res.data;
   }
 
   async getToolsByCategory(categoryIds: string[], currentToolId?: number): Promise<PaginatedResponse<ToolType>> {

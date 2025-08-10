@@ -2,7 +2,7 @@
 
 import {Loader2, Search, Send, X} from 'lucide-react';
 import Image from 'next/image';
-import {useRouter} from 'next/navigation';
+import {usePathname, useRouter, useSearchParams} from 'next/navigation';
 import {useTranslations} from 'next-intl';
 import React, {useEffect, useRef, useState} from 'react';
 
@@ -11,15 +11,22 @@ import {Button} from '@/components/ui/button';
 import {Input} from '@/components/ui/input';
 import {STRAPI_URL} from '@/constants/env';
 
-export default function SearchBar() {
+interface SearchBarProps {
+  q?: string;
+}
+
+export default function SearchBar({q = ''}: SearchBarProps) {
   const t = useTranslations();
   const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState(q);
   const [isOpen, setIsOpen] = useState(false);
   const [results, setResults] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
+
 
   const searchRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -132,13 +139,20 @@ export default function SearchBar() {
     setIsOpen(false);
     setHighlightedIndex(-1);
     inputRef.current?.focus();
+
+    // Xoá chỉ param q, giữ nguyên các param khác (nếu có)
+    const params = new URLSearchParams(searchParams.toString());
+    params.delete('q');
+    const nextUrl = params.toString() ? `${pathname}?${params}` : pathname;
+
+    router.replace(nextUrl, { scroll: false });
   };
 
   return (
     <>
       {isOpen && <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-4 transition-all duration-300"/>}
 
-        <div className="w-full mx-auto mb-8 lg:mb-12 relative z-5">
+        <div className="w-full mx-auto mb-8 lg:my-12 relative z-5">
           <div className="relative" ref={searchRef}>
             {/* Form để Enter submit điều hướng /ai?q=... */}
             <form onSubmit={onSubmit} className="flex items-stretch gap-2.5">
@@ -177,7 +191,7 @@ export default function SearchBar() {
               <Button
                 type="submit"
                 disabled={!searchQuery.trim() || isLoading}
-                className="h-12 md:h-14 px-5 md:px-6 text-white rounded-2xl inline-flex items-center gap-2"
+                className="w-auto md:w-42 h-12 md:h-14 px-5 md:px-6 text-white rounded-2xl inline-flex items-center gap-2"
               >
                 {isLoading ? (
                   <Loader2 className="w-5 h-5 md:w-6 md:h-6 animate-spin"/>

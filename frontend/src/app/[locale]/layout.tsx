@@ -90,7 +90,6 @@ export default async function LocaleLayout({
 
   const resSiteSetting = await singleTypeService.getSiteSetting();
   const siteSetting = resSiteSetting?.data || [];
-  console.log('siteSetting', siteSetting?.scripts?.headScripts.trim());
 
   return (
     <html lang={locale} suppressHydrationWarning>

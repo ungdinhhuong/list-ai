@@ -48,7 +48,6 @@ class CategoryService {
         },
       },
     });
-    console.log(res.data);
     return res.data?.[0];
   }
 
