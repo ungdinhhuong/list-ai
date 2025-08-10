@@ -61,7 +61,7 @@ export default function Sidebar({ categories }: SidebarProps) {
             style={{ paddingLeft: `${level * 16 + 12}px` }}
             onClick={handleClick}
           >
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-1.5">
               <span className="text-lg">{category.icon}</span>
               <span className="text-sm">{category.name}</span>
             </div>
@@ -110,7 +110,7 @@ export default function Sidebar({ categories }: SidebarProps) {
         </div>
 
         {/* Category list */}
-        <div className="p-4 space-y-1">{renderCategories(categories)}</div>
+        <div className="p-1.5">{renderCategories(categories)}</div>
       </aside>
     </>
   );
