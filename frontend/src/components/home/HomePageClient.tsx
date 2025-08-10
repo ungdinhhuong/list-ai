@@ -55,7 +55,7 @@ export default function HomePageClient({ featuredTools, initialTools, homePage }
   return (
     <div className="container mx-auto lg:max-w-7xl space-y-8 text-foreground">
       <HeroSection homePage={homePage} />
-      {/*<SearchBar />*/}
+      <SearchBar />
       <FeaturedToolsSection tools={featuredTools.data} />
 
       {/* Newsletter hình ảnh */}

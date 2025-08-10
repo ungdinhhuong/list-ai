@@ -20,6 +20,7 @@ import { ROUTES } from '@/constants/routes';
 import { useSidebar } from '@/contexts/SidebarProvider';
 import { SiteSettingType } from '@/types/site-setting.type';
 import { renderUrlImage } from '@/utils/functions';
+import SafeImage from "@/components/common/SafeImage";
 
 interface HeaderProps {
   siteSetting: SiteSettingType;
@@ -88,7 +89,7 @@ export default function Header({ siteSetting }: HeaderProps) {
 
             <Link href={ROUTES.HOME} className="flex items-center space-x-2">
               <div className="w-26 h-8 relative">
-                <Image
+                <SafeImage
                   src={renderUrlImage(theme === 'dark' ? siteSetting?.logo?.url : (siteSetting?.logoLight?.url ?? ''))}
                   alt="OnToolAZ"
                   fill

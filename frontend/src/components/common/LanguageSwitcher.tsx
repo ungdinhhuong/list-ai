@@ -3,7 +3,6 @@
 import { Check, Globe2 } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 
-
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,

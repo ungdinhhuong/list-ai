@@ -90,12 +90,12 @@ export default async function LocaleLayout({
 
   const resSiteSetting = await singleTypeService.getSiteSetting();
   const siteSetting = resSiteSetting?.data || [];
-  console.log('siteSetting', siteSetting);
+  console.log('siteSetting', siteSetting?.scripts?.headScripts.trim());
 
   return (
     <html lang={locale} suppressHydrationWarning>
     <head>
-      {siteSetting?.scripts?.headScripts && parse(siteSetting.scripts.headScripts)}
+      {!!siteSetting?.scripts?.headScripts && parse(siteSetting.scripts.headScripts.trim())}
     </head>
     <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
     <NextIntlClientProvider>
@@ -108,7 +108,7 @@ export default async function LocaleLayout({
         </GlobalDataProvider>
       </ThemeProvider>
     </NextIntlClientProvider>
-    {siteSetting?.scripts?.bodyScripts && parse(siteSetting.scripts.bodyScripts)}
+    {!!siteSetting?.scripts?.bodyScripts && parse(siteSetting.scripts.bodyScripts.trim())}
     </body>
     </html>
   );
