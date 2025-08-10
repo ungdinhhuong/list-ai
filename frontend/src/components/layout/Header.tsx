@@ -2,10 +2,10 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
-import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
-import { FaBlog, FaEllipsisV, FaGlobe, FaMoon, FaRobot, FaThLarge } from 'react-icons/fa';
+import {useTranslations} from 'next-intl';
+import {useTheme} from 'next-themes';
+import {useEffect, useState} from 'react';
+import {FaBlog, FaEllipsisV, FaGlobe, FaMoon, FaRobot, FaThLarge} from 'react-icons/fa';
 
 import LanguageSwitcher from '@/components/common/LanguageSwitcher';
 import ModeToggle from '@/components/shared/mode-toggle';
@@ -16,19 +16,18 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { ROUTES } from '@/constants/routes';
-import { useSidebar } from '@/contexts/SidebarProvider';
-import { SiteSettingType } from '@/types/site-setting.type';
-import { renderUrlImage } from '@/utils/functions';
-import SafeImage from "@/components/common/SafeImage";
+import {ROUTES} from '@/constants/routes';
+import {useSidebar} from '@/contexts/SidebarProvider';
+import {SiteSettingType} from '@/types/site-setting.type';
+import {renderUrlImage} from '@/utils/functions';
 
 interface HeaderProps {
   siteSetting: SiteSettingType;
 }
 
-export default function Header({ siteSetting }: HeaderProps) {
-  const { sidebarOpen, setSidebarOpen } = useSidebar();
-  const { theme, systemTheme } = useTheme();
+export default function Header({siteSetting}: HeaderProps) {
+  const {sidebarOpen, setSidebarOpen} = useSidebar();
+  const {theme, systemTheme} = useTheme();
   const t = useTranslations();
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -36,17 +35,17 @@ export default function Header({ siteSetting }: HeaderProps) {
     {
       label: t('common.categories'),
       href: ROUTES.CATEGORY,
-      icon: <FaThLarge className="w-4 h-4 mr-2" />,
+      icon: <FaThLarge className="w-4 h-4 mr-2"/>,
     },
     {
       label: t('common.aiTools'),
       href: ROUTES.AI,
-      icon: <FaRobot className="w-4 h-4 mr-2" />,
+      icon: <FaRobot className="w-4 h-4 mr-2"/>,
     },
     {
       label: t('common.blogs'),
       href: ROUTES.BLOG,
-      icon: <FaBlog className="w-4 h-4 mr-2" />,
+      icon: <FaBlog className="w-4 h-4 mr-2"/>,
     },
   ];
 
@@ -72,10 +71,11 @@ export default function Header({ siteSetting }: HeaderProps) {
 
   return (
     <>
-      {dropdownOpen && <div className="fixed inset-0 bg-black/50 z-40 md:hidden" onClick={closeDropdown} />}
+      {dropdownOpen && <div className="fixed inset-0 bg-black/50 z-40 md:hidden" onClick={closeDropdown}/>}
 
       <header className="bg-background border-b border-border">
-        <div className="flex items-center justify-between px-4 py-3 fixed w-full z-10 top-0 left-0 xl:static bg-background text-foreground transition-colors">
+        <div
+          className="flex items-center justify-between px-4 py-3 fixed w-full z-10 top-0 left-0 xl:static bg-background text-foreground transition-colors">
           <div className="flex items-center space-x-4">
             <button
               aria-label="Toggle sidebar"
@@ -83,14 +83,14 @@ export default function Header({ siteSetting }: HeaderProps) {
               onClick={() => setSidebarOpen(!sidebarOpen)}
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16"/>
               </svg>
             </button>
 
             <Link href={ROUTES.HOME} className="flex items-center space-x-2">
               <div className="w-26 h-8 relative">
-                <SafeImage
-                  src={renderUrlImage(theme === 'dark' ? siteSetting?.logo?.url : (siteSetting?.logoLight?.url ?? ''))}
+                <Image
+                  src={renderUrlImage(theme === 'dark' ? siteSetting?.logo?.url : (siteSetting?.logoLight?.url ?? null))}
                   alt="OnToolAZ"
                   fill
                   sizes="true"
@@ -111,8 +111,8 @@ export default function Header({ siteSetting }: HeaderProps) {
                 {item.label}
               </Link>
             ))}
-            <LanguageSwitcher />
-            <ModeToggle />
+            <LanguageSwitcher/>
+            <ModeToggle/>
           </div>
 
           {/* Mobile nav */}
@@ -124,7 +124,7 @@ export default function Header({ siteSetting }: HeaderProps) {
                   aria-label="Open menu"
                   type="button"
                 >
-                  <FaEllipsisV className="w-5 h-5" />
+                  <FaEllipsisV className="w-5 h-5"/>
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-56 relative z-50">
@@ -137,22 +137,22 @@ export default function Header({ siteSetting }: HeaderProps) {
                   </DropdownMenuItem>
                 ))}
 
-                <DropdownMenuSeparator />
+                <DropdownMenuSeparator/>
 
                 <DropdownMenuItem className="flex items-center justify-between" onSelect={e => e.preventDefault()}>
                   <span className="flex items-center">
-                    <FaGlobe className="w-4 h-4 mr-2" />
+                    <FaGlobe className="w-4 h-4 mr-2"/>
                     {t('languageSwitcher.chooseLanguage')}
                   </span>
-                  <LanguageSwitcher />
+                  <LanguageSwitcher/>
                 </DropdownMenuItem>
 
                 <DropdownMenuItem className="flex items-center justify-between" onSelect={e => e.preventDefault()}>
                   <span className="flex items-center">
-                    <FaMoon className="w-4 h-4 mr-2" />
+                    <FaMoon className="w-4 h-4 mr-2"/>
                     {t('common.theme')}
                   </span>
-                  <ModeToggle />
+                  <ModeToggle/>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
