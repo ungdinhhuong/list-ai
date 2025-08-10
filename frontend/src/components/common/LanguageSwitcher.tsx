@@ -3,6 +3,7 @@
 import { Check, Globe2 } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 
+
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -24,23 +25,24 @@ export default function LanguageSwitcher() {
   const router = useRouter();
   const pathname = usePathname();
 
-  // const handleLocaleChange = (newLocale: string) => {
-  //   if (newLocale !== locale) {
-  //     router.replace(pathname, { locale: newLocale })
-  //   }
-  // }
-
   const handleLocaleChange = (newLocale: string) => {
-    if (newLocale === locale) return
-    router.push('/', { locale: newLocale })
-  }
+    if (newLocale === locale) return;
+
+    // Sử dụng router.replace để giữ nguyên pathname và chỉ thay đổi locale
+    // next-intl sẽ tự động xử lý việc thay đổi locale prefix
+    router.replace(pathname, { locale: newLocale });
+  };
 
   const current = LANGUAGES.find(l => l.value === locale);
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" className="w-auto justify-between" aria-label={t('languageSwitcher.chooseLanguage')}>
+        <Button
+          variant="outline"
+          className="w-auto justify-between"
+          aria-label={t('languageSwitcher.chooseLanguage')}
+        >
           <Globe2 size={18} className="mr-1" />
           <span>{current?.label}</span>
         </Button>
@@ -49,7 +51,10 @@ export default function LanguageSwitcher() {
         {LANGUAGES.map(lang => (
           <DropdownMenuItem
             key={lang.value}
-            className={cn('flex items-center justify-between', lang.value === locale && 'font-semibold')}
+            className={cn(
+              'flex items-center justify-between cursor-pointer',
+              lang.value === locale && 'font-semibold'
+            )}
             onClick={() => handleLocaleChange(lang.value)}
           >
             <span>{lang.label}</span>
