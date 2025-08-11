@@ -21,7 +21,7 @@ export default function HeroSection({homePage}: HeroSectionProps) {
   return (
     <div className="flex flex-col gap-2 items-center max-w-7xl mx-auto mb-10">
       <h1
-        className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent leading-tight">
+        className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent leading-tight text-center">
         {homePage.title || 'Discover the Best AI Tools'}
       </h1>
 
