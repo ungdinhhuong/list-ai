@@ -1,19 +1,19 @@
 'use client';
 
-import { ChevronDown, ChevronRight } from 'lucide-react';
-import { usePathname, useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import {ChevronDown, ChevronRight} from 'lucide-react';
+import {usePathname, useRouter} from 'next/navigation';
+import {useEffect, useState} from 'react';
 
-import { ROUTES } from '@/constants/routes';
-import { useSidebar } from '@/contexts/SidebarProvider';
-import { CategoryType } from '@/types/category.type';
+import {ROUTES} from '@/constants/routes';
+import {useSidebar} from '@/contexts/SidebarProvider';
+import {CategoryType} from '@/types/category.type';
 
 interface SidebarProps {
   categories: CategoryType[];
 }
 
-export default function Sidebar({ categories }: SidebarProps) {
-  const { sidebarOpen, setSidebarOpen } = useSidebar();
+export default function Sidebar({categories}: SidebarProps) {
+  const {sidebarOpen, setSidebarOpen} = useSidebar();
   const pathname = usePathname();
   const router = useRouter();
 
@@ -58,7 +58,7 @@ export default function Sidebar({ categories }: SidebarProps) {
                 ? 'bg-muted text-foreground'
                 : 'text-muted-foreground hover:bg-accent hover:text-foreground'
             }`}
-            style={{ paddingLeft: `${level * 16 + 12}px` }}
+            style={{paddingLeft: `${level * 16 + 12}px`}}
             onClick={handleClick}
           >
             <div className="flex items-center space-x-1.5">
@@ -66,7 +66,7 @@ export default function Sidebar({ categories }: SidebarProps) {
               <span className="text-sm">{category.name}</span>
             </div>
             {hasChildren && (
-              <span className="text-xs">{isOpen ? <ChevronDown size={16} /> : <ChevronRight size={16} />}</span>
+              <span className="text-xs">{isOpen ? <ChevronDown size={16}/> : <ChevronRight size={16}/>}</span>
             )}
           </div>
 
@@ -82,7 +82,7 @@ export default function Sidebar({ categories }: SidebarProps) {
     <>
       {/* Mobile Overlay */}
       {sidebarOpen && (
-        <div className="fixed inset-0 bg-black/50 z-11 md:hidden" onClick={() => setSidebarOpen(false)} />
+        <div className="fixed inset-0 bg-black/50 z-11 md:hidden" onClick={() => setSidebarOpen(false)}/>
       )}
 
       {/* Sidebar */}
@@ -104,7 +104,7 @@ export default function Sidebar({ categories }: SidebarProps) {
             aria-label="Close sidebar"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12"/>
             </svg>
           </button>
         </div>
