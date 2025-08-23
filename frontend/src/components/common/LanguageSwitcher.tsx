@@ -6,32 +6,13 @@ import {useLocale, useTranslations} from 'next-intl';
 
 import {Button} from '@/components/ui/button';
 import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from '@/components/ui/dropdown-menu';
-import {usePathname, useRouter} from '@/i18n/navigation';
+import {usePathname, useRouter} from '@/i18n/navigation'; // re-export từ next-intl/navigation
 import {cn} from '@/lib/utils';
 
 const LANGUAGES = [
   {value: 'en', label: 'English'},
   {value: 'vi', label: 'Tiếng Việt'}
 ] as const;
-
-/** Ghi cookie NEXT_LOCALE cho 1 năm, dùng domain cấp cao nếu cần dùng chung www và non-www */
-function writeNextLocaleCookie(locale: string) {
-  const parts = [
-    `NEXT_LOCALE=${encodeURIComponent(locale)}`,
-    'Path=/',
-    'Max-Age=31536000', // 1 năm
-    'SameSite=Lax'
-  ];
-
-  if (location.protocol === 'https:') parts.push('Secure');
-
-  // Nếu site có cả www.ontoolaz.com và ontoolaz.com, nên để cookie ở .ontoolaz.com
-  if (location.hostname.endsWith('ontoolaz.com')) {
-    parts.push('Domain=.ontoolaz.com');
-  }
-
-  document.cookie = parts.join('; ');
-}
 
 export default function LanguageSwitcher() {
   const t = useTranslations();
@@ -40,22 +21,20 @@ export default function LanguageSwitcher() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const handleLocaleChange = (newLocale: typeof LANGUAGES[number]['value']) => {
+  const handleLocaleChange = (newLocale: (typeof LANGUAGES)[number]['value']) => {
     if (newLocale === locale) return;
 
-    // 1) Ghi cookie để middleware nhớ lựa chọn mới
-    writeNextLocaleCookie(newLocale);
+    // Giữ nguyên query
+    const query: Record<string, string> = {};
+    searchParams.forEach((v, k) => {
+      query[k] = v;
+    });
 
-    // 2) Giữ nguyên pathname + query khi đổi locale
-    const qs = searchParams.toString();
-    const href = qs ? `${pathname}?${qs}` : pathname;
+    // Điều hướng đúng chuẩn next-intl (tự xử lý prefix locale)
+    router.replace({pathname, query}, {locale: newLocale});
 
-    // 3) Điều hướng bằng navigation API của next-intl (xử lý prefix en/vi đúng theo routing)
-    router.replace({pathname: href}, {locale: newLocale});
-
-    // Nếu bạn muốn CHẮC CHẮN middleware chạy để set cookie từ server (không chỉ client):
-    // window.location.assign(router.href({pathname: href}, {locale: newLocale}));
-    // (chỉ bật khi cần hard reload)
+    // Nếu muốn chắc chắn middleware chạy từ server (không cần thiết thường xuyên):
+    // router.refresh();
   };
 
   const current = LANGUAGES.find(l => l.value === locale);
@@ -72,6 +51,7 @@ export default function LanguageSwitcher() {
           <span>{current?.label}</span>
         </Button>
       </DropdownMenuTrigger>
+
       <DropdownMenuContent align="end" className="w-[160px]">
         {LANGUAGES.map(lang => {
           const isCurrent = lang.value === locale;
@@ -79,7 +59,7 @@ export default function LanguageSwitcher() {
             <DropdownMenuItem
               key={lang.value}
               className={cn('flex items-center justify-between', isCurrent && 'font-semibold')}
-              onSelect={e => {
+              onSelect={(e) => {
                 if (isCurrent) e.preventDefault();
                 else handleLocaleChange(lang.value);
               }}
