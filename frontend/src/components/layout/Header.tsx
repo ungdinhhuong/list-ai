@@ -90,10 +90,14 @@ export default function Header({siteSetting}: HeaderProps) {
             <Link href={ROUTES.HOME} className="flex items-center space-x-2">
               <div className="w-26 h-8 relative">
                 <Image
-                  src={renderUrlImage(theme === 'dark' ? siteSetting?.logo?.url : (siteSetting?.logoLight?.url ?? null))}
+                  src={renderUrlImage(
+                    theme === 'dark'
+                      ? siteSetting?.logo?.url
+                      : siteSetting?.logoLight?.url || siteSetting?.logo?.url || ''
+                  )}
                   alt="OnToolAZ"
                   fill
-                  sizes="true"
+                  sizes="100vw"
                   className="w-full h-full object-contain"
                 />
               </div>

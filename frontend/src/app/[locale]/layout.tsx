@@ -1,23 +1,49 @@
 import './globals.css';
 
-import parse from "html-react-parser";
-import type {Metadata} from 'next';
-import {Geist, Geist_Mono} from 'next/font/google';
-import {notFound} from 'next/navigation';
-import {hasLocale, NextIntlClientProvider} from 'next-intl';
+import parse from 'html-react-parser';
+import type { Metadata } from 'next';
+import { Geist, Geist_Mono } from 'next/font/google';
+import { notFound } from 'next/navigation';
+import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import NextTopLoader from 'nextjs-toploader';
 
 import MainLayout from '@/components/layout/MainLayout';
-import {ThemeProvider} from '@/components/shared/theme-provider';
-import {GlobalDataProvider} from '@/contexts/GlobalProvider';
-import {routing} from '@/i18n/routing';
-import {getValidOgType} from '@/lib/seoMeta';
-import {singleTypeService} from '@/services/single-type.service';
+import { ThemeProvider } from '@/components/shared/theme-provider';
+import { GlobalDataProvider } from '@/contexts/GlobalProvider';
+import { routing } from '@/i18n/routing';
+import { getValidOgType } from '@/lib/seoMeta';
+import { singleTypeService } from '@/services/single-type.service';
 
-const geistSans = Geist({variable: '--font-geist-sans', subsets: ['latin']});
-const geistMono = Geist_Mono({variable: '--font-geist-mono', subsets: ['latin']});
+const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] });
+const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin'] });
 
-export const generateMetadata = async ({params}: { params: { locale: string } }): Promise<Metadata> => {
+/** No-flash theme script: gắn class light/dark sớm ngay từ head */
+function ThemeNoFlashScript() {
+  return (
+    <script
+      dangerouslySetInnerHTML={{
+        __html: `
+(function () {
+  try {
+    var key = 'theme';
+    var stored = localStorage.getItem(key);
+    var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var resolved = stored === 'light' || stored === 'dark' ? stored : (systemDark ? 'dark' : 'light');
+    var root = document.documentElement;
+    root.classList.remove('light','dark');
+    root.classList.add(resolved);
+  } catch (e) {}
+})();`,
+      }}
+    />
+  );
+}
+
+export const generateMetadata = async ({
+                                         params,
+                                       }: {
+  params: { locale: string };
+}): Promise<Metadata> => {
   const resSiteSetting = await singleTypeService.getSiteSetting();
   const siteSetting = resSiteSetting?.data || [];
 
@@ -30,17 +56,15 @@ export const generateMetadata = async ({params}: { params: { locale: string } })
     description: defaultSeo.metaDescription,
     keywords: defaultSeo.keywords,
     robots: isProd ? defaultSeo.metaRobots : 'noindex, nofollow',
-    // Icons và manifest
     icons: {
       icon: [
-        {url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png'},
-        {url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png'},
+        { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+        { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
       ],
-      apple: [{url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png'}],
+      apple: [{ url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
       shortcut: '/favicon.ico',
     },
     manifest: '/site.webmanifest',
-    // Canonical và alternate languages
     alternates: {
       canonical: defaultSeo.canonicalURL,
       languages: {
@@ -49,7 +73,6 @@ export const generateMetadata = async ({params}: { params: { locale: string } })
         'x-default': `${baseUrl}/`,
       },
     },
-    // OpenGraph
     openGraph: {
       title: defaultSeo.openGraph?.ogTitle,
       description: defaultSeo.openGraph?.ogDescription,
@@ -66,7 +89,6 @@ export const generateMetadata = async ({params}: { params: { locale: string } })
         ]
         : [],
     },
-    // Twitter card (optional)
     twitter: {
       card: 'summary_large_image',
       title: defaultSeo.openGraph?.ogTitle,
@@ -78,12 +100,11 @@ export const generateMetadata = async ({params}: { params: { locale: string } })
 
 export default async function LocaleLayout({
                                              children,
-                                             params,
+                                             params: { locale },
                                            }: {
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
+  params: { locale: string };
 }) {
-  const {locale} = await params;
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
@@ -94,20 +115,24 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
     <head>
+      {/* Giúp browser chọn palette phù hợp và tránh nháy */}
+      <meta name="color-scheme" content="light dark" />
+      <ThemeNoFlashScript />
       {!!siteSetting?.scripts?.headScripts && parse(siteSetting.scripts.headScripts.trim())}
     </head>
     <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-    <NextIntlClientProvider>
-      <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-        <GlobalDataProvider value={{siteSetting}}>
+    <NextIntlClientProvider locale={locale}>
+      <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        <GlobalDataProvider value={{ siteSetting }}>
           <MainLayout>
-            <NextTopLoader showSpinner={false}/>
+            <NextTopLoader showSpinner={false} />
             {children}
           </MainLayout>
         </GlobalDataProvider>
       </ThemeProvider>
     </NextIntlClientProvider>
-    {!!siteSetting?.scripts?.bodyScripts && parse(siteSetting.scripts.bodyScripts.trim())}
+
+    {!!siteSetting?.scripts?.bodyScripts && parse(siteSetting?.scripts?.bodyScripts.trim())}
     </body>
     </html>
   );
