@@ -32,8 +32,6 @@ export async function GET() {
     '/_next/',            // toàn bộ asset build của Next.js
     '/_next/static/',     // fonts, js, map...
     '/_next/image',       // image optimizer endpoint
-    '/favicon.ico',
-    '/site.webmanifest',
     '/robots.txt',        // chính nó
     '/api/',              // API routes (nếu có)
     '/404', '/500',       // error pages
