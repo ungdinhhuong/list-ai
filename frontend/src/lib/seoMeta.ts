@@ -36,8 +36,8 @@ export function seoMeta({ seo, siteUrl, path = '/', title }: SeoMetaOptions): Me
   if (seo?.metaRobots) {
     const robotStr = seo.metaRobots.toLowerCase();
     robots = {
-      index: robotStr.includes('index'),
-      follow: robotStr.includes('follow'),
+      index: robotStr.includes('noindex'),
+      follow: robotStr.includes('nofollow'),
     };
   }
 
